@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Terranga</title>
+    
+    <link rel="stylesheet" href="/staging/styles/style.css">
+    
+    <!-- - - - - - - - - ANGULAR! - - - - - - - - - -  -->
+    
+    <script src="https://malsup.github.com/jquery.form.js"></script>
+    <script src="/site/js/fileupload/angular-file-upload-shim.js"></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js'></script>
+    <script src="https://code.angularjs.org/1.2.20/angular-sanitize.min.js"></script>
+    <script src="/site/js/fileupload/angular-file-upload.js"></script>
+    
+    <script src='/app/app.js'></script>
+    <script src='/app/home.js'></script>
+    <script src='/app/profile.js'></script>
+    <script src='/app/profiles.js'></script>
+    <script src='/app/register.js'></script>
+    
+  </head>
+
+  <body ng-app="Terranga" ng-controller="ProfileController" style="padding:20px" ng-init="init()">
+    <h2>PROFILE</h2>
+    
+    
+    <div class="section">
+      <h2 style="margin-top:0px">Manage Profile</h2>
+      <input ng-model="currentUser.firstName" type="text" placeholder="First Name"><br /><br />
+      <input ng-model="currentUser.lastName" type="text" placeholder="Last Name"><br /><br />
+      <input ng-model="currentUser.email" type="text" placeholder="Email"><br /><br />
+      <input ng-model="currentUser.password" type="password" placeholder="Password"><br /><br />
+      <input ng-model="currentUser.city" type="text" placeholder="City"><br /><br />
+      <input ng-model="currentUser.country" type="text" placeholder="Country"><br /><br />
+      <input ng-model="currentUser.age" type="text" placeholder="Age"><br /><br />
+      <input ng-model="currentUser.phone" type="text" placeholder="Phone"><br /><br />
+      <textarea style="width:100%;height:120px" ng-model="currentUser.bio" placeholder="Bio"></textarea><br /><br />
+      
+      <div style="padding:16px;width:50%;background:#fff;border:1px solid #ddd;height:80px" ng-file-drop="onFileSelect($files, 'image', 'currentUser')" >
+        <img align="left" style="width:64px;margin-right:16px" src='/site/images/{{ currentUser.image }}?crop=256' />
+        <h4 style="margin-top:0px">IMAGE</h4>
+        To set your image, drag &amp; drop image file here.
+      
+      </div>
+      
+      <br /><br />
+      
+      <button ng-click="updateCurrentUser()">Update</button><br /><br />
+      <button ng-click="logout()">Log Out</button><br /><br />
+    </div>
+    
+
+
+    
+	
+	
+  </body>
+  
+  
+  
+  
+  
+</html>

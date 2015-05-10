@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+    {{ head }}
+    
+  </head>
+  
+  
+  
+  
+  <body ng-app="Terranga" ng-controller="HomeController" ng-init="init()">
+    <div class="loading-overlay" ng-show="loading">
+      <div spinner spin="loading"></div>
+    </div>
+  
+  
+    <div id="load"></div><!--[if lt IE 9]>
+    <p class="browsehappy">You are using an strong outdated browser. <br>Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="page">
+    
+    
+      <!-- Start Nav Section-->
+      {{ nav }}
+      
+      
+      <!-- Start Header Section-->
+      <section class="demo-2">
+        <!-- Start slider-wrapper-->
+        <div id="slider" style="display:none;" class="sl-slider-wrapper">
+          <div class="sl-slider">
+            <!-- start slide-->
+            <div data-orientation="horizontal" data-slice1-rotation="3" data-slice2-rotation="3" data-slice1-scale="2" data-slice2-scale="1" class="sl-slide">
+              <div style="background: url(/site/img/slides/slide4.jpg);" class="sl-slide-inner">
+                <div class="slide-container">
+                  <div class="slide-content text-center">
+                    <h2 class="main-title">A New Way to <span class="text-primary">Travel</span></h2>
+                    <blockquote>
+                      <p>Get off-the-beaten path, connect with locals &amp; support dreams</p>
+                      <a href="site/register" class="btn btn-light btn-bordered btn-lg">JOIN US</a>
+                    </blockquote>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end slide-->
+            <!-- start slide-->
+            <div data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2" class="sl-slide">
+              <div style="background: url(/site/img/slides/slide6.jpg);" class="sl-slide-inner">
+                <div class="slide-container">
+                  <div class="slide-content text-center">
+                    <h2 class="main-title">Explore and &nbsp;<span class="text-primary">Experience</span></h2>
+                    <blockquote>
+                      <p>Enjoy the real experience when travelling</p>
+                      <a href="site/register" class="btn btn-light btn-bordered btn-lg">JOIN US</a>
+                    </blockquote>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end slide-->
+            <!-- start slide-->
+            <div data-orientation="horizontal" data-slice1-rotation="10" data-slice2-rotation="-15" data-slice1-scale="1.5" data-slice2-scale="1.5" class="sl-slide">
+              <div style="background: url(/site/img/slides/slide1.jpg);" class="sl-slide-inner">
+                <div class="slide-container">
+                  <div class="slide-content text-center">
+                    <h2 class="main-title" style="color:#444">Support &nbsp;<span class="text-primary">Dreams</span></h2>
+                    <blockquote>
+                      <p style="color:#444">Help make dreams a reality supporting your tour guide</p>
+                      <a href="/site/register" class="btn btn-primary btn-lg">JOIN US</a>
+                    </blockquote>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end slide-->
+            
+            
+          </div>
+          <!-- start slider navigation-->
+          <nav id="nav-arrows" class="nav-arrows"><span class="nav-arrow-prev">Previous</span><span class="nav-arrow-next">Next</span></nav>
+          <!-- end slider navigation-->
+        </div>
+        <!-- End slider-wrapper-->
+      </section>
+      <!-- End Header Section-->
+      
+      
+      
+      
+      
+      
+      
+      <section class="sep-bottom-md" style="background:#f9f9f9">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              <div class="section-title text-center sep-bottom-lg">
+                <br /><br /><br />
+                <h2 class="upper">The Terranga Community</h2>
+                <p class="lead">A place for travelers to connect with locals in cities around the world.</p>
+              </div>
+            </div>
+          </div>
+          
+          
+          <div class="row">
+          
+            <!-- FEATURED PROFILE -->
+            <div ng-repeat="profile in featuredProfiles track by $index" class="col-md-3 sep-bottom-lg">
+              <div class="featuredProfile">
+                <img src="/site/images/{{ profile.image }}?crop=256" />
+                <h5 style="margin-bottom:0px;color:#43AEC6">{{ capitalize(profile.firstName) }}, {{ profile.age }}</h5>
+                <br />
+                
+                <hr style="width:80%;margin-bottom:8px" />
+                
+                <p>
+                  <i class="fa fa-comments-o fa-lg"></i><br />
+                  {{ truncatedText(profile.bio, 120) }}
+                </p>
+                <span><i class="fa fa-map-marker fa-md"></i> {{ capitalize(profile.city) }}, {{ profile.country.toUpperCase() }}</span><br /><br />
+                <a href="/" target="_blank" class="btn btn-primary btn-md">Meet {{ capitalize(profile.firstName) }}</a><br /><br />
+              </div>
+            </div>
+            <!-- END FEATURED PROFILE -->
+            
+
+            
+          </div>
+        </div>
+      </section>
+      
+      
+      <!-- Start About section-->
+      <section class="sep-bottom-2x" style="padding:48px">
+        <div class="row sep-bottom-2x">
+            <div class="col-md-4 icon-gradient sep-top-lg">            
+              <div class="icon-box icon-horizontal icon-lg">              
+                <img height="140" width="140" src="/site/img/1-icon.png"/>
+                <div class="icon-box-content">
+                  <h6 class="upper">Find a Local</h6>
+                  <p style="padding:0px 40px 0px 40px">
+                  	Terranga has locals all over the world. Find the local who's perfect for you by checking out their profile. 
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 icon-gradient sep-top-lg">
+              <div class="icon-box icon-horizontal icon-lg">
+                <img height="140" width="140" src="/site/img/2-icon.png"/>
+                <div class="icon-box-content">
+                  <h6 class="upper">Tell them what you're looking for</h6>
+                  <p style="padding:0px 40px 0px 40px">
+                  	Tell your Terranga local your plans, and they'll help you out! Ask about great lunch spots, wineries, nightlife, etc.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 icon-gradient sep-top-lg">
+              <div class="icon-box icon-horizontal icon-lg">
+                <img height="140" width="140" src="/site/img/3-icon.png"/>
+                <div class="icon-box-content">
+                  <h6 class="upper">Having an incredible time</h6>
+                  <p style="padding:0px 40px 0px 40px">
+                  	Go on a journey! With your Terranga local, you can travel the world and know a local in every city who will help you make the most of your trips.
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+        </div>
+        
+            <div style="text-align:center;padding-bottom:30px;">
+             <p align="center" class="lead" style="width:40%;margin-left:auto;margin-right:auto">
+            	Terranga is a place for people to connect. Want to show travelers around your city? 
+           	    Help us build the community by becoming a local in your hometown!
+              </p>
+            </div>
+        
+      </section>
+      <!-- End About section-->
+      
+      
+      <!-- Start Footer section-->
+      {{ footer }}
+      
+      
+    </div>
+    
+    {{ scripts }}
+    
+  </body>
+</html>
