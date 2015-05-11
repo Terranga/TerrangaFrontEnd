@@ -26,7 +26,7 @@
       
       <!-- Start Contact section-->
 		<div class="container" style="padding-top:20px;background-image:url('/site/img/slides/slide3.jpg');width:100%;height:990px">
-          <div class="col-md-4" style="background:#f9f9f9;border:1px solid #ddd;padding:0px;min-height:950px;">
+          <div class="col-md-4" style="background:rgba(249, 249, 249, 0.96);border:1px solid #ddd;padding:0px;min-height:950px;">
             <div style="text-align:center;">
               <br/>
               <h4 style="margin-top:0px">Manage Profile</h4>
@@ -66,7 +66,7 @@
             
             <div class="col-md-8" style="background-size:cover;padding-left:0px">
               
-                <div style="width:90%;height:90%;background:rgba(255, 255, 255, 0.97);margin-left:auto;margin-right:auto;">
+                <div style="width:90%;height:90%;background:rgba(255, 255, 255, 0.96);margin-left:auto;margin-right:auto;">
                   <div style="height:80px;background:#f1f1f1;text-align:center;padding-top:18px;border:1px solid #ddd">
                     <h4 style="color:#444">Bio Details</h4>
                   </div>
@@ -77,11 +77,11 @@
                   			<tr>
                   				<td style="padding-right:20px;width:300px">
                   					<label class="upper">Bio</label>
-	                  				<textarea ng-model="currentUser.bio" placeholder="Bio" rows="6" class="form-control input-lg"></textarea>
+	                  				<textarea ng-model="currentUser.bio" placeholder="Bio" rows="10" class="form-control input-lg"></textarea>
                   				</td>
-                  				<td style="padding-right:20px;width:300px">
+                  				<td style="padding-left:20px;width:300px">
 	                  				<label class="upper">Dream</label>
-		                  			<textarea placeholder="Dream" rows="6" class="form-control input-lg"></textarea>
+		                  			<textarea placeholder="Dream" rows="10" class="form-control input-lg"></textarea>
 	                  			</td>
                   			</tr>
                   		</tbody>
@@ -92,6 +92,10 @@
 
                 
                 </div>
+               <div class="col-md-8" style="margin-left:auto;margin-right:auto;text-align:center;padding:80px 0px 0px 300px">
+               	<button style="width:200px;height:60px"ng-click="updateCurrentUser()" class="btn btn-primary">UPDATE</button>
+               </div>
+                
               
             </div>
             </div>
