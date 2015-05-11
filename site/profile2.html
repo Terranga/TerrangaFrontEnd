@@ -16,7 +16,7 @@
             <div class="section-title upper text-center">
               <h2 class="light small-space">Your&nbsp;<span class="text-primary">Profile</span></h2>
               <p class="lead light">Press update to save changes.</p>
-              <img style="background-image:url('/site/img/logo_square_icon.png');width:80px;height:80px;border-radius:40px;border:1px solid #ddd;" src='/site/images/{{ currentUser.image }}?crop=256'/>
+              <img onerror="this.src='/site/img/logo_square_icon.png'" style="width:80px;height:80px;border-radius:40px;border:2px solid #ddd;" src='/site/images/{{ currentUser.image }}?crop=256'/>
             </div>
           </div>
         </div>
@@ -31,18 +31,18 @@
               <br/>
               <h4 style="margin-top:0px">Manage Profile</h4>
               <h6 style="margin-top:15px">Profile Picture</h6>
-				<div ng-file-drop="onFileSelect($files, 'image', 'currentUser')" style="margin-top:20px;margin-left:auto;margin-right:auto;height:100px; width:90%;background:white;border:1px solid #ddd">
+				<div ng-file-drop="onFileSelect($files, 'image', 'currentUser')" style="margin-top:20px;margin-left:auto;margin-right:auto;height:120px; width:90%;background:white;border:1px solid #ddd">
 					<br/>
+					<img align="left" onerror="this.src='/site/img/logo_square_icon.png'" style="margin-left:30px;width:80px;height:80px;border-radius:40px;border:1px solid #ddd;" src='/site/images/{{ currentUser.image }}?crop=256'/>
+
 					<p>Drop image file here to update profile picture.</p>
                </div>                
               <br/><hr/>
             </div>
             <br/>
             <div style="padding-left:30px;padding-right:30px">
-	            <label class="upper">First Name</label>
-	            <input ng-model="currentUser.firstName" type="text" placeholder="First name" class="form-control input-lg">
-	            <label class="upper" style="margin-top:10px">Last Name</label>
-                <input ng-model="currentUser.lastName" type="text" placeholder="Last name" class="form-control input-lg">
+	            <label class="upper">Name</label>
+	            <input ng-model="name" type="text" placeholder="First & Last Name" class="form-control input-lg">
                 <label class="upper" style="margin-top:10px">Age</label>
                 <select class="form-control input-lg" ng-model="currentUser.age" >
                 	<option ng-repeat="age in ages track by $index" value= "{{ age }}" >{{ age }}</option>
@@ -75,28 +75,26 @@
                   	<table style="margin-left:auto;margin-right:auto">
                   		<tbody>
                   			<tr>
-                  				<td style="padding-right:20px;width:300px">
+                  				<td style="padding-right:20px;width:350px">
                   					<label class="upper">Bio</label>
-	                  				<textarea ng-model="currentUser.bio" placeholder="Bio" rows="10" class="form-control input-lg"></textarea>
+	                  				<textarea ng-model="currentUser.bio" placeholder="Bio" rows="20" class="form-control input-lg"></textarea>
                   				</td>
-                  				<td style="padding-left:20px;width:300px">
+                  				<td style="padding-left:20px;width:350px">
 	                  				<label class="upper">Dream</label>
-		                  			<textarea placeholder="Dream" rows="10" class="form-control input-lg"></textarea>
+		                  			<textarea placeholder="Dream" rows="20" class="form-control input-lg"></textarea>
 	                  			</td>
                   			</tr>
                   		</tbody>
                   	</table>
+					<div style="margin-left:auto;margin-right:auto;text-align:center;padding-top:40px">
+               			<button style="width:200px;height:60px"ng-click="updateCurrentUser()" class="btn btn-primary">UPDATE</button>
+               		</div>                  	
                   </div>
                   
                   <br /><br /><br />
 
                 
                 </div>
-               <div class="col-md-8" style="margin-left:auto;margin-right:auto;text-align:center;padding:80px 0px 0px 300px">
-               	<button style="width:200px;height:60px"ng-click="updateCurrentUser()" class="btn btn-primary">UPDATE</button>
-               </div>
-                
-              
             </div>
             </div>
             
