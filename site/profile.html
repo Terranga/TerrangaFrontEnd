@@ -61,7 +61,7 @@
                     <div class="col-md-4 sep-top-xs">
                         <label class="upper">Country</label>
                         <select class="form-control input-lg" ng-model="currentUser.country" >
-                        	<option ng-repeat="country in countries track by $index" value= "{{ country }}" >{{ country }}</option>
+                        	<option ng-repeat="country in countries track by $index" value= "{{ country }}" >{{ capitalize(country) }}</option>
                         </select>
                     </div>
                     <div class="col-md-4 sep-top-xs">
