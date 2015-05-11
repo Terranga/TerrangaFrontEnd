@@ -16,6 +16,7 @@
             <div class="section-title upper text-center">
               <h2 class="light small-space">Your&nbsp;<span class="text-primary">Profile</span></h2>
               <p class="lead light">Press update to save changes.</p>
+              <img style="background-image:url('/site/img/logo_square_icon.png');width:80px;height:80px;border-radius:40px;border:1px solid #ddd;" src='/site/images/{{ currentUser.image }}?crop=256'/>
             </div>
           </div>
         </div>
@@ -30,8 +31,9 @@
               <br/>
               <h4 style="margin-top:0px">Manage Profile</h4>
               <h6 style="margin-top:15px">Profile Picture</h6>
-				<div ng-file-drop="onFileSelect($files, 'image', 'currentUser')" style="margin-top:20px;margin-left:auto;margin-right:auto;height:90px; width:90%">
-              		<img style="width:64px;height:64px;border-radius:32px;border:1px solid #ddd;" src='/site/images/{{ currentUser.image }}?crop=256'/>
+				<div ng-file-drop="onFileSelect($files, 'image', 'currentUser')" style="margin-top:20px;margin-left:auto;margin-right:auto;height:90px; width:90%;background:white;border:1px solid #ddd">
+					<br/>
+					<p>Drop image file here to update profile picture.</p>
                </div>                
               <br/><hr/>
             </div>
