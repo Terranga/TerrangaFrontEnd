@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html class="no-js">
+  {{ head }}
+  
+  
+  <body ng-app="Terranga" ng-controller="ProfileController" ng-init="init()">
+    <div id="load"></div><!--[if lt IE 9]>
+    <p class="browsehappy">You are using an strong outdated browser. <br>Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="page">
+      {{ nav }}
+      <!-- Start header Section-->
+      <section style="background-image: url('img/slides/slide6.jpg');" class="header-section fading-title parallax">
+        <div class="section-shade sep-top-3x sep-bottom-2x">
+          <div class="container">
+            <div class="section-title upper text-center">
+              <h2 class="light small-space">Edit your&nbsp;<span class="text-primary">Profile</span></h2>
+              <p class="lead light">Press update to save changes.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End header Section-->
+      
+      
+      <!-- Start Contact section-->
+      <section style="background-color:#f9f9f0" class="sep-top-2x sep-bottom-2x">
+        <div class="container">
+		<div class="row">
+            <div class="col-md-4" style="background:#fff;border-right:1px solid #ddd;padding:0px;min-height:760px;">
+              <div style="text-align:center;width:100%;height:260px;background:#f9f9f9;padding:0px 0px 0px 48px;">
+                <h4 style="margin-top:5px">Manage Profile</h4><i class="fa fa-user fa-lg"></i>
+                <h6 style="text-align:left;margin-top:15px">Profile Picture</h6>
+				<div ng-file-drop="onFileSelect($files, 'image', 'currentUser')" style="margin-top:20px;margin-left:0px;background:white;border:1px solid #ddd; height: 90px; width:50%">
+                	<img align="left" style="width:64px;margin-right:16px" src='/site/images/{{ currentUser.image }}?crop=256'/>
+                	 Drop image file here.
+                 </div>                
+                <hr style="margin-bottom:6px;margin-top:6px;" />
+              </div>
+              
+              
+            </div>
+            
+            
+            
+            <div class="col-md-8" style="background-size:cover;background-image:url('/site/img/slides/slide3.jpg');padding-left:0px">
+              <div class="screen">
+              
+                <div style="width:90%;height:90%;background:rgba(255, 255, 255, 0.97);margin-left:auto;margin-right:auto;">
+                  <div style="height:80px;background:#f1f1f1;text-align:center;padding-top:18px;border-bottom:1px solid #ddd">
+                    <h4 style="color:#444">Meet the Terranga Community</h4>
+                  </div>
+                  
+                  <br />
+                  
+                  <div class="profileBox" ng-repeat="profile in featuredProfiles track by $index">
+                    <a ng-click="viewProfile($index)" data-toggle="modal" data-target="#profileModal" href="">
+                      <img src="/site/images/{{ profile.image }}?crop=256" />
+                      {{ capitalize(profile.firstName) }} {{ capitalize(profile.lastName) }}, {{ profile.age }}
+					</a>                    
+                  </div>
+                  
+                  <br /><br /><br />
+
+                
+                </div>
+              
+              </div>
+            </div>
+            
+          </div>
+       
+        </div>
+      </section>
+      <!-- End Contact section-->
+     
+      {{ footer }}
+      
+    {{ scripts }}
+  </body>
+</html>
