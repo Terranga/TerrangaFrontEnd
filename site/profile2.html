@@ -24,22 +24,42 @@
       
       
       <!-- Start Contact section-->
-      <section style="background-color:#f9f9f0" class="sep-top-2x sep-bottom-2x">
-        <div class="container">
-		<div class="row">
-            <div class="col-md-4" style="background:#fff;border-right:1px solid #ddd;padding:0px;min-height:760px;">
-              <div style="text-align:center;width:100%;height:260px;background:#f9f9f9;padding:0px 0px 0px 48px;">
-                <h4 style="margin-top:5px">Manage Profile</h4><i class="fa fa-user fa-lg"></i>
-                <h6 style="text-align:left;margin-top:15px">Profile Picture</h6>
+		<div class="container" style="margin-top:20px;">
+          <div class="col-md-4" style="background:#f9f9f9;border-right:1px solid #ddd;padding:0px;min-height:950px;">
+            <div style="text-align:center;width:100%;height:260px;padding:0px 0px 0px 45px;">
+            <br/>
+              <h4 style="margin-top:0px">Manage Profile</h4><i class="fa fa-user fa-lg"></i>
+              <h6 style="text-align:left;margin-top:15px">Profile Picture</h6>
 				<div ng-file-drop="onFileSelect($files, 'image', 'currentUser')" style="margin-top:20px;margin-left:0px;background:white;border:1px solid #ddd; height: 90px; width:50%">
-                	<img align="left" style="width:64px;margin-right:16px" src='/site/images/{{ currentUser.image }}?crop=256'/>
-                	 Drop image file here.
-                 </div>                
-                <hr style="margin-bottom:6px;margin-top:6px;" />
-              </div>
-              
-              
+              	<img align="left" style="width:64px;margin-right:16px" src='/site/images/{{ currentUser.image }}?crop=256'/>
+              	 Drop image file here.
+               </div>                
+              <br/><hr/>
             </div>
+            <br/>
+            <div style="padding-left:15px;padding-right:15px">
+	            <label class="upper">First Name</label>
+	            <input ng-model="currentUser.firstName" type="text" placeholder="First name" class="form-control input-lg">
+	            <label class="upper" style="margin-top:10px">Last Name</label>
+                <input ng-model="currentUser.lastName" type="text" placeholder="Last name" class="form-control input-lg">
+                <label class="upper" style="margin-top:10px">Age</label>
+                <select class="form-control input-lg" ng-model="currentUser.age" >
+                	<option ng-repeat="age in ages track by $index" value= "{{ age }}" >{{ age }}</option>
+                </select>
+                <label class="upper" style="margin-top:10px">City</label>
+                <input ng-model="currentUser.city" type="text" placeholder="City" class="form-control input-lg">
+                <label class="upper" style="margin-top:10px">Country</label>
+                <select class="form-control input-lg" ng-model="currentUser.country" >
+                	<option ng-repeat="country in countries track by $index" value= "{{ country }}" >{{ capitalize(country) }}</option>
+                </select>
+                <label class="upper" style="margin-top:10px">Phone</label>
+                <input ng-model="currentUser.phone" type="text" placeholder="Phone" class="form-control input-lg">
+                <label class="upper" style="margin-top:10px">Email</label>
+                <input ng-model="currentUser.email" type="text" placeholder="Email" class="form-control input-lg">
+                <label class="upper" style="margin-top:10px">Password</label>
+                <input ng-model="currentUser.password" type="password" placeholder="Password" class="form-control input-lg">
+            </div>
+          </div>
             
             
             
@@ -48,16 +68,26 @@
               
                 <div style="width:90%;height:90%;background:rgba(255, 255, 255, 0.97);margin-left:auto;margin-right:auto;">
                   <div style="height:80px;background:#f1f1f1;text-align:center;padding-top:18px;border-bottom:1px solid #ddd">
-                    <h4 style="color:#444">Meet the Terranga Community</h4>
+                    <h4 style="color:#444">Bio Details</h4>
                   </div>
-                  
                   <br />
-                  
-                  <div class="profileBox" ng-repeat="profile in featuredProfiles track by $index">
-                    <a ng-click="viewProfile($index)" data-toggle="modal" data-target="#profileModal" href="">
-                      <img src="/site/images/{{ profile.image }}?crop=256" />
-                      {{ capitalize(profile.firstName) }} {{ capitalize(profile.lastName) }}, {{ profile.age }}
-					</a>                    
+                  <div>
+                  	<table>
+                  		<tbody>
+                  			<tr>
+                  				<td>
+                  					<label class="upper">Bio</label>
+	                  				<textarea ng-model="currentUser.bio" placeholder="Bio" rows="6" class="form-control input-lg"></textarea>
+                  				</td>
+                  			</tr>
+                  			<tr>
+                  				<td>
+	                  				<label class="upper">Dream</label>
+		                  			<textarea placeholder="Dream" rows="6" class="form-control input-lg"></textarea>
+	                  			</td>
+                  			</tr>
+                  		</tbody>
+                  	</table>
                   </div>
                   
                   <br /><br /><br />
@@ -67,11 +97,9 @@
               
               </div>
             </div>
+            </div>
             
-          </div>
        
-        </div>
-      </section>
       <!-- End Contact section-->
      
       {{ footer }}
