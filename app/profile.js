@@ -67,7 +67,7 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
 		}
 
 		
-        var keys = ['firstName', 'lastName', 'city','country','email', 'phone', 'bio'];
+        var keys = ['firstName', 'lastName', 'city','country','email', 'phone', 'bio', 'dream'];
         
         var validUpdate = true;
         for(var i=0;i<keys.length;i++){
