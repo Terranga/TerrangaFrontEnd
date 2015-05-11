@@ -29,10 +29,9 @@
             <div style="text-align:center;width:100%;height:260px;padding:0px 0px 0px 45px;">
             <br/>
               <h4 style="margin-top:0px">Manage Profile</h4><i class="fa fa-user fa-lg"></i>
-              <h6 style="text-align:left;margin-top:15px">Profile Picture</h6>
-				<div ng-file-drop="onFileSelect($files, 'image', 'currentUser')" style="margin-top:20px;margin-left:0px;background:white;border:1px solid #ddd; height: 90px; width:50%">
-              	<img align="left" style="width:64px;margin-right:16px" src='/site/images/{{ currentUser.image }}?crop=256'/>
-              	 Drop image file here.
+              <h6 style="margin-top:15px">Profile Picture</h6>
+				<div ng-file-drop="onFileSelect($files, 'image', 'currentUser')" style="margin-top:20px;margin-left:auto;margin-right:auto;height:90px; width:90%">
+              		<img style="width:64px;height:64px;border-radius:32px;border:1px solid #ddd;" src='/site/images/{{ currentUser.image }}?crop=256'/>
                </div>                
               <br/><hr/>
             </div>
