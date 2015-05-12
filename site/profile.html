@@ -17,9 +17,9 @@
         <div class="section-shade sep-top-3x sep-bottom-2x">
           <div class="container">
             <div class="section-title upper text-center">
-              <h2 class="light small-space">{{ profile.firstName }}&nbsp;<span class="text-primary">{{ profile.firstName }}</span></h2>
+              <h2 class="light small-space">{{ profile.firstName }}&nbsp;<span class="text-primary">{{ profile.lastName }}</span></h2>
+              <img style="width:120px;border-radius:60px;border:2px solid #ddd;" src='/site/images/{{ profile.image }}?crop=240'/><br /><br />
               <p class="lead light">{{ capitalize(profile.city) }}, {{ profile.country.toUpperCase() }}</p>
-              <img style="width:80px;height:80px;border-radius:40px;border:2px solid #ddd;" src='/site/images/{{ profile.image }}?crop=240'/>
             </div>
           </div>
         </div>
