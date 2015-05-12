@@ -19,11 +19,6 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
             var confirmation = data['confirmation'];
             console.log('CONFIRMATION : '+ JSON.stringify(data));
             
-            if (confirmation != 'success'){
-                alert(data['message']);
-                return;
-            }
-            
             var c = data['currentUser'];
             
             var keys = ['firstName', 'lastName', 'city','country','email', 'phone'];
