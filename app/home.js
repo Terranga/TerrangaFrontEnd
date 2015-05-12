@@ -4,7 +4,7 @@ var app = angular.module('HomeModule', []);
 app.controller('HomeController', ['$scope', '$http', function($scope, $http){
 	$scope.loading = false;
 	$scope.featuredProfiles = [];
-	$scope.currentUser = {'firstName':'', 'lastName':'', 'email':'', 'password':''};
+	$scope.currentUser = null;
 	
 	$scope.init = function(){
 		console.log('Home Controller: INIT - '+JSON.stringify($scope.featuredProfiles));
