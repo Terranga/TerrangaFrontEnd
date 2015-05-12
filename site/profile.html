@@ -16,9 +16,9 @@
         <div class="section-shade sep-top-3x sep-bottom-2x">
           <div class="container">
             <div class="section-title upper text-center">
-              <h2 class="light small-space">{{ capitalize(profile.firstName) }}&nbsp;<span class="text-primary">{{ capitalize(profile.lastName) }}</span></h2>
-              <p class="lead light">{{ profile.age }} - {{ capitalize(profile.city) }},{{ capitalize(profile.country) }}</p>
-              <img style="width:80px;height:80px;border-radius:40px;border:2px solid #ddd;" src='/site/images/{{ profile.image }}?crop=256'/>
+              <h2 class="light small-space">Jake&nbsp;<span class="text-primary">Greenstein</span></h2>
+              <p class="lead light">20 - Montvale, United States</p>
+              <img style="width:80px;height:80px;border-radius:40px;border:2px solid #ddd;" src='/site/img/logo_square.png'/>
             </div>
           </div>
         </div>
@@ -71,20 +71,28 @@
               
                 <div style="width:90%;height:90%;background:rgba(255, 255, 255, 0.96);margin-left:auto;margin-right:auto;">
                   <div style="height:80px;background:#f1f1f1;text-align:center;padding-top:18px;border:1px solid #ddd">
-                    <h4 style="color:#444">About {{ profile.firstName }}</h4>
+                    <h4 style="color:#444">About Jake</h4>
                   </div>
                   <br />
                   <div>
                   	<table style="margin-left:auto;margin-right:auto">
+                  		<thead>
+                  			<tr>
+                  				<td>
+                  					<label class="upper">Bio</label>
+                  				</td>
+                  				<td>
+                  					<label class="upper">Dream</label>
+                  				</td>
+                  			</tr>
+                  		</thead>
                   		<tbody>
                   			<tr>
                   				<td style="padding-right:20px;width:300px">
-                  					<label class="upper">Bio</label>
-	                  				<p>{{ profile.bio }}</p>
+	                  				<p>Hi! My name is Jake, and I am a rising Junior at The George Washington University majoring in Computer Science.</p>
                   				</td>
-                  				<td style="padding-left:20px;width:300px">
-	                  				<label class="upper">Dream</label>
-		                  			<p>{{ profile.dream }}</p>
+                  				<td style="width:300px">
+		                  			<p>My dream is to found a large Silicon Valley startup and hang out with Elon Musk.</p>
 	                  			</td>
                   			</tr>
                   		</tbody>
