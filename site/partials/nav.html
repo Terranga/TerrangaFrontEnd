@@ -15,7 +15,10 @@
               <li class="dropdown">
                 <a href="/site/profiles" id="menu_item_Portfolio" class="dropdown-toggle">Community</a>
               </li>
-              <li><a id="dropdownMenuLogin" href="#" data-toggle="dropdown" class="upper dropdown-toggle">Login</a>
+              <li class="dropdown" ng-show="currentUser.loggedIn == 'yes'"><a href="/site/account" id="menu_item_Home" class="dropdown-toggle">{{ currentUser.firstName }} {{ currentUser.lastName }}</a></li>
+              
+              <li ng-show="currentUser.loggedIn == 'no'">
+              <a id="dropdownMenuLogin" href="#" data-toggle="dropdown" class="upper dropdown-toggle">Login</a>
                 <div aria-labelledby="dropdownMenuLogin" class="dropdown-menu widget-box">
                   <form>
                     <div class="form-group">
