@@ -9,16 +9,17 @@
     <div id="load"></div><!--[if lt IE 9]>
     <p class="browsehappy">You are using an strong outdated browser. <br>Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
+    
     <div class="page">
       {{ nav }}
       <!-- Start header Section-->
-      <section style="background-image: url('img/slides/slide6.jpg');" class="header-section fading-title parallax">
+      <section style="background-image: url('/site/img/slides/slide6.jpg');" class="header-section fading-title parallax">
         <div class="section-shade sep-top-3x sep-bottom-2x">
           <div class="container">
             <div class="section-title upper text-center">
-              <h2 class="light small-space">Jake&nbsp;<span class="text-primary">Greenstein</span></h2>
-              <p class="lead light">Montvale, United States</p>
-              <img style="width:80px;height:80px;border-radius:40px;border:2px solid #ddd;" src='/site/img/logo_square.png'/>
+              <h2 class="light small-space">{{ profile.firstName }}&nbsp;<span class="text-primary">{{ profile.firstName }}</span></h2>
+              <p class="lead light">{{ capitalize(profile.city) }}, {{ profile.country.toUpperCase() }}</p>
+              <img style="width:80px;height:80px;border-radius:40px;border:2px solid #ddd;" src='/site/images/{{ profile.image }}?crop=240'/>
             </div>
           </div>
         </div>
@@ -38,7 +39,7 @@
 	            <img align="left" style="height:80px;width:80px;border:2px solid #ddd;border-radius:40px;margin-right:10px;"src="/site/img/sara.jpg"/>
                 <p style="margin-left:100px;padding-right:10px;font-weight:100">
                   <em>
-                    "My local host from Terranga was fantastic! She showed me the authentic Santiago, Chile experience! Terranga makes exploring new places much more accessible."
+                    "{{ capitalize(profile.firstName) }} was fantastic! He showed me the authentic Santiago, Chile experience! Terranga makes exploring new places much more accessible."
                     <br/>
                   </em>
                 </p>
@@ -47,7 +48,7 @@
                 <img align="left" style="height:80px;width:80px;border:2px solid #ddd;border-radius:40px;margin-right:10px;"src="/site/img/lea.jpg"/>
                 <p style="margin-left:100px;padding-right:10px;font-weight:100">
                   <em>
-                    "What a great person! My local guided my entire trip, and I was more than happy to be able to give back by donating to his dream to study abroad in the UK!"
+                    "What a great person! {{ capitalize(profile.firstName) }} guided my entire trip, and I was more than happy to be able to give back by donating to his dream to study abroad in the UK!"
                     <br/>
                   </em>
                 </p>
@@ -71,7 +72,7 @@
               
                 <div style="width:90%;height:90%;background:rgba(255, 255, 255, 0.96);margin-left:auto;margin-right:auto;">
                   <div style="height:80px;background:#f1f1f1;text-align:center;padding-top:18px;border:1px solid #ddd">
-                    <h4 style="color:#444">Meet Jake</h4>
+                    <h4 style="color:#444">Meet {{ profile.firstName }}</h4>
                   </div>
                   <br />
                   <div>
@@ -97,10 +98,10 @@
                   			</tr>
                   			<tr style="text-align:center;font-weight:500;font-size:15px">
                   				<td style="padding:20px 20px 0px 0px;width:300px">
-	                  				<p>Hi! My name is Jake, and I am a rising Junior at The George Washington University majoring in Computer Science.</p>
+	                  				<p>{{ profile.bio }}</p>
                   				</td>
                   				<td style="padding:20px 0px 0px 20px;width:300px">
-		                  			<p>My dream is to found a large Silicon Valley startup and hang out with Elon Musk and travel the world.</p>
+		                  			<p>{{ profile.dream }}</p>
 	                  			</td>
                   			</tr>
                   		</tbody>
@@ -118,6 +119,8 @@
       <!-- End Contact section-->
      
       {{ footer }}
+
+            </div>
       
     {{ scripts }}
   </body>
