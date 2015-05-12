@@ -1,6 +1,7 @@
 var app = angular.module('RegisterModule', []);
 
 app.controller('RegisterController', ['$scope', '$http', function($scope, $http){
+	$scope.currentUser = {'loggedIn':'no'};
 	$scope.traveler = {'email':'', 'password':'', 'firstName':'', 'lastName':'', 'type':'traveler'};
 	$scope.local = {'email':'', 'password':'', 'firstName':'', 'lastName':'', 'type':'local'};
 	$scope.profile = null;
