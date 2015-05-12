@@ -4,7 +4,7 @@ var app = angular.module('ProfilesModule', []);
 app.controller('ProfilesController', ['$scope', '$http', function($scope, $http){
 	$scope.currentUser = null;
 	$scope.featuredProfiles = null;
-	$scope.selectedProfile = {'firstName':'', 'lastName':'', 'age':''}; // insert empty values so angular doesn't freak out
+	$scope.selectedProfile = {'firstName':'', 'lastName':'', 'age':'', 'city':'', 'country':'', 'bio':''}; // insert empty values so angular doesn't freak out
 	
 	$scope.init = function(){
 		console.log('Profiles Controller: INIT');
