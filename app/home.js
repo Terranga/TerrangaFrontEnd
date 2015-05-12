@@ -65,7 +65,7 @@ app.controller('HomeController', ['$scope', '$http', function($scope, $http){
                 return;
             }
             
-            window.location.href = '/staging/profile';
+            window.location.href = '/site/account';
             
         }).error(function(data, status, headers, config) {
             console.log("error", data, status, headers, config);

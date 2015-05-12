@@ -20,7 +20,7 @@
             <div class="section-title upper text-center">
               <h2 class="light small-space">Your&nbsp;<span class="text-primary">Profile</span></h2>
               <p class="lead light">Press update to save changes.</p>
-              <img onerror="this.src='/site/img/logo_square_icon.png'" style="width:80px;height:80px;border-radius:40px;border:2px solid #ddd;" src='/site/images/{{ currentUser.image }}?crop=256'/>
+              <img style="width:80px;height:80px;border-radius:40px;border:2px solid #ddd;" src='/site/images/{{ currentUser.image }}?crop=256'/>
             </div>
           </div>
         </div>
@@ -37,7 +37,7 @@
               <h6 style="margin-top:15px">Profile Picture</h6>
 				<div ng-file-drop="onFileSelect($files, 'image', 'currentUser')" style="margin-top:20px;margin-left:auto;margin-right:auto;height:120px; width:90%;background:white;border:1px solid #ddd">
 					<br/>
-					<img align="left" onerror="this.src='/site/img/logo_square_icon.png'" style="margin-left:30px;width:80px;height:80px;border-radius:40px;border:1px solid #ddd;" src='/site/images/{{ currentUser.image }}?crop=256'/>
+					<img align="left" style="margin-left:30px;width:80px;height:80px;border-radius:40px;border:1px solid #ddd;" src='/site/images/{{ currentUser.image }}?crop=256'/>
 
 					<p style="padding:20px">Drop image file here to update profile picture.</p>
                </div>                

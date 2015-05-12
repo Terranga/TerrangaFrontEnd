@@ -54,7 +54,7 @@ app.controller('RegisterController', ['$scope', '$http', function($scope, $http)
             }
             
             if ($scope.profile.type='traveler'){
-                window.location.href = '/staging/profile';
+                window.location.href = '/site/account';
             }
             else{
                 window.location.href = '/site/apply-confirmation';
