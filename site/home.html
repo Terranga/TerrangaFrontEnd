@@ -110,7 +110,7 @@
             <div ng-repeat="profile in featuredProfiles track by $index" class="col-md-3 sep-bottom-lg">
               <div class="featuredProfile">
                 <img src="/site/images/{{ profile.image }}?crop=256" />
-                <h5 style="margin-bottom:0px;color:#43AEC6">{{ capitalize(profile.firstName) }}, {{ profile.age }}</h5>
+                <h5 style="margin-bottom:0px;"><a style="color:#43AEC6" href="/site/profile/{{ profile.id }}">{{ capitalize(profile.firstName) }}, {{ profile.age }}</a></h5>
                 <br />
                 
                 <hr style="width:80%;margin-bottom:8px" />
@@ -120,7 +120,7 @@
                   {{ truncatedText(profile.bio, 120) }}
                 </p>
                 <span><i class="fa fa-map-marker fa-md"></i> {{ capitalize(profile.city) }}, {{ profile.country.toUpperCase() }}</span><br /><br />
-                <a href="/" target="_blank" class="btn btn-primary btn-md">Meet {{ capitalize(profile.firstName) }}</a><br /><br />
+                <a href="/site/profile/{{ profile.id }}" class="btn btn-primary btn-md">Meet {{ capitalize(profile.firstName) }}</a><br /><br />
               </div>
             </div>
             <!-- END FEATURED PROFILE -->
