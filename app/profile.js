@@ -93,11 +93,7 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
                 return;
             }
             
-            alert('LOGGED IN SUCCESSFULLY!');
-//            
-//            var p = data['profile'];
-//            $scope.featuredProfiles.push(p);
-//            
+            window.location.href = '/site/account';
             
         }).error(function(data, status, headers, config) {
             console.log("error", data, status, headers, config);

@@ -93,7 +93,7 @@ app.controller('ProfilesController', ['$scope', '$http', function($scope, $http)
                 return;
             }
             
-            alert('LOGGED IN SUCCESSFULLY!');
+            window.location.href = '/site/account';
             
         }).error(function(data, status, headers, config) {
             console.log("error", data, status, headers, config);
