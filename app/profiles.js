@@ -2,7 +2,7 @@ var app = angular.module('ProfilesModule', []);
 
 
 app.controller('ProfilesController', ['$scope', '$http', function($scope, $http){
-	$scope.currentUser = null;
+	$scope.currentUser = {'loggedIn':'no'};
 	$scope.featuredProfiles = null;
 	$scope.selectedProfile = {'firstName':'', 'lastName':'', 'age':'', 'city':'', 'country':'', 'bio':''}; // insert empty values so angular doesn't freak out
 	
@@ -18,7 +18,10 @@ app.controller('ProfilesController', ['$scope', '$http', function($scope, $http)
         $http.get(url).success(function(data, status, headers, config) {
             var confirmation = data['confirmation'];
             console.log('CONFIRMATION: '+JSON.stringify(data));
-            
+
+            if (data['currentUser'] != null)
+            	$scope.currentUser = data['currentUser'];
+
             if (confirmation != 'success'){
                 alert(data['message']);
                 return;

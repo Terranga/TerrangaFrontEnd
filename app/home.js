@@ -4,7 +4,7 @@ var app = angular.module('HomeModule', []);
 app.controller('HomeController', ['$scope', '$http', function($scope, $http){
 	$scope.loading = false;
 	$scope.featuredProfiles = [];
-	$scope.currentUser = null;
+	$scope.currentUser = {'loggedIn':'no'};
 	
 	$scope.init = function(){
 		console.log('Home Controller: INIT - '+JSON.stringify($scope.featuredProfiles));
@@ -18,6 +18,10 @@ app.controller('HomeController', ['$scope', '$http', function($scope, $http){
         $http.get(url).success(function(data, status, headers, config) {
             var confirmation = data['confirmation'];
             console.log('CONFIRMATION: '+JSON.stringify(data));
+            
+            if (data['currentUser'] != null)
+            	$scope.currentUser = data['currentUser'];
+            	
             
             if (confirmation != 'success'){
                 alert(data['message']);

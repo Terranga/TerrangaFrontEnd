@@ -1,6 +1,6 @@
 var app = angular.module('AccountModule', ['angularFileUpload']);
 app.controller('AccountController', ['$scope', '$http', '$upload', function($scope, $http, $upload){
-	$scope.currentUser = null;
+	$scope.currentUser = {'loggedIn':'no'};
 	$scope.ages = [];
 	$scope.name = null;
 	$scope.loading=false;
