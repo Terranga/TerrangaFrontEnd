@@ -54,7 +54,7 @@ app.controller('RegisterController', ['$scope', '$http', function($scope, $http)
                 return;
             }
             
-            if ($scope.profile.type='traveler'){
+            if ($scope.profile.type=='traveler'){
                 window.location.href = '/site/account';
             }
             else{
