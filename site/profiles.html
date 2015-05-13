@@ -24,46 +24,52 @@
             {{ capitalize(selectedProfile.city) }}, {{ capitalize(selectedProfile.country) }}
             <hr /><br />
 			<div>
-            	<table style="margin-left:auto;margin-right:auto">
-                	<thead>
-                		<tr style="text-align:center">
-                			<td>
-                				<h5>Bio</h5>
-                			</td>
-                			<td>
-                				<h5>Dream</h5>
-                			</td>
-                			<td>
-                				<h5>Insights</h5>
-                			</td>
-                		</tr>
-                	</thead>
-                	<tbody>
-                		<tr style="text-align:center;">
-                			<td>
-                				<img style="height:64px;border-radius:32px;border:1px solid #ddd"src="/site/img/child.png"/>
-                			</td>
-                			<td>
-                				<img style="height:64px;border-radius:32px;border:1px solid #ddd"src="/site/img/star.png"/>
-	               			</td>
-	               			<td>
-                				<img style="height:64px;border-radius:32px;border:1px solid #ddd"src="/site/img/lightbulb.png"/>
-	               			</td>
-                		</tr>
-                		<tr style="text-align:center;font-weight:500;font-size:15px">
-                			<td style="padding:20px 20px 0px 0px;width:300px">
-	               				<p>{{ profile.bio }}</p>
-                			</td>
-                			<td style="padding:20px 20px 0px 20px;width:300px">
-		               			<p>{{ profile.dream }}</p>
-	               			</td>
-	               			<td style="padding:20px 0px 0px 20px;width:300px">
-		               			<p>Insights go here.</p>
-	               			</td>
-                		</tr>
-                	</tbody>
-                </table>             	
-             </div>
+                  	<table style="margin-left:auto;margin-right:auto">
+                  		<thead>
+                  			<tr style="text-align:center">
+                  				<td style="border-top:1px solid #ddd;border-left:1px solid #ddd;border-right:1px solid #ddd;background:#f9f9f9">
+                  					<h5>Bio</h5>
+                  				</td>
+                  				<td>&nbsp&nbsp&nbsp&nbsp</td>
+                  				<td style="border-top:1px solid #ddd;border-left:1px solid #ddd;border-right:1px solid #ddd;background:#f9f9f9">
+                  					<h5>Dream</h5>
+                  				</td>
+                  				<td>&nbsp&nbsp&nbsp&nbsp</td>
+                  				<td style="border-top:1px solid #ddd;border-left:1px solid #ddd;border-right:1px solid #ddd;background:#f9f9f9">
+                  					<h5>Insights</h5>
+                  				</td>
+                  			</tr>
+                  		</thead>
+                  		<tbody>
+                  			<tr style="text-align:center;">
+                  				<td style="border-left:1px solid #ddd;border-right:1px solid #ddd;background:#f9f9f9">
+                  					<img style="height:64px;border-radius:32px;border:1px solid #ddd"src="/site/img/child.png"/>
+                  				</td>
+                  				<td></td>
+                  				<td style="border-left:1px solid #ddd;border-right:1px solid #ddd;background:#f9f9f9">
+                  					<img style="height:64px;border-radius:32px;border:1px solid #ddd"src="/site/img/star.png"/>
+	                  			</td>
+	                  			<td></td>
+	                  			<td style="border-left:1px solid #ddd;border-right:1px solid #ddd;background:#f9f9f9">
+                  					<img style="height:64px;border-radius:32px;border:1px solid #ddd"src="/site/img/lightbulb.png"/>
+	                  			</td>
+                  			</tr>
+                  			<tr style="text-align:center;font-weight:500;font-size:15px">
+                  				<td style="border-left:1px solid #ddd;border-right:1px solid #ddd;border-bottom:1px solid #ddd;padding:20px 20px 0px 0px;width:300px;background:#f9f9f9;font-weight:500">
+	                  				<p>{{ selectedProfile.bio }}</p>
+                  				</td>
+                  				<td></td>
+                  				<td style="border-left:1px solid #ddd;border-right:1px solid #ddd;border-bottom:1px solid #ddd;padding:20px 20px 0px 20px;width:300px;background:#f9f9f9;font-weight:500">
+		                  			<p>{{ selectedProfile.dream }}</p>
+	                  			</td>
+	                  			<td>     </td>
+	                  			<td style="border-left:1px solid #ddd;border-right:1px solid #ddd;border-bottom:1px solid #ddd;padding:20px 0px 0px 20px;width:300px;background:#f9f9f9;font-weight:500">
+		                  			<p>Insights go here.</p>
+	                  			</td>
+                  			</tr>
+                  		</tbody>
+                  	</table>             	
+                  </div>
             <br/>
           </div>
       </div>
@@ -141,6 +147,7 @@
                       {{ capitalize(profile.firstName) }} {{ capitalize(profile.lastName) }}, {{ profile.age }}
 					</a>                    
                   </div>
+                 <a ng-click="viewProfile($index)" data-toggle="modal" data-target="#profileModal" href="">CLICK ME</a>
                   
                   <br /><br /><br />
 
