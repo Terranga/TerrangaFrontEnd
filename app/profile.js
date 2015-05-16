@@ -10,7 +10,7 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
     	console.log(JSON.stringify(requestInfo));
     	
     	if (requestInfo.identifier==null){
-        	console.log('PorfileController: MISSING PROFILE ID');
+        	console.log('ProfileController: MISSING PROFILE ID');
         	return;
     	}
     	
