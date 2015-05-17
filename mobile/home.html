@@ -17,7 +17,7 @@
 <link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
 <link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
 
-<title>Epsilon Mobile Framework - Version 2.0</title>
+<title>Terranga</title>
 
 <link href="styles/style.css"     		 rel="stylesheet" type="text/css">
 <link href="styles/framework.css" 		 rel="stylesheet" type="text/css">
@@ -26,13 +26,27 @@
 <link href="styles/font-awesome.css"	 rel="stylesheet" type="text/css">
 <link href="styles/animate.css"			 rel="stylesheet" type="text/css">
 
+<!-- ANGULAR! -->
+<script src="https://malsup.github.com/jquery.form.js"></script>
+<script src="/mobile/js/fileupload/angular-file-upload-shim.js"></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js'></script>
+<script src="https://code.angularjs.org/1.2.20/angular-sanitize.min.js"></script>
+<script src="/mobile/js/fileupload/angular-file-upload.js"></script>
+
+
+<script src='/app/app.js'></script>
+<script src='/app/home.js'></script>
+<script src='/app/profile.js'></script>
+<script src='/app/profiles.js'></script>
+<script src='/app/register.js'></script>
+<script src='/app/account.js'></script>
+
 <script type="text/javascript" src="scripts/jquery.js"></script>
 <script type="text/javascript" src="scripts/jqueryui.js"></script>
 <script type="text/javascript" src="scripts/framework.plugins.js"></script>
 <script type="text/javascript" src="scripts/custom.js"></script>
-
 </head>
-<body> 
+<body ng-app="Terranga" ng-controller="HomeController" ng-init="init()"> 
 
 <div id="preloader">
 	<div id="status">
@@ -276,10 +290,10 @@
         
         <div class="content">       
             <div class="container large-title no-bottom">
-                <h3>Welcome, stranger!</h3>
+                <h3>The Terranga Community</h3>
                 <p>
-                    A user experience, design focused template, created to make using as easy and 
-                    as beautiful as possible even on huge screens!
+                   A place for travelers to connect with locals in cities around the world. 
+                   Get off-the-beaten path, connect with locals & support dreams.
                 </p>
 
                 <div class="center-socials">
