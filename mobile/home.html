@@ -375,13 +375,40 @@
                 <a href="#" class="next-staff"></a>
                 <a href="#" class="prev-staff"></a>
                 <div class="staff-slider" data-snap-ignore="true">
-                    <div ng-repeat="profile in featuredProfiles track by $index">
+                    <div>
                         <div class="staff-item">
-                            <img src="/site/images/{{ profile.image }}?crop=256" alt="../img/logo_square_icon.png">
-                            <h4>{{ capitalize(profile.firstName) }}, {{ profile.age }}</h4>
-                            <em>{{ capitalize(profile.city) }}, {{ profile.country.toUpperCase() }}</em>
-                            <strong>{{ truncatedText(profile.bio, 80) }}</strong>
-                            <a href="/site/profile/{{ profile.id }}" class="button button-red center-button">Meet {{ capitalize(profile.firstName) }}</a>
+                            <img src="/site/images/{{ featuredProfiles[0].image }}?crop=256">
+                            <h4>{{ capitalize(featuredProfiles[0].firstName) }}, {{ featuredProfiles[0].age }}</h4>
+                            <em>{{ capitalize(featuredProfiles[0].city) }}, {{ featuredProfiles[0].country.toUpperCase() }}</em>
+                            <strong>{{ truncatedText(featuredProfiles[0].bio, 150) }}</strong>
+                            <a href="/site/profile/{{ featuredProfiles[0].id }}" class="button button-red center-button">Meet {{ capitalize(featuredProfiles[0].firstName) }}</a>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="staff-item">
+                            <img src="/site/images/{{ featuredProfiles[1].image }}?crop=256">
+                            <h4>{{ capitalize(featuredProfiles[1].firstName) }}, {{ featuredProfiles[1].age }}</h4>
+                            <em>{{ capitalize(featuredProfiles[1].city) }}, {{ featuredProfiles[1].country.toUpperCase() }}</em>
+                            <strong>{{ truncatedText(featuredProfiles[1].bio, 150) }}</strong>
+                            <a href="/site/profile/{{ featuredProfiles[1].id }}" class="button button-red center-button">Meet {{ capitalize(featuredProfiles[1].firstName) }}</a>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="staff-item">
+                            <img src="/site/images/{{ featuredProfiles[2].image }}?crop=256">
+                            <h4>{{ capitalize(featuredProfiles[2].firstName) }}, {{ featuredProfiles[2].age }}</h4>
+                            <em>{{ capitalize(featuredProfiles[2].city) }}, {{ featuredProfiles[2].country.toUpperCase() }}</em>
+                            <strong>{{ truncatedText(featuredProfiles[2].bio, 80) }}</strong>
+                            <a href="/site/profile/{{ featuredProfiles[2].id }}" class="button button-red center-button">Meet {{ capitalize(featuredProfiles[2].firstName) }}</a>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="staff-item">
+                            <img src="/site/images/{{ featuredProfiles[3].image }}?crop=256">
+                            <h4>{{ capitalize(featuredProfiles[3].firstName) }}, {{ featuredProfiles[3].age }}</h4>
+                            <em>{{ capitalize(featuredProfiles[3].city) }}, {{ featuredProfiles[3].country.toUpperCase() }}</em>
+                            <strong>{{ truncatedText(featuredProfiles[3].bio, 80) }}</strong>
+                            <a href="/site/profile/{{ featuredProfiles[3].id }}" class="button button-red center-button">Meet {{ capitalize(featuredProfiles[3].firstName) }}</a>
                         </div>
                     </div>
                    
