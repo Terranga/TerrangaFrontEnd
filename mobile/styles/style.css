@@ -55,13 +55,13 @@ body{
 
 
 .sidebar-logo{ 
-    background-image:url(../images/sidebar-logo.png);
+    background-image:url(/mobile/img/logo_menu.png);
     background-repeat:no-repeat;
-    width:160px;
-    height:180px;
-    background-size:160px 180px;
+    width:158px;
+    height:199px;
+    background-size:158px 199px;
     margin-top:30px;
-    margin-bottom:30px;
+    margin-bottom:20px;
     margin-left:55px;
 }
 

@@ -503,8 +503,8 @@ and (orientation : portrait) {
 .homepage-left-caption h3{text-align:left;}
 .homepage-left-caption p{text-align:left;}
 
-.homepage-center-caption h3{text-align:center; margin-left:-10px;}
-.homepage-center-caption p{text-align:center; margin-left:-10px;}
+.homepage-center-caption h3{text-align:center;}
+.homepage-center-caption p{text-align:center;}
 
 .homepage-right-caption h3{text-align:right;}
 .homepage-right-caption p{text-align:right;}
