@@ -960,7 +960,7 @@ body{
     margin-top:25px;
     margin-bottom:30px;
     float:left;
-    margin-left:30px;
+    margin-left:20px;
 }
 
 .header-controls{
@@ -1153,7 +1153,12 @@ body{
     line-height:26px;
 }
 
-
+.main-icon{
+	height:40px;
+	background-repeat:no-repeat;
+	margin:20px 0px 30px 20px;
+	float:left;
+}
 
 
 
