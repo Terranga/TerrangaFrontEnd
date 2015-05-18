@@ -624,7 +624,6 @@ body{
 .thumb-left img{
 	width:100px;
 	height:100px;
-	border-radius:100px;
 	float:left;
 	margin-right:20px;
     transition:all 500ms ease;
@@ -655,7 +654,6 @@ body{
 .thumb-right img{
 	width:100px;
 	height:100px;
-	border-radius:100px;
 	float:right;
 	margin-left:20px;
     transition:all 500ms ease;
@@ -731,16 +729,17 @@ body{
 	text-align:center;
 	margin-top:20px;	
 	font-size:16px;
+	color:#1abc9c;
 }
 
 .staff-item em{
 	text-align:center;
 	font-size:12px;
-	color:#e34e47;
 	display:block;
 	margin-top:-10px;
 	margin-bottom:10px;
 	font-style:normal;
+	color:#43AEC6;
 }
 
 .staff-item strong{

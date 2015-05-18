@@ -530,7 +530,7 @@ and (orientation : portrait) {
 	color:#cacaca;
 	padding-left:30px;
     padding-right:30px;
-	margin-bottom:20px;
+	margin-bottom:5px;
 }
 
 @media (min-width:768px){
