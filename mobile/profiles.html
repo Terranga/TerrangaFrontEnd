@@ -25,13 +25,28 @@
 <link href="styles/font-awesome.css"	 rel="stylesheet" type="text/css">
 <link href="styles/animate.css"			 rel="stylesheet" type="text/css">
 
+<!-- ANGULAR! -->
+<script src="https://malsup.github.com/jquery.form.js"></script>
+<script src="/mobile/js/fileupload/angular-file-upload-shim.js"></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js'></script>
+<script src="https://code.angularjs.org/1.2.20/angular-sanitize.min.js"></script>
+<script src="/mobile/js/fileupload/angular-file-upload.js"></script>
+
+
+<script src='/app/app.js'></script>
+<script src='/app/home.js'></script>
+<script src='/app/profile.js'></script>
+<script src='/app/profiles.js'></script>
+<script src='/app/register.js'></script>
+<script src='/app/account.js'></script>
+
 <script type="text/javascript" src="scripts/jquery.js"></script>
 <script type="text/javascript" src="scripts/jqueryui.js"></script>
 <script type="text/javascript" src="scripts/framework.plugins.js"></script>
 <script type="text/javascript" src="scripts/custom.js"></script>
 
 </head>
-<body> 
+<body ng-app="Terranga" ng-controller="ProfilesController" ng-init="init()"> 
 
 <div id="preloader">
 	<div id="status">
@@ -101,11 +116,11 @@
             
             <ul class="sidebar-navigation">
                 <li>
-                    <a href="#"><i class="fa fa-home"></i>Home<i class="fa fa-plus"></i></a>
+                    <a href="/mobile/home"><i class="fa fa-home"></i>Home<i class="fa fa-plus"></i></a>
                     
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-picture-o"></i>Community<i class="fa fa-plus"></i></a>
+                    <a href="/mobile/profiles"><i class="fa fa-picture-o"></i>Community<i class="fa fa-plus"></i></a>
                 </li>  
                 <li >
                     <a href="#"><i class="fa fa-cog"></i>Login<i class="fa fa-plus"></i></a>
@@ -117,12 +132,12 @@
                 Navigation 2
             </div>
             
-            <a href="#" class="sidebar-update red-update">
+            <a href="/mobile/home" class="sidebar-update red-update">
                 <i class="fa fa-home"></i>
                 <strong>Home</strong>
             </a>            
             
-            <a href="#" class="sidebar-update green-update">
+            <a href="/mobile/profiles" class="sidebar-update green-update">
                 <i class="fa fa-picture-o"></i>
                 <strong>Community</strong>
             </a>
@@ -143,26 +158,26 @@
         <div class="header-clear"></div>
         
         <div class="slider-container content-box-slider">
-            <div style="height:155px"data-snap-ignore="true">                
-                <div>
-                    <div class="homepage-slider-caption homepage-left-caption">
-                        <h3 style="margin-bottom:25px;padding-left:20px">Jake Greenstein, 20</h3>
-                    </div>
-                    <img src="images/pictures/3.jpg" class="responsive-image" alt="img">
+            <div style="background:linear-gradient(rgba(255,255,255,0.7),rgba(0,0,0,0.9)), url('/mobile/images/pictures/3.jpg');height:155px"data-snap-ignore="true">                
+                <div class="homepage-slider-caption homepage-left-caption">
+           			<img style="margin-left:auto;margin-right:auto;margin-bottom:10px;height:80px;border-radius:40px;border:1px solid #ddd"src="/mobile/img/jose.JPG"/>
+                	<h3 style="padding-bottom:5px;padding-left:20px">Jake Greenstein, 20</h3>
+                	<h5 style="padding-bottom:5px;color:#43AEC6;padding-left:20px">
+                		<i style="margin-right:5px"class="fa fa-map-marker fa-lg"></i>
+						Montvale, NJ
+                	</h5>
                 </div>
-
+                
             </div>
             <div class="container large-title no-bottom">
-                <p class="half-bottom">
+                <p style="margin-top:10px;line-height:200%" class="half-bottom">
                  	<i class="fa fa-comments-o fa-lg"></i>
                  	<br/>
                     Hi I'm Jake and I am from Montvale, NJ.
                 </p>
                 <div style="margin-bottom:10px"class="decoration"></div>
-                <p class="half-bottom">
-					<i style="margin-right:5px"class="fa fa-map-marker fa-lg"></i>
-					<span style="color:#43AEC6;font-weight:400">Montvale, NJ</span>
-                </p>
+                <a style="margin-top:0px;margin-bottom:15px;background-color:#1abc9c;color:#ffffff;border-radius:30px;" href="#" class="button center-button">Meet Jake</a>
+
 				
 				
 				
