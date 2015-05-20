@@ -1158,6 +1158,15 @@ body{
 	float:right;
 }
 
+.featuredProfile {
+	height:155px;
+	background-image:url('/mobile/images/pictures/3.jpg');
+	background:-webkit-linear-gradient(rgba(0,0,0,0.15), rgba(0,0,0,0.9));
+	background:-o-linear-gradient(rgba(0,0,0,0.15), rgba(0,0,0,0.9));
+	background:-moz-linear-gradient(rgba(0,0,0,0.15), rgba(0,0,0,0.9));
+	background:linear-gradient(rgba(0,0,0,0.15), rgba(0,0,0,0.9));
+}
+
 
 
 

@@ -119,8 +119,9 @@
     <div id="content" class="snap-content snap-background">    
         <div class="header-clear"></div>
         
-        <div ng-repeat="profile in featuredProfiles track by $index" class="slider-container content-box-slider">
-            <div style="background:-webkit-linear-gradient(rgba(255,255,255,0),rgba(0,0,0,0.9)), url('/mobile/images/pictures/3.jpg');background:-o-linear-gradient(rgba(255,255,255,0),rgba(0,0,0,0.9)), url('/mobile/images/pictures/3.jpg');background:-moz-linear-gradient(rgba(255,255,255,0),rgba(0,0,0,0.9)), url('/mobile/images/pictures/3.jpg');background:linear-gradient(rgba(255,255,255,0),rgba(0,0,0,0.9)), url('/mobile/images/pictures/3.jpg');height:155px"data-snap-ignore="true">                
+        
+        <div ng-repeat="profile in featuredProfiles track by $index" class="slider-container content-box-slider" style="background:url('/mobile/images/pictures/3.jpg')">
+            <div class="featuredProfile" data-snap-ignore="true">                
                 <div class="homepage-slider-caption homepage-left-caption">
            			<img style="margin-left:auto;margin-right:auto;margin-bottom:10px;height:80px;border-radius:40px;border:1px solid #ddd"src="/site/images/{{ profile.image }}?crop=256"/>
                 	<h3 style="margin-left:auto;margin-right:auto;text-align:center;padding-bottom:5px;">{{ capitalize(profile.firstName) }}, {{ profile.age }}</h3>
@@ -129,9 +130,8 @@
 						{{ capitalize(profile.city) }}, {{ profile.country.toUpperCase() }}
                 	</h5>
                 </div>
-                
             </div>
-            <div class="container large-title no-bottom">
+            <div class="container large-title no-bottom" style="background:#f9f9f9">
                 <p style="margin-top:10px;line-height:200%" class="half-bottom">
                  	<i class="fa fa-comments-o fa-lg"></i>
                  	<br/>
@@ -139,11 +139,6 @@
                 </p>
                 <div style="margin-bottom:10px"class="decoration"></div>
                 <a style="margin-top:0px;margin-bottom:15px;background-color:#1abc9c;color:#ffffff;border-radius:30px;" href="#" class="button center-button">Meet {{ capitalize(profile.firstName) }}</a>
-
-				
-				
-				
-                
             </div>
         </div>
         
