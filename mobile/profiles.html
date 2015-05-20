@@ -56,44 +56,6 @@
         </p>
     </div>
 </div>
-    
-<div class="menu-wrapper">
-    <em><i class="fa fa-question-circle"></i>Swipe the icons, tap to select!</em>
-    <div class="menu">
-        <a href="#" class="item" id="selected">
-            <img src="images/highlights/1.jpg" alt="img">
-            Homepage
-        </a>    
-        <a href="#" class="item">
-            <img src="images/highlights/2.jpg" alt="img">
-            Features
-        </a>    
-        <a href="#" class="item">
-            <img src="images/highlights/3.jpg" alt="img">
-            Gallery
-        </a>    
-        <a href="#" class="item">
-            <img src="images/highlights/4.jpg" alt="img">
-            Portfolio
-        </a>       
-        <a href="#" class="item">
-            <img src="images/highlights/5.jpg" alt="img">
-            App Styled
-        </a>        
-        <a href="#" class="item">
-            <img src="images/highlights/6.jpg" alt="img">
-            Pages
-        </a>    
-        <a href="#" class="item">
-            <img src="images/highlights/7.jpg" alt="img">
-            Blog
-        </a>   
-        <a href="#" class="item">
-            <img src="images/highlights/8.jpg" alt="img">
-            Contact
-        </a>
-    </div>
-</div>
 
 <div class="header">
 	<div class="header-controls">
@@ -157,14 +119,14 @@
     <div id="content" class="snap-content snap-background">    
         <div class="header-clear"></div>
         
-        <div class="slider-container content-box-slider">
+        <div ng-repeat="profile in featuredProfiles track by $index" class="slider-container content-box-slider">
             <div style="background:linear-gradient(rgba(255,255,255,0.7),rgba(0,0,0,0.9)), url('/mobile/images/pictures/3.jpg');height:155px"data-snap-ignore="true">                
                 <div class="homepage-slider-caption homepage-left-caption">
-           			<img style="margin-left:auto;margin-right:auto;margin-bottom:10px;height:80px;border-radius:40px;border:1px solid #ddd"src="/mobile/img/jose.JPG"/>
-                	<h3 style="padding-bottom:5px;padding-left:20px">Jake Greenstein, 20</h3>
+           			<img style="margin-left:auto;margin-right:auto;margin-bottom:10px;height:80px;border-radius:40px;border:1px solid #ddd"src="/site/images/{{ profile.image }}?crop=256"/>
+                	<h3 style="padding-bottom:5px;padding-left:20px">{{ capitalize(profile.firstName) }}, {{ profile.age }}</h3>
                 	<h5 style="padding-bottom:5px;color:#43AEC6;padding-left:20px">
                 		<i style="margin-right:5px"class="fa fa-map-marker fa-lg"></i>
-						Montvale, NJ
+						{{ capitalize(profile.city) }}, {{ profile.country.toUpperCase() }}
                 	</h5>
                 </div>
                 
@@ -173,10 +135,10 @@
                 <p style="margin-top:10px;line-height:200%" class="half-bottom">
                  	<i class="fa fa-comments-o fa-lg"></i>
                  	<br/>
-                    Hi I'm Jake and I am from Montvale, NJ.
+                    {{ truncatedText(profile.bio, 150) }}
                 </p>
                 <div style="margin-bottom:10px"class="decoration"></div>
-                <a style="margin-top:0px;margin-bottom:15px;background-color:#1abc9c;color:#ffffff;border-radius:30px;" href="#" class="button center-button">Meet Jake</a>
+                <a style="margin-top:0px;margin-bottom:15px;background-color:#1abc9c;color:#ffffff;border-radius:30px;" href="#" class="button center-button">Meet {{ capitalize(profile.firstName) }}</a>
 
 				
 				

@@ -121,6 +121,12 @@ app.controller('ProfilesController', ['$scope', '$http', function($scope, $http)
 		return capitalizedString;
     }
 
+    $scope.truncatedText = function(string, limit){
+    	if (string.length < limit)
+    		return string;
+    	
+    	return string.substring(0, limit)+'...';
+    }
 	
 	
 
