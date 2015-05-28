@@ -69,7 +69,10 @@ app.controller('HomeController', ['$scope', '$http', function($scope, $http){
                 return;
             }
             
-            window.location.href = '/site/account';
+            //window.location.href = '/site/account';
+            //CHANGED FOR TESTING OF MESSAGES PURPOSES
+            window.location.href = '/staging/inbox';
+            
             
         }).error(function(data, status, headers, config) {
             console.log("error", data, status, headers, config);
