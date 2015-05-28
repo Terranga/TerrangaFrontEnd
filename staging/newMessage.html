@@ -3,10 +3,9 @@
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>Terranga</title>
+    <title>New Message</title>
     
     <link rel="stylesheet" href="/staging/styles/style.css">
-    
     <script src="https://malsup.github.com/jquery.form.js"></script>
     <script src="/site/js/fileupload/angular-file-upload-shim.js"></script>
     <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js'></script>
@@ -18,51 +17,36 @@
     <script src='/app/profile.js'></script>
     <script src='/app/profiles.js'></script>
     <script src='/app/register.js'></script>
+    <script src='/app/account.js'></script>
     <script src='/app/inbox.js'></script>
     <script src='/app/newMessage.js'></script>
-        
+    
+    
   </head>
 
-  <body ng-app="Terranga" ng-controller="ProfilesController" style="padding:20px" ng-init="init()">
-    <h2>PROFILE</h2>
+  <body ng-app="Terranga" ng-controller="NewMessageController" style="padding:20px" ng-init="init()">
+    <h2>Create New Message: </h2> 
     
-    
-    <div class="section">
-      <h2 style="margin-top:0px">Featured Profiles</h2>
-      
-      <table style="width:50%">
-        <thead>
-          <tr>
-            <td>name</td><td>email</td><td>city</td><td>country</td><td>age</td>
-          </tr>
-        
-        </thead>
-      
-        <tbody>
-          <tr ng-repeat="profile in featuredProfiles track by $index">
-            <td>{{ profile.firstName }} {{ profile.lastName }}</td>
-            <td>{{ profile.email }}</td>
-            <td>{{ profile.city }}</td>
-            <td>{{ profile.country }}</td>
-            <td>{{ profile.age }}</td>
-          </tr>
 
-        </tbody>
-      
-      
-      </table>
-      
-      
-      
-      
+    <div class="section">
+    	<input ng-model="message.recipientID" type="text" placeholder="TO: (recipientID)"><br /><br />
+    	<input ng-model="message.senderID" type="text" placeholder="FROM: (senderID)"><br /><br />
+    	<input ng-model="message.subject" type="text" placeholder="SUBJECT:"><br /><br />
+    	<input ng-model="message.threadID" type="text" placeholder="THREAD ID:"><br /><br />
+      	<textarea ng-model="message.body"  placeholder="BODY:" rows="20" style="width:100%; padding-left:16px; padding-top:8px"></textarea>
+     	<br /><br /><br />
+        <button ng-click="sendMessage()">Send</button>     	
+     
       
     </div>
     
-
-
+    <br /><br />
     
-	
-	
+   
+    
+    <br /><br />
+    
+  
   </body>
   
   

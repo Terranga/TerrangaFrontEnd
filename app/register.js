@@ -44,6 +44,8 @@ app.controller('RegisterController', ['$scope', '$http', function($scope, $http)
 		
 		var json = JSON.stringify($scope.profile);
 		
+		
+		
     	var url = '/api/profiles';
         $http.post(url, json).success(function(data, status, headers, config) {
             var confirmation = data['confirmation'];
