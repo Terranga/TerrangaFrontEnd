@@ -49,8 +49,8 @@
 				</div>
 			
 				<div style="position:relative;top:13%;height:40px;">
-					<input type="text" placeholder=" Type here" style="margin-left:1%;height:40px;width:82%"/>
-					<button style="margin-right:1%;width:15%;height:40px;float:right;">Send</button>
+					<input ng-model="newMessage.body" type="text" placeholder=" Type here" style="margin-left:1%;height:40px;width:82%"/>
+					<button ng-click="sendMessage()" style="margin-right:1%;width:15%;height:40px;float:right;">Send</button>
 				</div>
 			
 			</div>

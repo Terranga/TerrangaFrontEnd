@@ -2,6 +2,7 @@ var app = angular.module('ProfileModule', []);
 app.controller('ProfileController', ['$scope', '$http', '$upload', function($scope, $http, $upload){
 	$scope.currentUser = {'loggedIn':'no'};
 	$scope.profile = {"lastName":"", "city":"", "country":"", "firstName":""};
+	$scope.newMessage = {'recipientID':'', 'senderID':'', 'subject':'', 'threadID':'', 'body':''};
 	$scope.messages = null;
 
 	$scope.init = function(){
@@ -16,8 +17,50 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
     	}
     	
 		fetchProfile(requestInfo.identifier);
+		fetchMessages();
 	}
 	
+	$scope.sendMessage = function(){
+		$scope.newMessage.recipientID = $scope.profile.id;
+		$scope.newMessage.senderID = $scope.currentUser.id;
+		if (senderID==null){
+			alert("Please log in to message " + $scope.profile.firstName);
+			return;
+		}
+		var json = JSON.stringify($scope.newMessage);
+		var url = '/api/messages';
+        $http.post(url, json).success(function(data, status, headers, config) {
+            var confirmation = data['confirmation'];
+            console.log('CONFIRMATION: '+confirmation);
+            
+            if (confirmation != 'success'){
+                alert(data['message']);
+                return;
+            }
+            
+            alert('MESSAGE SENT');
+            $scope.messages.push($scope.newMessage);
+            
+        }).error(function(data, status, headers, config) {
+            console.log("error", data, status, headers, config);
+        });
+	}
+	
+	function fetchMessages(){
+		var url = '/api/messages?senderID='+$scope.currentUser.id+'&recipientID='+$scope.profile.id;
+        $http.get(url).success(function(data, status, headers, config) {
+            var confirmation = data['confirmation'];
+            console.log('CONFIRMATION: '+JSON.stringify(data));
+            
+            if (confirmation != 'success'){
+                alert(data['message']);
+                return;
+            }
+           $scope.messages = data['messages'];
+        }).error(function(data, status, headers, config) {
+            console.log("error", data, status, headers, config);
+        });
+	}
 	
 	function fetchProfile(profileId){
 		console.log('FETCH PROFILE: '+profileId);
