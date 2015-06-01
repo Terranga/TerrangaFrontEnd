@@ -29,20 +29,58 @@
     <button onClick="window.location='newMessage'">Compose</button>
 	<hr />
 	
+	<div class = "section">
+		<h2> Search Messages:</h2>
+			<input  ng-model="searchUser" type="text" placeholder="USERID: (to be searched)"><br /> <br />
+			<button ng-click="searchMessages()">Search</button>
+	</div>
+	
+	<hr />
+	    
     <div class="section">
     	<h2>Recieved</h2>
     	<br />
+    	<ol>
+        	<li ng-repeat="message in recieved track by $index">
+        		Sender:{{message.senderID}} _____ Recipient:{{message.recipientID}} _____ Date: {{message.timestamp}} 
+        	</li>
+       </ol>
     </div>
   
     
-    <hr />
+
     
     <div class="section">
     	<h2>Sent</h2>
     	<br />
+    	<ol>
+        	<li ng-repeat="message in sent track by $index">
+        		Sender:{{message.senderID}} _____ Recipient:{{message.recipientID}} _____ Date: {{message.timestamp}} 
+        	</li>
+       </ol>
     </div>
     
-    
+    <hr />
+        
+    <div class = "section">
+		<h2> Search Chain:  {{userA}} and {{userB}} </h2>
+			<input  ng-model="userA" type="text" placeholder="userA (to be searched)"><br /> <br />
+			<input  ng-model="userB" type="text" placeholder="userB (to be searched)"><br /> <br />
+			<button ng-click="searchThread()">Search</button>
+			
+	</div>
+	
+	<hr />
+	
+	<div class="section">
+    	<h2>Thread</h2>
+    	<br />
+    	<ol>
+        	<li ng-repeat="message in thread track by $index">
+        		Sender:{{message.senderID}} _____ Recipient:{{message.recipientID}} _____ Date: {{message.timestamp}} 
+        	</li>
+       </ol>
+    </div>
     
   
   </body>
@@ -52,3 +90,4 @@
   
   
 </html>
+
