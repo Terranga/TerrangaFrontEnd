@@ -1,7 +1,8 @@
 var app = angular.module('ProfileModule', []);
 app.controller('ProfileController', ['$scope', '$http', '$upload', function($scope, $http, $upload){
 	$scope.currentUser = {'loggedIn':'no'};
-	$scope.profile = null;
+	$scope.profile = {"lastName":"", "city":"", "country":"", "firstName":""};
+	$scope.messages = null;
 
 	$scope.init = function(){
 		console.log('Profile Controller: INIT ');
