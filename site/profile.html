@@ -38,13 +38,11 @@
 			<div style="height:400px;width:90%;background:rgba(0,179,255,0.2);margin-left:auto;margin-right:auto;">
 			
 				<div style="overflow:auto;position:relative;top:5%;background:rgba(255,255,255,.8);height:300px;width:95%;margin-left:auto;margin-right:auto;">
-					<p style="margin-left:1%">
-						<span>Monday, 2:15PM</span><br/>
-						Hi Jake!Hi Jake!Hi Jake!Hi Jake!Hi Jake!Hi Jake!Hi Jake!Hi Jake!Hi Jake!Hi Jake!Hi Jake!Hi Jake!Hi Jake!Hi Jake!Hi Jake!Hi Jake!Hi Jake!Hi Jake!Hi Jake!Hi Jake!Hi Jake!Hi Jake!Hi Jake!Hi Jake!Hi Jake!Hi Jake!Hi Jake!Hi Jake!Hi Jake!Hi Jake!Hi Jake!Hi Jake!Hi Jake!Hi Jake!Hi Jake!Hi Jake!Hi Jake!Hi Jake!Hi Jake!Hi Jake!Hi Jake!Hi Jake!Hi Jake!Hi Jake!
-					</p>
-					<p style="margin-right:1%;text-align:right;background:rgba(0,0,0,.05)">
-						<span>Tuesday, 11:11PM</span><br/>
-						Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!Hi Brett!
+					<p ng-repeat="message in messages track by $index" style="margin-left:1%">
+						<span ng-if="message.senderID==currentUser.id" style="color:#1abc9c;font-weight:100;font-size:12px">{{ capitalize(currentUser.firstName) }}</span>
+						<span ng-if="message.senderID==profile.id" style="color:#1abc9c;font-weight:100;font-size:12px">{{ capitalize(profile.firstName) }}</span>
+						<span style="color:#1abc9c;font-weight:100;font-size:12px"> | {{ formattedDate(message.timestamp) }}</span><br/>
+						{{ message.body }}
 					</p>
 				</div>
 			

@@ -17,13 +17,17 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
     	}
     	
 		fetchProfile(requestInfo.identifier);
-		fetchMessages();
+	}
+	
+	
+	$scope.formattedDate = function(dateStr){
+		return moment(new Date(dateStr)).format('MMM D h:mm a');
 	}
 	
 	$scope.sendMessage = function(){
 		$scope.newMessage.recipientID = $scope.profile.id;
 		$scope.newMessage.senderID = $scope.currentUser.id;
-		if (senderID==null){
+		if ($scope.newMessage.senderID==null){
 			alert("Please log in to message " + $scope.profile.firstName);
 			return;
 		}
@@ -31,15 +35,13 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
 		var url = '/api/messages';
         $http.post(url, json).success(function(data, status, headers, config) {
             var confirmation = data['confirmation'];
-            console.log('CONFIRMATION: '+confirmation);
+            console.log('CONFIRMATION: '+JSON.stringify(data));
             
             if (confirmation != 'success'){
                 alert(data['message']);
                 return;
             }
-            
-            alert('MESSAGE SENT');
-            $scope.messages.push($scope.newMessage);
+            $scope.messages.unshift(data['message']);
             
         }).error(function(data, status, headers, config) {
             console.log("error", data, status, headers, config);
@@ -47,6 +49,8 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
 	}
 	
 	function fetchMessages(){
+		if ($scope.currentUser.loggedIn=='no')
+			return;
 		var url = '/api/messages?senderID='+$scope.currentUser.id+'&recipientID='+$scope.profile.id;
         $http.get(url).success(function(data, status, headers, config) {
             var confirmation = data['confirmation'];
@@ -79,6 +83,8 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
             
             var p = data['profile'];
             $scope.profile = p;
+    		fetchMessages();
+
             
         }).error(function(data, status, headers, config) {
             console.log("error", data, status, headers, config);
