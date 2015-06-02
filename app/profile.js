@@ -41,7 +41,7 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
                 alert(data['message']);
                 return;
             }
-            $scope.messages.unshift(data['message']);
+            $scope.messages.push(data['message']);
             
         }).error(function(data, status, headers, config) {
             console.log("error", data, status, headers, config);
@@ -61,6 +61,10 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
                 return;
             }
            $scope.messages = data['messages'];
+           
+           var objDiv = document.getElementById("messages");
+           objDiv.scrollTop = objDiv.scrollHeight;
+           
         }).error(function(data, status, headers, config) {
             console.log("error", data, status, headers, config);
         });
