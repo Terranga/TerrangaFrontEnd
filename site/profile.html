@@ -32,38 +32,26 @@
           <div class="col-md-4" style="background:rgba(249, 249, 249, 0.96);border:1px solid #ddd;padding:0px;min-height:500px;">
             <div style="text-align:center;">
               <br/>
-              <h4 style="margin-top:0px">Reviews</h4>
+              <h4 style="margin-top:0px">Messages</h4>
             </div>
             <br/>
-            <div style="padding-left:30px;padding-right:30px">
-	            <img align="left" style="height:80px;width:80px;border:2px solid #ddd;border-radius:40px;margin-right:10px;"src="/site/img/sara.jpg"/>
-                <p style="margin-left:100px;padding-right:10px;font-weight:100">
-                  <em>
-                    "{{ capitalize(profile.firstName) }} was fantastic! He showed me the authentic Santiago, Chile experience! Terranga makes exploring new places much more accessible."
-                    <br/>
-                  </em>
-                </p>
-                <h5 style="float:right">- Sara, <span style="color:#43AEC6;">Traveler</span></h5>
-                <br/><hr/>
-                <img align="left" style="height:80px;width:80px;border:2px solid #ddd;border-radius:40px;margin-right:10px;"src="/site/img/lea.jpg"/>
-                <p style="margin-left:100px;padding-right:10px;font-weight:100">
-                  <em>
-                    "What a great person! {{ capitalize(profile.firstName) }} guided my entire trip, and I was more than happy to be able to give back by donating to his dream to study abroad in the UK!"
-                    <br/>
-                  </em>
-                </p>
-                <h5 style="float:right">- Lea, <span style="color:#43AEC6;">Traveler</span></h5>
-                <br/><hr/>
-                <img align="left" style="height:80px;width:80px;border:2px solid #ddd;border-radius:40px;margin-right:10px;"src="/site/img/kyla.jpg"/>
-                <p style="margin-left:100px;padding-right:10px;font-weight:100">
-                  <em>
-                    "What a great time! I got to see so many beautiful sights, eat lots of delicious food, and discover a whole new side of Santiago that I'd never seen before during my travels."
-                    <br/>
-                  </em>
-                </p>
-                <h5 style="float:right">- Kyla, <span style="color:#43AEC6;">Traveler</span></h5>
-                <br/><hr/>
-            </div>
+			<div style="height:400px;width:90%;background:rgba(0,179,255,0.2);margin-left:auto;margin-right:auto;">
+			
+				<div style="overflow:auto;position:relative;top:5%;background:rgba(255,255,255,.8);height:300px;width:95%;margin-left:auto;margin-right:auto;">
+					<p ng-repeat="message in messages track by $index" style="margin-left:1%">
+						<span ng-if="message.senderID==currentUser.id" style="color:#1abc9c;font-weight:100;font-size:12px">{{ capitalize(currentUser.firstName) }}</span>
+						<span ng-if="message.senderID==profile.id" style="color:#1abc9c;font-weight:100;font-size:12px">{{ capitalize(profile.firstName) }}</span>
+						<span style="color:#1abc9c;font-weight:100;font-size:12px"> | {{ formattedDate(message.timestamp) }}</span><br/>
+						{{ message.body }}
+					</p>
+				</div>
+			
+				<div style="position:relative;top:13%;height:40px;">
+					<input ng-model="newMessage.body" type="text" placeholder=" Type here" style="margin-left:1%;height:40px;width:82%"/>
+					<button ng-click="sendMessage()" style="margin-right:1%;width:15%;height:40px;float:right;">Send</button>
+				</div>
+			
+			</div>
           </div>
             
             
