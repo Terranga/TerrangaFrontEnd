@@ -3,7 +3,7 @@
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>Inbox</title>
+    <title>New Message</title>
     
     <link rel="stylesheet" href="/staging/styles/style.css">
     <script src="https://malsup.github.com/jquery.form.js"></script>
@@ -26,25 +26,21 @@
     
   </head>
 
-  <body ng-app="Terranga" ng-controller="InboxController" style="padding:20px" ng-init="init()">
-    <h2>Inbox:</h2> 
-    <button onClick="window.location='newMessage'">Compose</button>
-	<hr />
-	
-    <div class="section">
-    	<h2>Recieved</h2>
-    	<br />
-    </div>
-  
+  <body ng-app="Terranga" ng-controller="NewInsightController" style="padding:20px" ng-init="init()">
+    <h2>Create New Insight: </h2> 
     
-    <hr />
-    
+
     <div class="section">
-    	<h2>Sent</h2>
-    	<br />
+    	<input ng-model="insight.profileID" type="text" placeholder="COMPOSED BY: (profileID)"><br /><br />
+    	<input ng-model="insight.categoryTag" type="text" placeholder="CATEGORY: "><br /><br />
+      	<textarea ng-model="insight.description"  placeholder="DESCRIPTION:" rows="20" style="width:100%; padding-left:16px; padding-top:8px"></textarea>
+     	<br /><br /><br />
+        <button ng-click="sendInsight()">Compose</button>     	
+
     </div>
     
-    
+    <br /><br />
+    <br /><br />
     
   
   </body>

@@ -26,26 +26,35 @@
     
   </head>
 
-  <body ng-app="Terranga" ng-controller="InboxController" style="padding:20px" ng-init="init()">
-    <h2>Inbox:</h2> 
-    <button onClick="window.location='newMessage'">Compose</button>
+  <body ng-app="Terranga" ng-controller="InsightsController" style="padding:20px" ng-init="init()">
+    <h2>Insights:</h2> 
+    <button onClick="window.location='newInsight'">Compose</button>
 	<hr />
 	
+	<div class = "section">
+		<h2> Search Insights:</h2>
+			<input  ng-model="searchCategoryTagKey" type="text" placeholder="Search By Category Tag: " style="width:75%">
+			<button style ="width:120px" ng-click="searchByCategory()">Category Search</button>
+			<br /> <br />
+			
+			<input  ng-model="searchProfileIDKey" type="text" placeholder="Search By Profile ID: " style="width:75%">
+			<button style ="width:120px" ng-click="searchByProfileID()">ProfileID Search</button>
+			<br /> <br />
+			
+	</div>
+	
+	<hr />
+	    
     <div class="section">
-    	<h2>Recieved</h2>
+    	<h2>Fetched Insights</h2>
     	<br />
-    </div>
-  
-    
-    <hr />
-    
-    <div class="section">
-    	<h2>Sent</h2>
-    	<br />
-    </div>
-    
-    
-    
+    	<ol>
+        	<li ng-repeat="insight in results track by $index">
+        		ProfileID:{{insight.profileID}} _____ Category:{{insight.categoryTag}} _____ Description:{{insight.description}}
+        		 
+        	</li>
+       </ol>
+    </div> 
   
   </body>
   
@@ -54,3 +63,4 @@
   
   
 </html>
+
