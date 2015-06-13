@@ -93,10 +93,10 @@
       
       
           <div class="row">
-            <div class="col-md-4" style="background:#fff;border-right:1px solid #ddd;min-height:760px;background:#f9f9f9;">
-              <h4 class="sep-top-md" style="margin-left:36px;color:#444">Featured</h4>
+            <div class="col-md-4" style="background:#fff;border-right:1px solid #ddd;min-height:760px;">
+              <h4 style="margin-left:36px;color:#444;padding-top:3.5em">Featured Dreams</h4>
               <div ng-if="featuredProfiles[0]!=null" style="padding:36px 36px 36px 48px">
-                <img align="left" style="height:120px;width:120px;border:2px solid #ddd;border-radius:60px;margin-right:10px;"src="/site/images/{{ featuredProfiles[0].image }}?crop=256"/>
+                <a href="/site/profile/{{ featuredProfiles[0].id }}"><img align="left" style="height:120px;width:120px;border:2px solid #ddd;border-radius:60px;margin-right:10px;"src="/site/images/{{ featuredProfiles[0].image }}?crop=256"/></a>
                 <p style="margin-left:100px;padding-right:10px;font-weight:100">
                   <em>
                     "{{ truncatedText(featuredProfiles[0].dream,150) }}"
@@ -104,10 +104,10 @@
                   </em>
                 </p>
                 <h5 style="float:right">- {{ capitalize(featuredProfiles[0].firstName) }} <span style="color:#43AEC6;">{{ lastInitial(featuredProfiles[0].lastName) }}.</span></h5>
-                <br /><br /><br /><hr/><br />
+                <br /><br /><hr/><br />
               </div>
-              <div ng-if="featuredProfiles[1]!=null" style="padding:10px 36px 36px 48px">
-                <img align="left" style="height:120px;width:120px;border:2px solid #ddd;border-radius:60px;margin-right:10px;"src="/site/images/{{ featuredProfiles[1].image }}?crop=256"/>
+              <div ng-if="featuredProfiles[1]!=null" style="padding:10px 36px 36px 48px;">
+                <a href="/site/profile/{{ featuredProfiles[1].id }}"><img align="left" style="height:120px;width:120px;border:2px solid #ddd;border-radius:60px;margin-right:10px;"src="/site/images/{{ featuredProfiles[1].image }}?crop=256"/></a>
                 <p style="margin-left:100px;padding-right:10px;font-weight:100">
                   <em>
                     "{{ truncatedText(featuredProfiles[1].dream,150) }}"
@@ -115,10 +115,10 @@
                   </em>
                 </p>
                 <h5 style="float:right">- {{ capitalize(featuredProfiles[1].firstName) }} <span style="color:#43AEC6;">{{ lastInitial(featuredProfiles[1].lastName) }}.</span></h5>
-                <br /><br /><br /><hr/><br />
+                <br /><br /><hr/><br />
               </div>
               <div ng-if="featuredProfiles[2]!=null" style="padding:10px 36px 36px 48px">
-                <img align="left" style="height:120px;width:120px;border:2px solid #ddd;border-radius:60px;margin-right:10px;"src="/site/images/{{ featuredProfiles[2].image }}?crop=256"/>
+                <a href="/site/profile/{{ featuredProfiles[2].id }}"><img align="left" style="height:120px;width:120px;border:2px solid #ddd;border-radius:60px;margin-right:10px;"src="/site/images/{{ featuredProfiles[2].image }}?crop=256"/></a>
                 <p style="margin-left:100px;padding-right:10px;font-weight:100">
                   <em>
                     "{{ truncatedText(featuredProfiles[2].dream,150) }}"
@@ -126,7 +126,7 @@
                   </em>
                 </p>
                 <h5 style="float:right">- {{ capitalize(featuredProfiles[2].firstName) }} <span style="color:#43AEC6;">{{ lastInitial(featuredProfiles[2].lastName) }}.</span></h5>
-                <br /><br /><br /><hr/><br />
+                <br /><br /><hr/><br />
               </div>
             </div>     
             
@@ -143,7 +143,7 @@
                   <div class="profileBox" ng-repeat="profile in featuredProfiles track by $index">
                     <a ng-click="viewProfile($index)" data-toggle="modal" data-target="#profileModal" href="">
                       <img src="/site/images/{{ profile.image }}?crop=256" />
-                      {{ capitalize(profile.firstName) }} {{ lastInitial(profile.lastName) }}., {{ profile.age }}
+                      {{ capitalize(profile.firstName) }} {{ lastInitial(profile.lastName) }}, {{ profile.age }}
 					</a>                    
                   </div>                  
                   <br /><br /><br />
