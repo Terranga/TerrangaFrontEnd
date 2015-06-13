@@ -2304,9 +2304,9 @@ label.error {
 }
 
 .featuredProfile img {
-	width:84px;
-	height:84px;
-	border-radius:42px;
+	width:168px;
+	height:168px;
+	border-radius:84px;
 	border:2px solid #ddd;
 }
 
