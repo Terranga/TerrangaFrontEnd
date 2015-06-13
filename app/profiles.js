@@ -127,6 +127,10 @@ app.controller('ProfilesController', ['$scope', '$http', function($scope, $http)
     	
     	return string.substring(0, limit)+'...';
     }
+    
+    $scope.lastInitial = function(string){
+    	return string.substring(0,1).toUpperCase();
+    }
 	
 	
 
