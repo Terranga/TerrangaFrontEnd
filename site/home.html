@@ -95,7 +95,7 @@
                 <h3 class="upper">OUR COMMUNITY IN COLOMBIA</h3>
                 <p class="lead">Terranga is a platform for travelers and locals alike. 
                 A <span style="font-weight:600">global community of culturally curious people, sharing what they love to do in their cities, 
-                and supporting one another’s dreams. Welcome to our Colombia pilot!</span></p>
+                and supporting one another&#39s dreams. Welcome to our Colombia pilot!</span></p>
               </div>
             </div>
           </div>
@@ -107,14 +107,11 @@
             <div ng-repeat="profile in featuredProfiles track by $index" class="col-md-3 sep-bottom-lg">
               <div class="featuredProfile">
                 <img src="/site/images/{{ profile.image }}?crop=512" />
-                <h5 style="margin-bottom:0px;"><a style="color:#43AEC6" href="/site/profile/{{ profile.id }}">{{ capitalize(profile.firstName) }}, {{ profile.age }}</a></h5>
-                <br />
-                
+                <h5 style="margin-bottom:0px;"><a style="color:#43AEC6" href="/site/profile/{{ profile.id }}">{{ capitalize(profile.firstName) }}, {{ profile.age }}</a></h5>                
                 <hr style="width:80%;margin-bottom:8px" />
-                
                 <p>
                   <i class="fa fa-comments-o fa-lg"></i><br />
-                  {{ truncatedText(profile.bio, 120) }}
+                  {{ truncatedText(profile.bio, 70) }}
                 </p>
                 <span><i class="fa fa-map-marker fa-md"></i> {{ capitalize(profile.city) }}, {{ profile.country.toUpperCase() }}</span><br /><br />
                 <a href="/site/profile/{{ profile.id }}" class="btn btn-primary btn-md">Meet {{ capitalize(profile.firstName) }}</a><br /><br />
@@ -182,14 +179,14 @@
               <div data-wow-delay=".5s" class="wow bounceInLeft">
                 <h3 class="upper">WE ARE TERRANGA</h3>
                 <p class="lead">
-                  We know that as travelers it’s tough to get off the beaten path; you desire to see more than the typical tour, 
+                  We know that as travelers it&#39s tough to get off the beaten path; you desire to see more than the typical tour, 
                   you want to feel the uniqueness of the city, and meet people that inspire you. As locals, you have so much to 
                   offer. You want to share your passions, stories, and love for your city with travelers. And maybe practice a 
                   new language!
                 </p>
                 <p class="lead">
-                  Terranga helps travelers and locals safely find each other. But we’re not about hiring a local guide 
-                  or taking tours with locals. It’s about connecting through mutual passions and experiencing what 
+                  Terranga helps travelers and locals safely find each other. But we&#39re not about hiring a local guide 
+                  or taking tours with locals. It&#39s about connecting through mutual passions and experiencing what 
                   others love to do in their city. With Terranga, there is no need to book. Find out what people love 
                   to do in their cities, establish a rapport through messaging and meet to share the experiences with them.
                 </p>
