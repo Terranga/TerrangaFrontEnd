@@ -14,7 +14,7 @@ app.controller('ProfilesController', ['$scope', '$http', function($scope, $http)
 	function fetchFeaturedProfiles(){
 		console.log('FETCH FEATURED PROFILES: ');
 		
-    	var url = '/api/profiles?featured=yes';
+    	var url = 'http://86.terranga-org.appspot.com/api/profiles?featured=yes';
         $http.get(url).success(function(data, status, headers, config) {
             var confirmation = data['confirmation'];
             console.log('CONFIRMATION: '+JSON.stringify(data));
@@ -29,14 +29,14 @@ app.controller('ProfilesController', ['$scope', '$http', function($scope, $http)
             
             $scope.featuredProfiles = data['profiles'];
             
-            for (var i=0; i<$scope.featuredProfiles.length; i++){
-                var insights = new Array();
-                var fakeInsight = {'description':'This is an insight','categoryTag':'sports'};
-                insights.push(fakeInsight);
-                $scope.featuredProfiles[i]['insights'] = insights;
-        
-            }
-            console.log('Profiles: '+JSON.stringify($scope.featuredProfiles));
+//            for (var i=0; i<$scope.featuredProfiles.length; i++){
+//                var insights = new Array();
+//                var fakeInsight = {'description':'This is an insight','categoryTag':'sports'};
+//                insights.push(fakeInsight);
+//                $scope.featuredProfiles[i]['insights'] = insights;
+//        
+//            }
+//            console.log('Profiles: '+JSON.stringify($scope.featuredProfiles));
 
             
         }).error(function(data, status, headers, config) {
