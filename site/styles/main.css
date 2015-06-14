@@ -2386,7 +2386,22 @@ label.error {
 	height:100%;
 }
 
+.pictureBox {
+	text-align:center;
+	padding:10px;
+	width:100%;
+	display:inline-block;
+}
 
+
+.pictureBox img {
+	background:#fff;
+	margin-bottom:4px;
+	padding:6px;
+	border:1px solid #ddd;
+	width:32%;
+	height:32%;
+}
 
 .loading-overlay {
       position: fixed;
