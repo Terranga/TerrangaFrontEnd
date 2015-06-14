@@ -99,7 +99,7 @@
                 <a href="/site/profile/{{ featuredProfiles[0].id }}"><img align="left" style="height:120px;width:120px;border:2px solid #ddd;border-radius:60px;margin-right:10px;"src="/site/images/{{ featuredProfiles[0].image }}?crop=256"/></a>
                 <p style="margin-left:100px;padding-right:10px;font-weight:100">
                   <em>
-                    "{{ truncatedText(featuredProfiles[0].dream,150) }}"
+                    "{{ truncatedText(featuredProfiles[0].dream,120) }}"
                     <br/>
                   </em>
                 </p>
@@ -110,7 +110,7 @@
                 <a href="/site/profile/{{ featuredProfiles[1].id }}"><img align="left" style="height:120px;width:120px;border:2px solid #ddd;border-radius:60px;margin-right:10px;"src="/site/images/{{ featuredProfiles[1].image }}?crop=256"/></a>
                 <p style="margin-left:100px;padding-right:10px;font-weight:100">
                   <em>
-                    "{{ truncatedText(featuredProfiles[1].dream,150) }}"
+                    "{{ truncatedText(featuredProfiles[1].dream,120) }}"
                     <br/>
                   </em>
                 </p>
@@ -121,7 +121,7 @@
                 <a href="/site/profile/{{ featuredProfiles[2].id }}"><img align="left" style="height:120px;width:120px;border:2px solid #ddd;border-radius:60px;margin-right:10px;"src="/site/images/{{ featuredProfiles[2].image }}?crop=256"/></a>
                 <p style="margin-left:100px;padding-right:10px;font-weight:100">
                   <em>
-                    "{{ truncatedText(featuredProfiles[2].dream,150) }}"
+                    "{{ truncatedText(featuredProfiles[2].dream,120) }}"
                     <br/>
                   </em>
                 </p>
@@ -144,7 +144,10 @@
                     <a ng-click="viewProfile($index)" data-toggle="modal" data-target="#profileModal" href="">
                       <img src="/site/images/{{ profile.image }}?crop=256" />
                       {{ capitalize(profile.firstName) }} {{ lastInitial(profile.lastName) }}, {{ profile.age }}
-					</a>                    
+					</a>
+					<div ng-if="profile.insights[0]!=null" style="height:30px">
+						<p>{{ truncatedText(profile.insights[0].description, 30) }}</p>
+					</div>                    
                   </div>                  
                   <br /><br /><br />
 
