@@ -29,6 +29,16 @@ app.controller('ProfilesController', ['$scope', '$http', function($scope, $http)
             
             $scope.featuredProfiles = data['profiles'];
             
+            for (var i=0; i<$scope.featuredProfiles.length; i++){
+                var insights = new Array();
+                var fakeInsight = {'description':'This is an insight','categoryTag':'sports'};
+                insights.push(fakeInsight);
+                $scope.featuredProfiles[i]['insights'] = insights;
+        
+            }
+            console.log('Profiles: '+JSON.stringify($scope.featuredProfiles));
+
+            
         }).error(function(data, status, headers, config) {
             console.log("error", data, status, headers, config);
         });
