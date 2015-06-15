@@ -1,7 +1,7 @@
 var app = angular.module('ProfileModule', []);
 app.controller('ProfileController', ['$scope', '$http', '$upload', function($scope, $http, $upload){
 	$scope.currentUser = {'loggedIn':'no'};
-	$scope.profile = {"lastName":"", "city":"", "country":"", "firstName":"", "bio":""};
+	$scope.profile = {"lastName":"", "city":"", "country":"", "firstName":""};
 	$scope.newMessage = {'recipientID':'', 'senderID':'', 'subject':'', 'threadID':'', 'body':''};
 	$scope.messages = null;
 
@@ -175,9 +175,7 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
 		return capitalizedString;
     }
 
-    $scope.lastInitial = function(string){
-    	return string.substring(0,1).toUpperCase();
-    }
+    
     
     function parseLocation(stem){
     	console.log('PARSE LOCATION: '+stem);

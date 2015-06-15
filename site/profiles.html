@@ -242,7 +242,7 @@
                       {{ capitalize(profile.firstName) }} {{ lastInitial(profile.lastName) }}, {{ profile.age }}
 					</a>
 					<div style="height:30px">
-						<p>{{ truncatedText(profile.insights[0].description, 30) }}</p>
+						<p ng-if="profile.insights[0]!=null">{{ truncatedText(profile.insights[0].description, 30) }}</p>
 					</div>                    
                   </div>                  
                   <br /><br /><br />
