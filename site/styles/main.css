@@ -2403,6 +2403,22 @@ label.error {
 	height:32%;
 }
 
+.insightsBox {
+	text-align:center;
+	padding:10px;
+	width:100%;
+	display:inline-block;
+}
+
+
+.insightsBox img {
+	margin-top:10px;
+	margin-left:30px;
+	padding:6px;
+	width:80px;
+	height:80px;
+}
+
 .loading-overlay {
       position: fixed;
       width: 100%;

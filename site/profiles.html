@@ -1,7 +1,57 @@
+
+
 <!DOCTYPE html>
 <html class="no-js">
   <head>
-    {{ head }}
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Terranga</title>
+    <meta name="description" content="Home Page e-shop version">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory-->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Montserrat:400,700%7COpen+Sans:300italic,400italic,600italic,700italic,800italic,300,400,600,700">
+    <link rel="stylesheet" href="/site/styles/font-awesome.css">
+    <link rel="stylesheet" href="/site/styles/owl.carousel.css">
+    <link rel="stylesheet" href="/site/styles/owl.theme.css">
+    <link rel="stylesheet" href="/site/styles/slit-slider-style.css">
+    <link rel="stylesheet" href="/site/styles/slit-slider-custom.css">
+    <link rel="stylesheet" href="/site/styles/idangerous.swiper.css">
+    <link rel="stylesheet" href="/site/styles/yamm.css">
+    <link rel="stylesheet" href="/site/styles/animate.css">
+    <link rel="stylesheet" href="/site/styles/prettyPhoto.css">
+    <link rel="stylesheet" href="/site/styles/bootstrap-slider.css">
+    <link rel="stylesheet" href="/site/styles/device-mockups2.css">
+    <link rel="stylesheet" href="/site/styles/bootstrap.min.css">
+    <link rel="stylesheet" href="/site/styles/main.css">
+    <link rel="stylesheet" href="/site/styles/main-responsive.css">
+    <link id="primary_color_scheme" rel="stylesheet" href="/site/styles/theme_meadow.css">
+    <script src="/site/scripts/vendor/modernizr.js"></script>
+    <script src="/site/js/jquery.js"></script>
+	<script src="/site/js/knob.js"></script>
+	<script src="/site/js/spin.js"></script> 
+	<script src="/site/js/moment.js"></script>
+	<script src="/site/js/pi.init.tab.js"></script>
+    
+    
+    <!-- ANGULAR! -->
+    <script src="https://malsup.github.com/jquery.form.js"></script>
+    <script src="/site/js/fileupload/angular-file-upload-shim.js"></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js'></script>
+    <script src="https://code.angularjs.org/1.2.20/angular-sanitize.min.js"></script>
+    <script src="/site/js/fileupload/angular-file-upload.js"></script>
+    
+    
+    <script src='/app/app.js'></script>
+    <script src='/app/home.js'></script>
+    <script src='/app/profile.js'></script>
+    <script src='/app/profiles.js'></script>
+	<script src='/app/register.js'></script>
+	<script src='/app/account.js'></script>
+	
+    
+    
+
     
   </head>
   
@@ -89,7 +139,53 @@
     
     
       <!-- Start Nav Section-->
-      {{ nav }}
+      
+      <nav id="main-navigation" role="navigation" class="navbar navbar-fixed-top navbar-standard" style="">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle"><i class="fa fa-align-justify fa-lg"></i></button>
+            <a href="/" class="navbar-brand">
+              <img src="/site/img/logo_diamond.png" style="float:left"/>
+              <img src="/site/img/logo-white.png" alt="" class="logo-white">
+              <img src="/site/img/logo-dark.png" alt="" class="logo-dark">
+            </a>
+          </div>
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right service-nav">
+              <li class="dropdown">
+                <a href="/" id="menu_item_Home" class="dropdown-toggle">Home</a>
+              </li>
+              <li class="dropdown">
+                <a href="/site/profiles" id="menu_item_Portfolio" class="dropdown-toggle">Community</a>
+              </li>
+              <li class="dropdown" ng-show="currentUser.loggedIn == 'yes'"><a href="/site/account" id="menu_item_Home" class="dropdown-toggle">{{ currentUser.firstName }} {{ currentUser.lastName }}</a></li>
+              
+              <li ng-show="currentUser.loggedIn == 'no'">
+              <a id="dropdownMenuLogin" href="#" data-toggle="dropdown" class="upper dropdown-toggle">Login</a>
+                <div aria-labelledby="dropdownMenuLogin" class="dropdown-menu widget-box">
+                  <form>
+                    <div class="form-group">
+                      <label class="sr-only">Email</label>
+                      <input ng-model="currentUser.email" type="text" value="" placeholder="Email" name="" class="form-control input-lg">
+                    </div>
+                    <div class="form-group">
+                      <label class="sr-only">Password</label>
+                      <input ng-model="currentUser.password" type="password" value="" placeholder="Password" name="" class="form-control input-lg">
+                    </div>
+                    
+                    <div class="form-inline form-group">
+                      <button ng-click="login()" type="button" class="btn btn-primary btn-xs">Login</button>
+                    </div>
+                    
+                  </form>
+                </div>
+              </li>
+            </ul>
+            <button type="button" class="navbar-toggle"><i class="fa fa-close fa-lg"></i></button>
+          </div>
+        </div>
+      </nav>
+
       
       
           <div class="row">
@@ -145,7 +241,7 @@
                       <img src="/site/images/{{ profile.image }}?crop=256" />
                       {{ capitalize(profile.firstName) }} {{ lastInitial(profile.lastName) }}, {{ profile.age }}
 					</a>
-					<div ng-if="profile.insights[0]!=null" style="height:30px">
+					<div style="height:30px">
 						<p>{{ truncatedText(profile.insights[0].description, 30) }}</p>
 					</div>                    
                   </div>                  
@@ -161,13 +257,98 @@
       
       
       <!-- Start Footer section-->
-      {{ footer }}
+      
+      <footer id="footer">
+        <div class="inner sep-bottom-xs">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-4 col-sm-6">
+                <div class="widget sep-top-lg">
+                	<img src="/site/img/logo_diamond.png" style="height:100px;float:left">
+                	<small style="margin-left:110px"class="sep-bottom-md">
+	                  	Our name comes Senegal. In Wolof, Teranga means &quothospitality&quot however, it's more than just a word, 
+	                  	&quotit&#39s a way of life,&quot capturing the spirit of camaraderie, acceptance and greater understanding that embodies Terranga.
+				  	</small>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6">
+                <div class="widget sep-top-lg">
+	              <h6 class="upper widget-title">Connect With Us</h6>
+	                 <ul style="padding-left:15%;"class="social-icon sep-top-xs">
+	                    <li><a href="https://instagram.com/terranga_app/" class="fa fa-instagram fa-lg"></a></li>
+	                    <li><a href="https://twitter.com/terrangaapp" class="fa fa-twitter fa-lg"></a></li>
+	                  </ul>
+	             </div>
+	           </div>
+              <div class="col-md-2 col-sm-6">
+                <div class="widget sep-top-lg">
+                  <h6 class="upper widget-title">Blog</h6>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6">
+                <div class="widget sep-top-lg">
+                  <h6 class="upper widget-title">Contact Us</h6>
+                  <ul class="widget-address sep-top-xs">
+                    <li><a href="mailto:info@terranga.org"><i class="fa fa-envelope-o fa-lg"></i><small>info@terranga.org</small></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="copyright sep-top-xs sep-bottom-xs">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-4" style="text-align:center">
+              	<small>Copyright 2015 &copy; Terranga, Inc.</small>
+              </div>
+              <div class="col-md-4" style="text-align:center">
+              	<small>Terms</small>
+              </div>
+              <div class="col-md-4"style="text-align:center">
+              	<small>FAQ</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+
       
       
       
     </div>
     
-    {{ scripts }}
+    
+    <script src="/site/scripts/vendor/queryloader2.min.js"></script>
+    <script src="/site/scripts/vendor/owl.carousel.js"></script>
+    <script src="/site/scripts/vendor/jquery.ba-cond.min.js"></script>
+    <script src="/site/scripts/vendor/jquery.slitslider.js"></script>
+    <script src="/site/scripts/vendor/idangerous.swiper.js"></script>
+    <script src="/site/scripts/vendor/jquery.fitvids.js"></script>
+    <script src="/site/scripts/vendor/jquery.countTo.js"></script>
+    <script src="/site/scripts/vendor/TweenMax.min.js"></script>
+    <script src="/site/scripts/vendor/ScrollToPlugin.min.js"></script>
+    <script src="/site/scripts/vendor/jquery.scrollmagic.min.js"></script>
+    <script src="/site/scripts/vendor/jquery.easypiechart.js"></script>
+    <script src="/site/scripts/vendor/jquery.validate.js"></script>
+    <script src="/site/scripts/vendor/wow.min.js"></script>
+    <script src="/site/scripts/vendor/jquery.placeholder.js"></script>
+    <script src="/site/scripts/vendor/jquery.easing.1.3.min.js"></script>
+    <script src="/site/scripts/vendor/jquery.waitforimages.min.js"></script>
+    <script src="/site/scripts/vendor/jquery.prettyPhoto.js"></script>
+    <script src="/site/scripts/vendor/imagesloaded.pkgd.min.js"></script>
+    <script src="/site/scripts/vendor/isotope.pkgd.min.js"></script>
+    <script src="/site/scripts/vendor/jquery.fillparent.min.js"></script>
+    <script src="/site/scripts/vendor/raphael-min.js"></script>
+    <script src="/site/scripts/vendor/bootstrap.js"></script>
+    <script src="/site/scripts/vendor/jquery.bootstrap-touchspin.min.js"></script>
+    <script src="/site/scripts/vendor/bootstrap-slider.js"></script>
+    <script src="/site/scripts/vendor/bootstrap-rating-input.js"></script>
+    <script src="/site/scripts/vendor/bootstrap-hover-dropdown.min.js"></script>
+    <script src="/site/scripts/jquery.gmap.min.js"></script>
+    <script src="/site/scripts/circle_diagram.js"></script>
+    <script src="/site/scripts/main.js"></script>
+
     
     
   </body>
