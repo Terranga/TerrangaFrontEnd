@@ -5,18 +5,22 @@ app.controller('ProfilesController', ['$scope', '$http', function($scope, $http)
 	$scope.currentUser = {'loggedIn':'no'};
 	$scope.featuredProfiles = null;
 	$scope.selectedProfile = {'firstName':'', 'lastName':'', 'age':'', 'city':'', 'country':'', 'bio':''}; // insert empty values so angular doesn't freak out
-	$scope.root = 'http://84.terranga-org.appspot.com';
+	$scope.ageArray = new Array();
+	$scope.root = 'http://86.terranga-org.appspot.com';
 	$scope.testing = true;
 	
 	$scope.init = function(){
 		console.log('Profiles Controller: INIT');
+		
+		for (var i=0; i<50; i++){
+			var age = i+10;
+			$scope.ageArray.push(age.toString());
+		}
 		fetchFeaturedProfiles();
 	}
 	
 	function fetchFeaturedProfiles(){
 		console.log('FETCH FEATURED PROFILES: ');
-		
-//    	var url = '/api/profiles?featured=yes';
 		
 		var path = '/api/profiles';
     	var url = ($scope.testing==true) ? $scope.root+path : path;
@@ -41,12 +45,41 @@ app.controller('ProfilesController', ['$scope', '$http', function($scope, $http)
 	}
 	
 	$scope.viewProfile = function(index){
-		var profile = $scope.featuredProfiles[index];
-		$scope.selectedProfile = profile;
+		$scope.selectedProfile = $scope.featuredProfiles[index];
 		console.log(JSON.stringify($scope.selectedProfile));
-		
 	}
 
+	$scope.updateSelectedProfile = function(){
+		if ($scope.selectedProfile==null)
+			return;
+		
+    	var json = JSON.stringify($scope.selectedProfile);
+		console.log('UPDATE SELECTED PROFILE: '+json);
+		
+		var path = '/api/profiles/'+$scope.selectedProfile.id;
+    	var url = ($scope.testing==true) ? $scope.root+path : path;
+    	
+        $http.put(url, json).success(function(data, status, headers, config) {
+            var confirmation = data['confirmation'];
+            console.log('CONFIRMATION: '+JSON.stringify(data));
+
+            if (data['currentUser'] != null)
+            	$scope.currentUser = data['currentUser'];
+
+            if (confirmation != 'success'){
+                alert(data['message']);
+                return;
+            }
+            
+            alert('Profile Updated');
+            
+        }).error(function(data, status, headers, config) {
+            console.log("error", data, status, headers, config);
+        });
+		
+	}
+	
+	
 	$scope.logout = function(){
 		console.log('LOG OUT: ');
 
