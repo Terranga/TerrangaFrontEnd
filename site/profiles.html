@@ -1,7 +1,57 @@
+
+
 <!DOCTYPE html>
 <html class="no-js">
   <head>
-    {{ head }}
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Terranga</title>
+    <meta name="description" content="Home Page e-shop version">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory-->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Montserrat:400,700%7COpen+Sans:300italic,400italic,600italic,700italic,800italic,300,400,600,700">
+    <link rel="stylesheet" href="/site/styles/font-awesome.css">
+    <link rel="stylesheet" href="/site/styles/owl.carousel.css">
+    <link rel="stylesheet" href="/site/styles/owl.theme.css">
+    <link rel="stylesheet" href="/site/styles/slit-slider-style.css">
+    <link rel="stylesheet" href="/site/styles/slit-slider-custom.css">
+    <link rel="stylesheet" href="/site/styles/idangerous.swiper.css">
+    <link rel="stylesheet" href="/site/styles/yamm.css">
+    <link rel="stylesheet" href="/site/styles/animate.css">
+    <link rel="stylesheet" href="/site/styles/prettyPhoto.css">
+    <link rel="stylesheet" href="/site/styles/bootstrap-slider.css">
+    <link rel="stylesheet" href="/site/styles/device-mockups2.css">
+    <link rel="stylesheet" href="/site/styles/bootstrap.min.css">
+    <link rel="stylesheet" href="/site/styles/main.css">
+    <link rel="stylesheet" href="/site/styles/main-responsive.css">
+    <link id="primary_color_scheme" rel="stylesheet" href="/site/styles/theme_meadow.css">
+    <script src="/site/scripts/vendor/modernizr.js"></script>
+    <script src="/site/js/jquery.js"></script>
+	<script src="/site/js/knob.js"></script>
+	<script src="/site/js/spin.js"></script> 
+	<script src="/site/js/moment.js"></script>
+	<script src="/site/js/pi.init.tab.js"></script>
+    
+    
+    <!-- ANGULAR! -->
+    <script src="https://malsup.github.com/jquery.form.js"></script>
+    <script src="/site/js/fileupload/angular-file-upload-shim.js"></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js'></script>
+    <script src="https://code.angularjs.org/1.2.20/angular-sanitize.min.js"></script>
+    <script src="/site/js/fileupload/angular-file-upload.js"></script>
+    
+    
+    <script src='/app/app.js'></script>
+    <script src='/app/home.js'></script>
+    <script src='/app/profile.js'></script>
+    <script src='/app/profiles.js'></script>
+	<script src='/app/register.js'></script>
+	<script src='/app/account.js'></script>
+	
+    
+    
+
     
   </head>
   
@@ -19,7 +69,7 @@
           <div class="social" style="text-align:center">
             <img style="width:160px" src="/site/img/logo-dark.png" alt=""><br /><br />
             <img style="width:84px;border-radius:42px;border:1px solid #ddd" src="/site/images/{{ selectedProfile.image }}?crop=256" />
-            <h4 style="font-size:18px">{{ capitalize(selectedProfile.firstName) }} {{ capitalize(selectedProfile.lastName) }}, {{ selectedProfile.age }}</h4>
+            <h4 style="font-size:18px">{{ capitalize(selectedProfile.firstName) }} {{ lastInitial(selectedProfile.lastName) }}, {{ selectedProfile.age }}</h4>
             {{ capitalize(selectedProfile.city) }}, {{ capitalize(selectedProfile.country) }}
             <hr /><br />
 			<div>
@@ -89,53 +139,99 @@
     
     
       <!-- Start Nav Section-->
-      {{ nav }}
+      
+      <nav id="main-navigation" role="navigation" class="navbar navbar-fixed-top navbar-standard" style="">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle"><i class="fa fa-align-justify fa-lg"></i></button>
+            <a href="/" class="navbar-brand">
+              <img src="/site/img/logo_diamond.png" style="float:left"/>
+              <img src="/site/img/logo-white.png" alt="" class="logo-white">
+              <img src="/site/img/logo-dark.png" alt="" class="logo-dark">
+            </a>
+          </div>
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right service-nav">
+              <li class="dropdown">
+                <a href="/" id="menu_item_Home" class="dropdown-toggle">Home</a>
+              </li>
+              <li class="dropdown">
+                <a href="/site/profiles" id="menu_item_Portfolio" class="dropdown-toggle">Community</a>
+              </li>
+              <li class="dropdown" ng-show="currentUser.loggedIn == 'yes'"><a href="/site/account" id="menu_item_Home" class="dropdown-toggle">{{ currentUser.firstName }} {{ currentUser.lastName }}</a></li>
+              
+              <li ng-show="currentUser.loggedIn == 'no'">
+              <a id="dropdownMenuLogin" href="#" data-toggle="dropdown" class="upper dropdown-toggle">Login</a>
+                <div aria-labelledby="dropdownMenuLogin" class="dropdown-menu widget-box">
+                  <form>
+                    <div class="form-group">
+                      <label class="sr-only">Email</label>
+                      <input ng-model="currentUser.email" type="text" value="" placeholder="Email" name="" class="form-control input-lg">
+                    </div>
+                    <div class="form-group">
+                      <label class="sr-only">Password</label>
+                      <input ng-model="currentUser.password" type="password" value="" placeholder="Password" name="" class="form-control input-lg">
+                    </div>
+                    
+                    <div class="form-inline form-group">
+                      <button ng-click="login()" type="button" class="btn btn-primary btn-xs">Login</button>
+                    </div>
+                    
+                  </form>
+                </div>
+              </li>
+            </ul>
+            <button type="button" class="navbar-toggle"><i class="fa fa-close fa-lg"></i></button>
+          </div>
+        </div>
+      </nav>
+
       
       
           <div class="row">
-            <div class="col-md-4" style="background:#fff;border-right:1px solid #ddd;padding:0px;min-height:760px;">
-              <div style="width:100%;height:260px;background:#f9f9f9;padding:100px 0px 0px 48px;">
-                <img align="left" style="margin-top:12px;margin-right:24px;width:84px;border-radius:42px;border:1px solid #fff" src="/site/img/logo_square.png" />
-                <h4 style="margin-bottom:0px">Kobe <span style="color:#43AEC6;">Bryant</span></h4>
-                <hr style="margin-bottom:6px;margin-top:6px;" />
-                <span style="font-weight:100;font-size:12px">Traveler, Los Angeles</span><br />
-                <a style="font-weight:100;font-size:12px;color:#43AEC6" href="#">Manage Profile</a>
-              </div>
-              
-              <div style="padding:36px 36px 36px 48px ">
-                <img align="left" style="height:80px;width:80px;border:2px solid #ddd;border-radius:40px;margin-right:10px;"src="/site/img/sara.jpg"/>
+            <div class="col-md-4" style="background:#fff;border-right:1px solid #ddd;min-height:760px;">
+              <h4 style="margin-left:36px;color:#444;padding-top:3.5em">Featured Dreams</h4>
+              <div ng-if="featuredProfiles[0]!=null" style="padding:36px 36px 36px 48px">
+                <a href="/site/profile/{{ featuredProfiles[0].id }}"><img align="left" style="height:120px;width:120px;border:2px solid #ddd;border-radius:60px;margin-right:10px;"src="/site/images/{{ featuredProfiles[0].image }}?crop=256"/></a>
                 <p style="margin-left:100px;padding-right:10px;font-weight:100">
                   <em>
-                    "My local host from Terranga was fantastic! She showed me the authentic Santiago, Chile experience! Terranga makes exploring new places much more accessible."
+                    "{{ truncatedText(featuredProfiles[0].dream,120) }}"
                     <br/>
                   </em>
                 </p>
-                
-                <h5 style="float:right">- Sara, <span style="color:#43AEC6;">Traveler</span></h5>
-                
+                <h5 style="float:right">- {{ capitalize(featuredProfiles[0].firstName) }} <span style="color:#43AEC6;">{{ lastInitial(featuredProfiles[0].lastName) }}.</span></h5>
                 <br /><br /><hr/><br />
-                
-                <img align="left" style="height:80px;width:80px;border:2px solid #ddd;border-radius:40px;margin-right:10px;"src="/site/img/jose.JPG"/>
+              </div>
+              <div ng-if="featuredProfiles[1]!=null" style="padding:10px 36px 36px 48px;">
+                <a href="/site/profile/{{ featuredProfiles[1].id }}"><img align="left" style="height:120px;width:120px;border:2px solid #ddd;border-radius:60px;margin-right:10px;"src="/site/images/{{ featuredProfiles[1].image }}?crop=256"/></a>
                 <p style="margin-left:100px;padding-right:10px;font-weight:100">
                   <em>
-                    "My name is Jose and I'm from Bogota, Colombia. My guests from Terranga were really interested in Colombian food, and so 
-                    I showed them the best places to eat in the city. We all had a great time, and they helped me out by donating to my dream to study abroad!"
+                    "{{ truncatedText(featuredProfiles[1].dream,120) }}"
                     <br/>
                   </em>
                 </p>
-                <h5 style="float:right">- Jose, <span style="color:#43AEC6;">Local</span></h5>
+                <h5 style="float:right">- {{ capitalize(featuredProfiles[1].firstName) }} <span style="color:#43AEC6;">{{ lastInitial(featuredProfiles[1].lastName) }}.</span></h5>
+                <br /><br /><hr/><br />
               </div>
-              
-            </div>
-            
-            
+              <div ng-if="featuredProfiles[2]!=null" style="padding:10px 36px 36px 48px">
+                <a href="/site/profile/{{ featuredProfiles[2].id }}"><img align="left" style="height:120px;width:120px;border:2px solid #ddd;border-radius:60px;margin-right:10px;"src="/site/images/{{ featuredProfiles[2].image }}?crop=256"/></a>
+                <p style="margin-left:100px;padding-right:10px;font-weight:100">
+                  <em>
+                    "{{ truncatedText(featuredProfiles[2].dream,120) }}"
+                    <br/>
+                  </em>
+                </p>
+                <h5 style="float:right">- {{ capitalize(featuredProfiles[2].firstName) }} <span style="color:#43AEC6;">{{ lastInitial(featuredProfiles[2].lastName) }}.</span></h5>
+                <br /><br /><hr/><br />
+              </div>
+            </div>     
             
             <div class="col-md-8" style="background-size:cover;background-image:url('/site/img/slides/slide3.jpg');padding-left:0px">
               <div class="screen">
               
                 <div style="width:90%;height:90%;background:rgba(255, 255, 255, 0.97);margin-left:auto;margin-right:auto;">
                   <div style="height:80px;background:#f1f1f1;text-align:center;padding-top:18px;border-bottom:1px solid #ddd">
-                    <h4 style="color:#444">Meet the Terranga Community</h4>
+                    <h4 style="color:#444">Meet the Terranga Community in <span style="color:#43AEC6;">Colombia!</span></h4>
                   </div>
                   
                   <br />
@@ -143,8 +239,11 @@
                   <div class="profileBox" ng-repeat="profile in featuredProfiles track by $index">
                     <a ng-click="viewProfile($index)" data-toggle="modal" data-target="#profileModal" href="">
                       <img src="/site/images/{{ profile.image }}?crop=256" />
-                      {{ capitalize(profile.firstName) }} {{ capitalize(profile.lastName) }}, {{ profile.age }}
-					</a>                    
+                      {{ capitalize(profile.firstName) }} {{ lastInitial(profile.lastName) }}, {{ profile.age }}
+					</a>
+					<div style="height:30px">
+						<p>{{ truncatedText(profile.insights[0].description, 30) }}</p>
+					</div>                    
                   </div>                  
                   <br /><br /><br />
 
@@ -158,13 +257,98 @@
       
       
       <!-- Start Footer section-->
-      {{ footer }}
+      
+      <footer id="footer">
+        <div class="inner sep-bottom-xs">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-4 col-sm-6">
+                <div class="widget sep-top-lg">
+                	<img src="/site/img/logo_diamond.png" style="height:100px;float:left">
+                	<small style="margin-left:110px"class="sep-bottom-md">
+	                  	Our name comes Senegal. In Wolof, Teranga means &quothospitality&quot however, it's more than just a word, 
+	                  	&quotit&#39s a way of life,&quot capturing the spirit of camaraderie, acceptance and greater understanding that embodies Terranga.
+				  	</small>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6">
+                <div class="widget sep-top-lg">
+	              <h6 class="upper widget-title">Connect With Us</h6>
+	                 <ul style="padding-left:15%;"class="social-icon sep-top-xs">
+	                    <li><a href="https://instagram.com/terranga_app/" class="fa fa-instagram fa-lg"></a></li>
+	                    <li><a href="https://twitter.com/terrangaapp" class="fa fa-twitter fa-lg"></a></li>
+	                  </ul>
+	             </div>
+	           </div>
+              <div class="col-md-2 col-sm-6">
+                <div class="widget sep-top-lg">
+                  <h6 class="upper widget-title">Blog</h6>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6">
+                <div class="widget sep-top-lg">
+                  <h6 class="upper widget-title">Contact Us</h6>
+                  <ul class="widget-address sep-top-xs">
+                    <li><a href="mailto:info@terranga.org"><i class="fa fa-envelope-o fa-lg"></i><small>info@terranga.org</small></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="copyright sep-top-xs sep-bottom-xs">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-4" style="text-align:center">
+              	<small>Copyright 2015 &copy; Terranga, Inc.</small>
+              </div>
+              <div class="col-md-4" style="text-align:center">
+              	<small>Terms</small>
+              </div>
+              <div class="col-md-4"style="text-align:center">
+              	<small>FAQ</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+
       
       
       
     </div>
     
-    {{ scripts }}
+    
+    <script src="/site/scripts/vendor/queryloader2.min.js"></script>
+    <script src="/site/scripts/vendor/owl.carousel.js"></script>
+    <script src="/site/scripts/vendor/jquery.ba-cond.min.js"></script>
+    <script src="/site/scripts/vendor/jquery.slitslider.js"></script>
+    <script src="/site/scripts/vendor/idangerous.swiper.js"></script>
+    <script src="/site/scripts/vendor/jquery.fitvids.js"></script>
+    <script src="/site/scripts/vendor/jquery.countTo.js"></script>
+    <script src="/site/scripts/vendor/TweenMax.min.js"></script>
+    <script src="/site/scripts/vendor/ScrollToPlugin.min.js"></script>
+    <script src="/site/scripts/vendor/jquery.scrollmagic.min.js"></script>
+    <script src="/site/scripts/vendor/jquery.easypiechart.js"></script>
+    <script src="/site/scripts/vendor/jquery.validate.js"></script>
+    <script src="/site/scripts/vendor/wow.min.js"></script>
+    <script src="/site/scripts/vendor/jquery.placeholder.js"></script>
+    <script src="/site/scripts/vendor/jquery.easing.1.3.min.js"></script>
+    <script src="/site/scripts/vendor/jquery.waitforimages.min.js"></script>
+    <script src="/site/scripts/vendor/jquery.prettyPhoto.js"></script>
+    <script src="/site/scripts/vendor/imagesloaded.pkgd.min.js"></script>
+    <script src="/site/scripts/vendor/isotope.pkgd.min.js"></script>
+    <script src="/site/scripts/vendor/jquery.fillparent.min.js"></script>
+    <script src="/site/scripts/vendor/raphael-min.js"></script>
+    <script src="/site/scripts/vendor/bootstrap.js"></script>
+    <script src="/site/scripts/vendor/jquery.bootstrap-touchspin.min.js"></script>
+    <script src="/site/scripts/vendor/bootstrap-slider.js"></script>
+    <script src="/site/scripts/vendor/bootstrap-rating-input.js"></script>
+    <script src="/site/scripts/vendor/bootstrap-hover-dropdown.min.js"></script>
+    <script src="/site/scripts/jquery.gmap.min.js"></script>
+    <script src="/site/scripts/circle_diagram.js"></script>
+    <script src="/site/scripts/main.js"></script>
+
     
     
   </body>

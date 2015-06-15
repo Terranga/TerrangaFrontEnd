@@ -2371,8 +2371,8 @@ label.error {
 .profileBox {
 	text-align:center;
 	padding:24px;
-	width:180px;
-	height:180px;
+	width:240px;
+	height:240px;
 	display:inline-block;
 }
 
@@ -2386,7 +2386,38 @@ label.error {
 	height:100%;
 }
 
+.pictureBox {
+	text-align:center;
+	padding:10px;
+	width:100%;
+	display:inline-block;
+}
 
+
+.pictureBox img {
+	background:#fff;
+	margin-bottom:4px;
+	padding:6px;
+	border:1px solid #ddd;
+	width:32%;
+	height:32%;
+}
+
+.insightsBox {
+	text-align:center;
+	padding:10px;
+	width:100%;
+	display:inline-block;
+}
+
+
+.insightsBox img {
+	margin-top:10px;
+	margin-left:30px;
+	padding:6px;
+	width:80px;
+	height:80px;
+}
 
 .loading-overlay {
       position: fixed;
