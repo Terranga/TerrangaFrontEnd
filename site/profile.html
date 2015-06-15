@@ -52,7 +52,7 @@
         <div class="section-shade sep-top-2x" style="padding-bottom:1.5em">
           <div class="container">
             <div class="section-title upper text-center">
-              <h2 class="light small-space">Jake&nbsp;<span class="text-primary">G</span></h2>
+              <h2 class="light small-space">{{ capitalize(profile.firstName) }}&nbsp;<span class="text-primary">{{ lastInitial(profile.lastName) }}</span></h2>
               <img style="width:180px;border-radius:90px;border:2px solid #ddd;" src="/site/images/{{ profile.image }}?crop=256"/><br /><br />
             </div>
           </div>
@@ -64,14 +64,14 @@
       <!-- Start Contact section-->
 		<div class="container" style="padding-top:20px;background-image:url('/site/img/slides/slide8_fade.jpg');width:100%;min-height:900px">
 		  <div style="width:90%;margin-left:auto;margin-right:auto">
-	          <div class="col-md-4" style="background:rgba(255, 255, 255, 0.93);border:1px solid #ddd;padding:0px;min-height:400px;margin-top:20px">
+	          <div class="col-md-4" style="background:rgba(255, 255, 255, 0.93);border:1px solid #ddd;padding:0px;min-height:470px;margin-top:20px">
 	            <div style="text-align:center;">
 	              <div style="height:50px;background:#f1f1f1;text-align:center;padding-top:4px;">
 	              	<h4 style="color:#222">Meet {{ capitalize(profile.firstName) }}</h4>
 	              </div>
 	            </div>
 	            <div class="pictureBox">
-	            	<a data-toggle="modal" data-target="#profileModal"><img src="/site/img/sara.jpg"/></a>
+	            	<img src="/site/img/sara.jpg"/>
 	            	<img src="/site/img/kyla.jpg"/>
 	            	<img src="/site/img/jose.JPG"/>
 	            </div>
@@ -80,7 +80,7 @@
 	            		Hometown: Bogot&aacute, Colombia
 	            	</p>
 	            	<p class="lead">
-	            		Current City: {{{{ capitalize(profile.city) }}, {{ capitalize(profile.country) }}
+	            		Current City: {{ capitalize(profile.city) }}, {{ capitalize(profile.country) }}
 	            	</p>
 	           		<p class="lead">
 	            		Languages: English, Hebrew
@@ -133,7 +133,7 @@
 	                </div>
 	            </div>
 	            
-              <div class="col-md-4" style="background:rgba(255, 255, 255, 0.93);border:1px solid #ddd;padding:0px;min-height:320px;margin-top:20px;">
+              <div class="col-md-4" style="background:rgba(255, 255, 255, 0.93);border:1px solid #ddd;padding:0px;min-height:320px;margin-top:40px;">
                 <div data-wow-delay=".7s" id="charts-wrapper" class="row wow fadeInLeft">
                   <!-- Start Chart item-->
                   <div class="col-md-4 text-center sep-top-sm" style="margin-left:25%">
@@ -142,11 +142,117 @@
                   <div style="margin-left:auto;margin-right:auto;padding:10px;width:93%;margin-top:220px;">
                    		<p class="lead">72% of the fundraising goal towards {{ capitalize(profile.firstName) }}'s dreams has been donated by Terranga travelers.</p>
                   </div>
-
                   <!-- End Chart item-->
-                  
                 </div>
               </div>
+              
+              <div class="col-md-8" style="background-size:cover;padding-left:0px;margin-top:40px">
+	                <div style="width:90%;height:90%;background:rgba(255, 255, 255, 0.93);margin-left:auto;margin-right:auto;">
+	                  <div style="height:50px;background:#f1f1f1;text-align:center;padding-top:4px;">
+	                    <h4 style="color:#222">Insights</h4>
+	                  </div>
+	                  <br />
+	                  <div class="container">
+				          <div class="row">
+				          
+				            <!--each val in team-->
+				            <div class="col-md-3">
+				              <div class="sep-top-xs sep-bottom-sm">
+				                <div class="team-photo"><img src="img/team/landscape/1.jpg" alt="Marc Crow" class="img-responsive">
+				                  <div class="team-connection">
+				                    <div class="team-connection-list text-center">
+				                      <ul>
+				                        <li><a href="#"><i class="fa fa-github fa-2x"></i></a></li>
+				                        <li><a href="#"><i class="fa fa-pinterest fa-2x"></i></a></li>
+				                        <li><a href="#"><i class="fa fa-dribbble fa-2x"></i></a></li>
+				                        <li><a href="#"><i class="fa fa-twitter fa-2x"></i></a></li>
+				                      </ul>
+				                    </div>
+				                  </div>
+				                </div>
+				              </div>
+				              <div class="team-name">
+				                <h5 class="upper">Study in America</h5>
+				              </div>
+				              <p>Pellentesque pellentesque pharetra lacus, eget aliquet mi mattis eu. Cum sociis natoque penatibus et magnis.</p>
+				            </div>
+				            
+				            <div class="col-md-3">
+				              <div class="sep-top-xs sep-bottom-sm">
+				                <div class="team-photo"><img src="img/team/landscape/2.jpg" alt="Henry Kolms" class="img-responsive">
+				                  <div class="team-connection">
+				                    <div class="team-connection-list text-center">
+				                      <ul>
+				                        <li><a href="#"><i class="fa fa-github fa-2x"></i></a></li>
+				                        <li><a href="#"><i class="fa fa-pinterest fa-2x"></i></a></li>
+				                        <li><a href="#"><i class="fa fa-dribbble fa-2x"></i></a></li>
+				                        <li><a href="#"><i class="fa fa-twitter fa-2x"></i></a></li>
+				                      </ul>
+				                    </div>
+				                  </div>
+				                </div>
+				              </div>
+				              <div class="team-name">
+				                <h5 class="upper">Henry Kolms</h5><span>CEO</span>
+				              </div>
+				              <p>Pellentesque pellentesque pharetra lacus, eget aliquet mi mattis eu. Cum sociis natoque penatibus et magnis.</p>
+				            </div>
+
+				         </div>
+				            
+				            <div class="row">
+				            <div class="col-md-3">
+				              <div class="sep-top-xs sep-bottom-sm">
+				                <div class="team-photo"><img src="img/team/landscape/3.jpg" alt="Scott Sanchez" class="img-responsive">
+				                  <div class="team-connection">
+				                    <div class="team-connection-list text-center">
+				                      <ul>
+				                        <li><a href="#"><i class="fa fa-github fa-2x"></i></a></li>
+				                        <li><a href="#"><i class="fa fa-pinterest fa-2x"></i></a></li>
+				                        <li><a href="#"><i class="fa fa-dribbble fa-2x"></i></a></li>
+				                        <li><a href="#"><i class="fa fa-twitter fa-2x"></i></a></li>
+				                      </ul>
+				                    </div>
+				                  </div>
+				                </div>
+				              </div>
+				              <div class="team-name">
+				                <h5 class="upper">Scott Sanchez</h5><span>Web Developer</span>
+				              </div>
+				              <p>Pellentesque pellentesque pharetra lacus, eget aliquet mi mattis eu. Cum sociis natoque penatibus et magnis.</p>
+				            </div>
+				            
+				            
+				            <div class="col-md-3">
+				              <div class="sep-top-xs sep-bottom-sm">
+				                <div class="team-photo"><img src="img/team/landscape/5.jpg" alt="Anna Larkins" class="img-responsive">
+				                  <div class="team-connection">
+				                    <div class="team-connection-list text-center">
+				                      <ul>
+				                        <li><a href="#"><i class="fa fa-github fa-2x"></i></a></li>
+				                        <li><a href="#"><i class="fa fa-pinterest fa-2x"></i></a></li>
+				                        <li><a href="#"><i class="fa fa-dribbble fa-2x"></i></a></li>
+				                        <li><a href="#"><i class="fa fa-twitter fa-2x"></i></a></li>
+				                      </ul>
+				                    </div>
+				                  </div>
+				                </div>
+				              </div>
+				              <div class="team-name">
+				                <h5 class="upper">Anna Larkins</h5><span>Web Designer</span>
+				              </div>
+				              <p>Pellentesque pellentesque pharetra lacus, eget aliquet mi mattis eu. Cum sociis natoque penatibus et magnis.</p>
+				            </div>
+				            
+				            </div>
+				            
+				          				          
+				        </div>
+
+	                  <br /><br /><br />
+	                </div>
+	            </div>
+              
 	            
             </div>
             </div>

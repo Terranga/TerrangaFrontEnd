@@ -175,7 +175,9 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
 		return capitalizedString;
     }
 
-    
+    $scope.lastInitial = function(string){
+    	return string.substring(0,1).toUpperCase();
+    }
     
     function parseLocation(stem){
     	console.log('PARSE LOCATION: '+stem);
