@@ -3,36 +3,17 @@
   {{ head }}
   
   
-  <body ng-app="Terranga" ng-controller="ProfileController" ng-init="init()">
-
-    
-    <div id="load"></div><!--[if lt IE 9]>
-    <p class="browsehappy">You are using an strong outdated browser. <br>Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-    
-    <div class="page">
-      {{ nav }}
-      <!-- Start header Section-->
-      <section style="background-image: url('/site/img/slides/slide2.jpg');" class="header-section fading-title parallax">
-        <div class="section-shade sep-top-3x sep-bottom-2x">
-          <div class="container">
-            <div class="section-title upper text-center">
-              <h2 class="light small-space">{{ profile.firstName }}&nbsp;<span class="text-primary">{{ profile.lastName }}</span></h2>
-              <img style="width:120px;border-radius:60px;border:2px solid #ddd;" src='/site/images/{{ profile.image }}?crop=240'/><br /><br />
-              <p class="lead light">{{ capitalize(profile.city) }}, {{ profile.country.toUpperCase() }}</p>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- End header Section-->
-      
-      
-      <!-- Start Contact section-->
-		<div class="container" style="padding-top:20px;background-image:url('/site/img/slides/slide8_fade.jpg');width:100%;min-height:800px">
-          <div class="col-md-4" style="background:rgba(249, 249, 249, 0.96);border:1px solid #ddd;padding:0px;min-height:500px;">
+  <body ng-app="Terranga" ng-controller="ProfilesController" ng-init="init()">
+<!-- Message Modal -->
+<div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div style="width:60%" class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="border:none">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		<div style="background:rgba(249, 249, 249, 0.96);border:1px solid #ddd;padding:0px;min-height:500px;">
             <div style="text-align:center;">
               <br/>
-              <h4 style="margin-top:0px">Messages</h4>
+              	<h4 style="margin-top:0px">Messages</h4>
             </div>
             <br/>
 			<div style="height:400px;width:90%;background:rgba(0,179,255,0.2);margin-left:auto;margin-right:auto;">
@@ -53,62 +34,120 @@
 			
 			</div>
           </div>
-            
-            
-            
-            <div class="col-md-8" style="background-size:cover;padding-left:0px">
-              
-                <div style="width:90%;height:90%;background:rgba(255, 255, 255, 0.96);margin-left:auto;margin-right:auto;">
-                  <div style="height:80px;background:#f1f1f1;text-align:center;padding-top:18px;border:1px solid #ddd">
-                    <h4 style="color:#444">Meet {{ capitalize(profile.firstName) }}</h4>
-                  </div>
-                  <br />
-                  <div>
-                  	<table style="margin-left:auto;margin-right:auto">
-                  		<thead>
-                  			<tr style="text-align:center">
-                  				<td>
-                  					<h5>Bio</h5>
-                  				</td>
-                  				<td>
-                  					<h5>Dream</h5>
-                  				</td>
-                  				<td>
-                  					<h5>Insights</h5>
-                  				</td>
-                  			</tr>
-                  		</thead>
-                  		<tbody>
-                  			<tr style="text-align:center;">
-                  				<td>
-                  					<img style="height:64px;border-radius:32px;border:1px solid #ddd"src="/site/img/child.png"/>
-                  				</td>
-                  				<td>
-                  					<img style="height:64px;border-radius:32px;border:1px solid #ddd"src="/site/img/star.png"/>
-	                  			</td>
-	                  			<td>
-                  					<img style="height:64px;border-radius:32px;border:1px solid #ddd"src="/site/img/lightbulb.png"/>
-	                  			</td>
-                  			</tr>
-                  			<tr style="text-align:center;font-weight:500;font-size:15px">
-                  				<td style="vertical-align:text-top;padding:20px 20px 0px 20px;width:300px">
-	                  				<p>{{ profile.bio }}</p>
-                  				</td>
-                  				<td style="vertical-align:text-top;padding:20px 20px 0px 20px;width:300px">
-		                  			<p>{{ profile.dream }}</p>
-	                  			</td>
-	                  			<td style="vertical-align:text-top;padding:20px 20px 0px 20px;width:300px">
-		                  			<p>Insights go here.</p>
-	                  			</td>
-                  			</tr>
-                  		</tbody>
-                  	</table>             	
-                  </div>
-                  
-                  <br /><br /><br />
+      </div>
+    </div>
+  </div>
+</div>			
 
-                
+
+    
+    <div id="load"></div><!--[if lt IE 9]>
+    <p class="browsehappy">You are using an strong outdated browser. <br>Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    
+    <div class="page">
+      {{ nav }}
+      <!-- Start header Section-->
+      <section style="background-image: url('/site/img/slides/slide2.jpg');" class="header-section fading-title parallax">
+        <div class="section-shade sep-top-2x" style="padding-bottom:1.5em">
+          <div class="container">
+            <div class="section-title upper text-center">
+              <h2 class="light small-space">Jake&nbsp;<span class="text-primary">G</span></h2>
+              <img style="width:180px;border-radius:90px;border:2px solid #ddd;" src='/site/img/sara.jpg'/><br /><br />
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End header Section-->
+      
+      
+      <!-- Start Contact section-->
+		<div class="container" style="padding-top:20px;background-image:url('/site/img/slides/slide8_fade.jpg');width:100%;min-height:900px">
+		  <div style="width:90%;margin-left:auto;margin-right:auto">
+	          <div class="col-md-4" style="background:rgba(255, 255, 255, 0.93);border:1px solid #ddd;padding:0px;min-height:400px;margin-top:20px">
+	            <div style="text-align:center;">
+	              <div style="height:50px;background:#f1f1f1;text-align:center;padding-top:4px;">
+	              	<h4 style="color:#222">Meet Jake</h4>
+	              </div>
+	            </div>
+	            <div class="pictureBox">
+	            	<a data-toggle="modal" data-target="#profileModal"><img src="/site/img/sara.jpg"/></a>
+	            	<img src="/site/img/kyla.jpg"/>
+	            	<img src="/site/img/jose.JPG"/>
+	            </div>
+	            <div style="margin-top:20px;padding:10px">
+	           		<p class="lead">
+	            		Hometown: Bogot&aacute, Colombia
+	            	</p>
+	            	<p class="lead">
+	            		Current City: Medellin, Colombia
+	            	</p>
+	           		<p class="lead">
+	            		Languages: English, Hebrew
+	            	</p>
+	            	<p class="lead">
+	            		Bio: Hi my name is Jake and I am a software developer.
+	            	</p>
+	            	<p style="font-weight:300;font-size:1.2em">
+	            		<a data-toggle="modal" data-target="#profileModal"><i class="fa fa-envelope-o fa-lg"></i>&nbspMessage Jake</a>
+	            	</p>
+	            </div>
+	            
+	          </div>
+
+	            <div class="col-md-8" style="background-size:cover;padding-left:0px;margin-top:20px">
+	                <div style="width:90%;height:90%;background:rgba(255, 255, 255, 0.93);margin-left:auto;margin-right:auto;">
+	                  <div style="height:50px;background:#f1f1f1;text-align:center;padding-top:4px;">
+	                    <h4 style="color:#222">Insights</h4>
+	                  </div>
+	                  <br />
+	                  <div class="insightsBox">
+	                  	<div style="margin-left:auto;margin-right:auto;width:80%;height:100px;background:url(/site/img/slides/bmx.jpg)">
+	                  		<div style="background:rgba(0, 0, 0, .6);height:100px;text-align:left;">
+	                  			<p>
+	                  				<img src="/site/img/soccer.png"/>
+	                  				<span style="vertical-align:middle;margin-left:20px;font-weight:400;font-size:35px;color:white;font-family: 'Open Sans', sans-serif;">Outdoor Sports</span>
+	                  			</p>
+	                  		</div>
+	                  	</div>
+	                  	<br/>
+	                  	<div style="margin-left:auto;margin-right:auto;width:80%;height:100px;background:url(/site/img/slides/nightlife.jpg)">
+	                  		<div style="background:rgba(0, 0, 0, .6);height:100px;text-align:left;">
+	                  			<p>
+	                  				<img src="/site/img/martini.png"/>
+	                  				<span style="vertical-align:middle;margin-left:20px;font-weight:400;font-size:35px;color:white;font-family: 'Open Sans', sans-serif;">Nightlife</span>
+	                  			</p>
+	                  		</div>
+	                  	</div>
+	                  	<br/>
+	                  	<div style="margin-left:auto;margin-right:auto;width:80%;height:100px;background:url(/site/img/slides/food.jpg)">
+	                  		<div style="background:rgba(0, 0, 0, .6);height:100px;text-align:left;">
+	                  			<p>
+	                  				<img src="/site/img/food.png"/>
+	                  				<span style="vertical-align:middle;margin-left:20px;font-weight:400;font-size:35px;color:white;font-family: 'Open Sans', sans-serif;">Cuisine</span>
+	                  			</p>
+	                  		</div>
+	                  	</div>
+	                  </div>
+	                  <br /><br /><br />
+	                </div>
+	            </div>
+	            
+              <div class="col-md-4" style="background:rgba(255, 255, 255, 0.93);border:1px solid #ddd;padding:0px;min-height:320px;margin-top:20px;">
+                <div data-wow-delay=".7s" id="charts-wrapper" class="row wow fadeInLeft">
+                  <!-- Start Chart item-->
+                  <div class="col-md-4 text-center sep-top-sm" style="margin-left:25%">
+                    <div data-percent='72' class="chart"><span><b style="margin-left:20px"data-from="0" data-to='72' class="counter">0</b><em>%</em></span></div>
+                  </div>
+                  <div style="margin-left:auto;margin-right:auto;padding:10px;width:93%;margin-top:220px;">
+                   		<p class="lead">Jake has raised 72% of his fundraising goal towards his dream from Terranga travelers.</p>
+                  </div>
+
+                  <!-- End Chart item-->
+                  
                 </div>
+              </div>
+	            
             </div>
             </div>
             

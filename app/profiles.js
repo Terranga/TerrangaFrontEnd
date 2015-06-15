@@ -14,7 +14,7 @@ app.controller('ProfilesController', ['$scope', '$http', function($scope, $http)
 	function fetchFeaturedProfiles(){
 		console.log('FETCH FEATURED PROFILES: ');
 		
-    	var url = 'http://86.terranga-org.appspot.com/api/profiles?featured=yes';
+    	var url = '/api/profiles?featured=yes';
         $http.get(url).success(function(data, status, headers, config) {
             var confirmation = data['confirmation'];
             console.log('CONFIRMATION: '+JSON.stringify(data));
