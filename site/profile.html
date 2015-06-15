@@ -3,7 +3,7 @@
   {{ head }}
   
   
-  <body ng-app="Terranga" ng-controller="ProfilesController" ng-init="init()">
+  <body ng-app="Terranga" ng-controller="ProfileController" ng-init="init()">
 <!-- Message Modal -->
 <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div style="width:60%" class="modal-dialog">
@@ -53,7 +53,7 @@
           <div class="container">
             <div class="section-title upper text-center">
               <h2 class="light small-space">Jake&nbsp;<span class="text-primary">G</span></h2>
-              <img style="width:180px;border-radius:90px;border:2px solid #ddd;" src='/site/img/sara.jpg'/><br /><br />
+              <img style="width:180px;border-radius:90px;border:2px solid #ddd;" src="/site/images/{{ profile.image }}?crop=256"/><br /><br />
             </div>
           </div>
         </div>
@@ -67,7 +67,7 @@
 	          <div class="col-md-4" style="background:rgba(255, 255, 255, 0.93);border:1px solid #ddd;padding:0px;min-height:400px;margin-top:20px">
 	            <div style="text-align:center;">
 	              <div style="height:50px;background:#f1f1f1;text-align:center;padding-top:4px;">
-	              	<h4 style="color:#222">Meet Jake</h4>
+	              	<h4 style="color:#222">Meet {{ capitalize(profile.firstName) }}</h4>
 	              </div>
 	            </div>
 	            <div class="pictureBox">
@@ -80,16 +80,16 @@
 	            		Hometown: Bogot&aacute, Colombia
 	            	</p>
 	            	<p class="lead">
-	            		Current City: Medellin, Colombia
+	            		Current City: {{{{ capitalize(profile.city) }}, {{ capitalize(profile.country) }}
 	            	</p>
 	           		<p class="lead">
 	            		Languages: English, Hebrew
 	            	</p>
 	            	<p class="lead">
-	            		Bio: Hi my name is Jake and I am a software developer.
+	            		Bio: {{ profile.bio }}
 	            	</p>
 	            	<p style="font-weight:300;font-size:1.2em">
-	            		<a data-toggle="modal" data-target="#profileModal"><i class="fa fa-envelope-o fa-lg"></i>&nbspMessage Jake</a>
+	            		<a data-toggle="modal" data-target="#profileModal"><i class="fa fa-envelope-o fa-lg"></i>&nbspMessage {{ capitalize(profile.firstName) }}</a>
 	            	</p>
 	            </div>
 	            
@@ -140,7 +140,7 @@
                     <div data-percent='72' class="chart"><span><b style="margin-left:20px"data-from="0" data-to='72' class="counter">0</b><em>%</em></span></div>
                   </div>
                   <div style="margin-left:auto;margin-right:auto;padding:10px;width:93%;margin-top:220px;">
-                   		<p class="lead">Jake has raised 72% of his fundraising goal towards his dream from Terranga travelers.</p>
+                   		<p class="lead">72% of the fundraising goal towards {{ capitalize(profile.firstName) }}'s dreams has been donated by Terranga travelers.</p>
                   </div>
 
                   <!-- End Chart item-->
