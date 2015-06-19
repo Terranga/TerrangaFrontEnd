@@ -5,7 +5,7 @@
   
   <body ng-app="Terranga" ng-controller="ProfileController" ng-init="init()">
 <!-- Message Modal -->
-<div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div style="width:60%" class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header" style="border:none">
@@ -52,8 +52,12 @@
         <div class="section-shade sep-top-2x" style="padding-bottom:1.5em">
           <div class="container">
             <div class="section-title upper text-center">
-              <h2 class="light small-space">{{ capitalize(profile.firstName) }}&nbsp;<span class="text-primary">{{ lastInitial(profile.lastName) }}</span></h2>
-              <img style="width:180px;border-radius:90px;border:2px solid #ddd;" src="/site/images/{{ profile.image }}?crop=256"/><br /><br />
+              <h2 class="light small-space" style="font-weight:600">Jose,&nbsp;23</h2>
+              <img style="width:240px;height:240px;border:2px solid #ddd;" src="/site/images/{{ profile.image }}?crop=256"/><br /><br />
+              <i class="fa fa-star fa-lg"></i>&nbsp&nbsp<i class="fa fa-star fa-lg"></i>&nbsp
+              <i class="fa fa-star fa-lg"></i>&nbsp&nbsp<i class="fa fa-star fa-lg"></i>&nbsp
+              <i class="fa fa-star-half-o fa-lg"></i>
+              <p style="text-transform:none;color:white;margin-top:5px;font-weight:300;font-size:1.2em">4 reviews</p>
             </div>
           </div>
         </div>
@@ -62,178 +66,157 @@
       
       
       <!-- Start Contact section-->
-		<div class="container" style="padding-top:20px;background-image:url('/site/img/slides/slide8_fade.jpg');width:100%;min-height:1000px">
-		  <div style="width:90%;margin-left:auto;margin-right:auto">
-	          <div class="col-md-4" style="background:rgba(255, 255, 255, 0.93);border:1px solid #ddd;padding:0px;min-height:470px;margin-top:20px">
-	            <div style="text-align:center;">
-	              <div style="height:50px;background:#f1f1f1;text-align:center;padding-top:4px;">
-	              	<h4 style="color:#222">Meet {{ capitalize(profile.firstName) }}</h4>
-	              </div>
-	            </div>
-	            <div class="pictureBox">
-	            	<img src="/site/img/sara.jpg"/>
-	            	<img src="/site/img/kyla.jpg"/>
-	            	<img src="/site/img/jose.JPG"/>
-	            </div>
-	            <div style="margin-top:20px;padding:10px">
-	           		<p class="lead">
-	            		Hometown: Bogot&aacute, Colombia
-	            	</p>
-	            	<p class="lead">
-	            		Current City: {{ capitalize(profile.city) }}, {{ capitalize(profile.country) }}
-	            	</p>
-	           		<p class="lead">
-	            		Languages: English, Hebrew
-	            	</p>
-	            	<p class="lead">
-	            		Bio: {{ profile.bio }}
-	            	</p>
-	            	<p style="font-weight:300;font-size:1.2em">
-	            		<a data-toggle="modal" data-target="#profileModal"><i class="fa fa-envelope-o fa-lg"></i>&nbspMessage {{ capitalize(profile.firstName) }}</a>
-	            	</p>
-	            </div>
-	            
+		<div class="container" style="padding-top:10px;background-image:url('/site/img/bogota.JPG');width:100%;min-height:1000px">
+		  <div class="col-md-12"style="height:180px;margin-left:auto;margin-right:auto;background:rgba(0,0,0,.8);padding-top:10px">
+		  	
+		  	<div class="col-md-3" style="margin-left:15%;">
+           		<p style="font-weight:400;font-size:50px">15&nbsp<span style="font-size:18px">points</span></p>
+	        </div>
+		  	
+		  	<div class="col-md-4" style="margin-top:1%;">
+		  		<table>
+		  			<tbody>
+		  				<tr>
+		  					<td><i class="fa fa-home fa-lg"></i></td>
+		  					<td>
+		  						<p style="font-weight:300;font-size:1.2em">
+			            			&nbspBogot&aacute, Colombia
+            					</p>
+            				</td>
+		  				</tr>
+		  				<tr>
+		  					<td style="padding-top:10px"><i style="margin-left:2px"class="fa fa-map-marker fa-lg"></i></td>
+		  					<td style="padding-top:10px">
+		  						<p style="font-weight:300;font-size:1.2em">
+            						&nbspSanta Marta, Colombia
+            					</p>
+            				</td>
+		  				</tr>
+		  				<tr>
+		  					<td style="padding-top:10px"><i class="fa fa-globe fa-lg"></i></td>
+		  					<td style="padding-top:10px">
+		  						<p style="font-weight:300;font-size:1.2em">
+            						&nbspEnglish, Spanish, Portuguese
+            					</p>
+            				</td>
+		  				</tr>
+		  				<tr>
+		  					<td style="padding-top:10px"><i class="fa fa-building fa-lg"></i></td>
+		  					<td style="padding-top:10px">
+		  						<p style="font-weight:300;font-size:1.2em">
+            						&nbspChief Economist @ Lehman Brothers
+            					</p>
+            				</td>
+		  				</tr>
+		  			</tbody>
+		  		</table>
 	          </div>
-
-	            <div class="col-md-8" style="background-size:cover;padding-left:0px;margin-top:20px">
-	                <div style="width:90%;height:90%;background:rgba(255, 255, 255, 0.93);margin-left:auto;margin-right:auto;">
+	          
+	          <div class="col-md-2" style="margin-top:1%;">
+	          <a data-toggle="modal" data-target="#messageModal"><i class="fa fa-comments fa-3x"></i></a>
+	        </div>
+	            
+	            
+		  </div>
+		  <div class="col-md-12"style="min-height:70px;margin-left:auto;margin-right:auto;background:rgba(0,0,0,.8);margin-top:10px;text-align:center;">
+		  	<p style="width:50%;margin-left:auto;margin-right:auto;font-weight:300;font-size:1.2em;margin-top:10px;">
+           		My name is <span class="text-primary">Jose</span>. My most unique hobby is <span class="text-primary">underwater rugby</span>.
+           		On my free days I <span class="text-primary">go hiking</span>. 
+           		If I were an animal I'd be <span class="text-primary">a baby sloth</span>.
+            </p>
+		  </div>
+		  
+		
+		  
+             	<div class="col-md-6" style="background-size:cover;margin-top:20px">
+             	  <div class="row">
+	                <div style="width:100%;height:90%;background:rgba(255, 255, 255, 0.93);margin-left:auto;margin-right:auto;">
 	                  <div style="height:50px;background:#f1f1f1;text-align:center;padding-top:4px;">
-	                    <h4 style="color:#222">Insights</h4>
+	                    <h4 style="color:#222">Join me</h4>
 	                  </div>
 	                  <br />
 	                  <div class="insightsBox">
 	                  	<div style="margin-left:auto;margin-right:auto;width:80%;height:100px;background:url(/site/img/slides/bmx.jpg)">
 	                  		<div style="background:rgba(0, 0, 0, .6);height:100px;text-align:left;">
-	                  			<p>
-	                  				<img src="/site/img/soccer.png"/>
-	                  				<span style="vertical-align:middle;margin-left:20px;font-weight:400;font-size:35px;color:white;font-family: 'Open Sans', sans-serif;">Outdoor Sports</span>
+	                  			<img style="float:left;margin-right:15px;" src="/site/img/soccer.png"/>
+	                  			<br/>
+	                  			<p style="line-height:1.4em;padding-top:10px;margin-left:20px;font-weight:300;font-size:22px;color:white;font-family: 'Open Sans', sans-serif;">
+	                  				to play pickup soccer...
 	                  			</p>
 	                  		</div>
 	                  	</div>
 	                  	<br/>
 	                  	<div style="margin-left:auto;margin-right:auto;width:80%;height:100px;background:url(/site/img/slides/nightlife.jpg)">
 	                  		<div style="background:rgba(0, 0, 0, .6);height:100px;text-align:left;">
-	                  			<p>
-	                  				<img src="/site/img/martini.png"/>
-	                  				<span style="vertical-align:middle;margin-left:20px;font-weight:400;font-size:35px;color:white;font-family: 'Open Sans', sans-serif;">Nightlife</span>
+	                  			<img style="float:left;margin-right:15px;" src="/site/img/food.png"/>
+	                  			<br/>
+	                  			<p style="line-height:1.4em;padding-top:10px;margin-left:20px;font-weight:300;font-size:22px;color:white;font-family: 'Open Sans', sans-serif;">
+	                  				to my favorite exotic fruit stand
 	                  			</p>
 	                  		</div>
 	                  	</div>
 	                  	<br/>
 	                  	<div style="margin-left:auto;margin-right:auto;width:80%;height:100px;background:url(/site/img/slides/food.jpg)">
 	                  		<div style="background:rgba(0, 0, 0, .6);height:100px;text-align:left;">
-	                  			<p>
-	                  				<img src="/site/img/food.png"/>
-	                  				<span style="vertical-align:middle;margin-left:20px;font-weight:400;font-size:35px;color:white;font-family: 'Open Sans', sans-serif;">Cuisine</span>
+	                  			<img style="float:left;margin-right:15px;" src="/site/img/rugby.png"/>
+	                  			<p style="line-height:1.4em;padding-top:15px;margin-left:20px;font-weight:300;font-size:22px;color:white;font-family: 'Open Sans', sans-serif;">
+	                  				to my underwater rugby practice... yes, it exists
 	                  			</p>
 	                  		</div>
 	                  	</div>
 	                  </div>
 	                  <br /><br /><br />
 	                </div>
-	            </div>
-	            
-              <div class="col-md-4" style="background:rgba(255, 255, 255, 0.93);border:1px solid #ddd;padding:0px;min-height:320px;margin-top:40px;">
-                <div style="height:50px;background:#f1f1f1;text-align:center;padding-top:4px;">
-	                    <h4 style="color:#222">Donations</h4>
-	            </div>
-                <div data-wow-delay=".7s" id="charts-wrapper" class="row wow fadeInLeft">
-                  <!-- Start Chart item-->
-                  <div class="col-md-4 text-center sep-top-sm" style="margin-left:25%">
-                    <div data-percent='72' class="chart"><span><b style="margin-left:20px"data-from="0" data-to='72' class="counter">0</b><em>%</em></span></div>
-                  </div>
-                  <div style="margin-left:auto;margin-right:auto;padding:10px;width:93%;margin-top:220px;">
-                   		<p class="lead">72% of the fundraising goal towards {{ capitalize(profile.firstName) }}'s dreams has been donated by Terranga travelers.</p>
-                  </div>
-                  <!-- End Chart item-->
-                </div>
-              </div>
+	              </div>
+	              <div class="row">
+	              	<div class="col-md-12"style="height:180px;background:rgba(0,0,0,.8);margin-top:20px">
+	              		<div class="col-md-4">
+		              		<p style="margin-top:5px;font-weight:300;font-size:1.4em">Endorsed by Jose</p>
+		              		<img style="height:110px;width:110px;border:1px solid #ddd;border-radius:55px"src="/site/img/jose.jpg"/>
+	              		</div>
+	              		<div class="col-md-6">
+	              			<p style="margin-top:40px;font-weight:300;font-size:1.2em">
+	              				"Jose is really awesome. He has such a love for Medellin and Colombia and truly encompasses Terranga values."
+	              			</p>
+	              		</div>
+	              	</div>
+	              </div>
+	              
+            </div>
               
-              <div class="col-md-8" style="background-size:cover;padding-left:0px;margin-top:40px;height:560px">
-	                <div style="width:90%;height:90%;background:rgba(255, 255, 255, 0.93);margin-left:auto;margin-right:auto;">
+              
+              	    <div class="col-md-6" style="background-size:cover;margin-top:20px">
+	                <div style="width:100%;height:90%;background:rgba(255, 255, 255, 0.93);margin-left:auto;margin-right:auto;">
 	                  <div style="height:50px;background:#f1f1f1;text-align:center;padding-top:4px;">
-	                    <h4 style="color:#222">Dreams</h4>
+	                    <h4 style="color:#222">My Dream Is...</h4>
 	                  </div>
 	                  <br />
-	                  <div class="container" style="margin-left:9%">
-				          <div class="row">
-				          
-				            <!--each val in team-->
-				            <div class="col-md-3">
-				              <div class="sep-bottom-xs">
-				                <div class="team-photo"><img src="/site/img/college.jpg" style="height:160px;width:250px" class="img-responsive">
-				                  <div class="team-connection">
-				                    <div class="team-connection-list text-center" style="opacity:.9;height:160px;width:250px">
-				                      <h4 style="color:white;margin-top:70px;">Donate</h4>
-				                    </div>
-				                  </div>
-				                </div>
-				              </div>
-				              <div class="team-name" style="padding:0px">
-				                <h5 class="upper">Study in America</h5>
-				              </div>
-				            </div>
-				            
-				            <div class="col-md-3">
-				              <div class="sep-bottom-xs">
-				                <div class="team-photo"><img src="/site/img/paris.jpg" style="height:160px;width:250px" class="img-responsive">
-				                  <div class="team-connection">
-				                    <div class="team-connection-list text-center" style="opacity:.9;height:160px;width:250px">
-				                      <h4 style="color:white;margin-top:70px;">Donate</h4>
-				                    </div>
-				                  </div>
-				                </div>
-				              </div>
-				              <div class="team-name" style="padding:0px">
-				                <h5 class="upper">Visit Paris</h5>
-				              </div>
-				            </div>
-
-				         </div>
-				            
-				            <div class="row">
-				            <div class="col-md-3">
-				              <div class="sep-bottom-xs">
-				                <div class="team-photo"><img src="/site/img/portugal.jpg" style="height:160px;width:250px" class="img-responsive">
-				                  <div class="team-connection">
-				                    <div class="team-connection-list text-center" style="opacity:.9;height:160px;width:250px">
-				                      <h4 style="color:white;margin-top:70px;">Donate</h4>
-				                    </div>
-				                  </div>
-				                </div>
-				              </div>
-				              <div class="team-name" style="padding:0px">
-				                <h5 class="upper">Learn Portuguese</h5>
-				              </div>
-				            </div>
-				            
-				            
-				            <div class="col-md-3">
-				              <div class="sep-bottom-xs">
-				                <div class="team-photo"><img src="/site/img/backpacker.jpg" style="height:160px;width:250px" class="img-responsive">
-				                  <div class="team-connection">
-				                    <div class="team-connection-list text-center" style="opacity:.9;height:160px;width:250px">
-				                      <h4 style="color:white;margin-top:70px;">Donate</h4>
-				                    </div>
-				                  </div>
-				                </div>
-				              </div>
-				              <div class="team-name" style="padding:0px">
-				                <h5 class="upper">Backpack across Asia</h5>
-				              </div>
-				            </div>
-				            
-				            </div>
-				            
-				          				          
-				        </div>
-
+	                  <div class="insightsBox">
+	                  	<div style="margin-left:auto;margin-right:auto;width:80%;height:100px;background:url(/site/img/slides/bmx.jpg)">
+	                  		<div style="background:rgba(0, 0, 0, .6);height:100px;text-align:left;">
+	                  			<img style="float:left;margin-right:15px;" src="/site/img/rugby.png"/>
+	                  			<br/>
+                  			<p style="line-height:1.4em;padding-top:10px;margin-left:20px;font-weight:300;font-size:22px;color:white;font-family: 'Open Sans', sans-serif;">
+                  				to travel to South America...
+                  			</p>
+	                  		</div>
+	                  	</div>
+	                  	<br/>
+	                  	<div style="margin-left:auto;margin-right:auto;width:80%;height:100px;background:url(/site/img/slides/bmx.jpg)">
+	                  		<div style="background:rgba(0, 0, 0, .6);height:100px;text-align:left;">
+	                  			<img style="float:left;margin-right:15px;" src="/site/img/rugby.png"/>
+	                  			<br/>
+                  			<p style="line-height:1.4em;padding-top:10px;margin-left:20px;font-weight:300;font-size:22px;color:white;font-family: 'Open Sans', sans-serif;">
+                  				to study abroad...
+                  			</p>
+	                  		</div>
+	                  	</div>
+	                  	<br/>
+	                  </div>
 	                  <br /><br /><br />
 	                </div>
 	            </div>
-              
 	            
-            </div>
             </div>
             
        
