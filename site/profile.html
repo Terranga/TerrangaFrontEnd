@@ -112,6 +112,67 @@
    </div>
   </div>
  </div>
+</div>		
+
+<!-- Review Modal -->
+<div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div style="width:40%" class="modal-dialog">
+    <div class="modal-content">
+      <button type="button" class="close" data-dismiss="modal"><span style="margin-right:5px;" aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		<div style="background:rgba(249, 249, 249, 0.96);border:1px solid #ddd;padding:0px;min-height:500px;">
+          <div style="text-align:center;">
+            <br/>
+            	<h4 style="margin-top:0px;margin-bottom:15px">Reviews</h4>
+          </div>
+		<div style="overflow:auto;height:400px;width:90%;background:rgba(0,179,255,0.2);margin-left:auto;margin-right:auto;">
+			<div class="row" style="padding-top:20px;padding-left:10px">
+           		<div class="col-md-4" style="padding-right:0px">
+            		<img style="height:110px;width:110px;border:1px solid #ddd;border-radius:55px"src="/site/img/jose.JPG"/>
+            		<p style="margin-top:5px;margin-left:30px;font-weight:300;font-size:1.4em">Jose</p>
+           		</div>
+           		<div class="col-md-8" style="padding-left:0px">
+           			<p style="font-weight:300;font-size:1.2em">
+           				"Jose is really awesome. He has such a love for Medellin and Colombia and truly encompasses Terranga values."
+           			</p>
+           			<p style="font-weight:300;font-size:1.2em">
+           				From NYC - August 2015
+           			</p>
+           		</div>	
+	       </div>
+	       <hr/>
+	       <div class="row" style="padding-top:20px;padding-left:10px">
+           		<div class="col-md-4" style="padding-right:0px">
+            		<img style="height:110px;width:110px;border:1px solid #ddd;border-radius:55px"src="/site/img/jose.JPG"/>
+            		<p style="margin-top:5px;margin-left:30px;font-weight:300;font-size:1.4em">Jose</p>
+           		</div>
+           		<div class="col-md-8" style="padding-left:0px">
+           			<p style="font-weight:300;font-size:1.2em">
+           				"Jose is really awesome. He has such a love for Medellin and Colombia and truly encompasses Terranga values."
+           			</p>
+           			<p style="font-weight:300;font-size:1.2em">
+           				From NYC - August 2015
+           			</p>
+           		</div>	
+	       </div>
+	       <hr/>
+	       <div class="row" style="padding-top:20px;padding-left:10px">
+           		<div class="col-md-4" style="padding-right:0px">
+            		<img style="height:110px;width:110px;border:1px solid #ddd;border-radius:55px"src="/site/img/jose.JPG"/>
+            		<p style="margin-top:5px;margin-left:30px;font-weight:300;font-size:1.4em">Jose</p>
+           		</div>
+           		<div class="col-md-8" style="padding-left:0px"s>
+           			<p style="font-weight:300;font-size:1.2em">
+           				"Jose is really awesome. He has such a love for Medellin and Colombia and truly encompasses Terranga values."
+           			</p>
+           			<p style="font-weight:300;font-size:1.2em">
+           				From NYC - August 2015
+           			</p>
+           		</div>	
+	       </div>
+		</div>
+   </div>
+  </div>
+ </div>
 </div>			
 
 
@@ -129,10 +190,12 @@
             <div class="section-title upper text-center">
               <h2 class="light small-space" style="font-weight:600">{{ capitalize(profile.firstName) }},&nbsp;{{ profile.age }}</h2>
               <img style="width:240px;height:240px;border:2px solid #ddd;" src="/site/images/{{ profile.image }}?crop=256"/><br /><br />
-              <i class="fa fa-star fa-lg"></i>&nbsp&nbsp<i class="fa fa-star fa-lg"></i>&nbsp
-              <i class="fa fa-star fa-lg"></i>&nbsp&nbsp<i class="fa fa-star fa-lg"></i>&nbsp
-              <i class="fa fa-star-half-o fa-lg"></i>
-              <p style="text-transform:none;color:white;margin-top:5px;font-weight:300;font-size:1.2em">4 reviews</p>
+              <a data-toggle="modal" data-target="#reviewModal">
+	              <i class="fa fa-star fa-lg"></i>&nbsp&nbsp<i class="fa fa-star fa-lg"></i>&nbsp
+	              <i class="fa fa-star fa-lg"></i>&nbsp&nbsp<i class="fa fa-star fa-lg"></i>&nbsp
+	              <i class="fa fa-star-half-o fa-lg"></i>
+	          </a>
+              <a data-toggle="modal" data-target="#reviewModal"><p style="text-transform:none;color:white;margin-top:5px;font-weight:300;font-size:1.2em">4 reviews</p></a>
             </div>
           </div>
         </div>
@@ -307,13 +370,16 @@
 		             </div>
 		             <div class="row">
 	              	<div class="col-md-12"style="height:180px;background:rgba(0,0,0,.8);margin-top:20px">
-	              		<p style="margin-top:40px;font-weight:300;font-size:1.2em">
-	              			#HistoryBuff #Backpacker #Joker #Smoker #MidnightToker #EDMHead #Runner #MountainBiker #smile #follow4follow #like4like #look #instalike #igers #picoftheday #food #instadaily #instafollow #followme #instagood #bestoftheday #instacool #instago #all_shots #follow #webstagram #colorful #style #swag
+	              		<p style="margin-top:30px;font-weight:300;font-size:1.2em">
+	              			#HistoryBuff&nbsp;&nbsp;#Backpacker&nbsp;&nbsp;#Joker&nbsp;&nbsp;#Smoker&nbsp;&nbsp;#MidnightToker&nbsp;&nbsp;#EDMHead&nbsp;&nbsp;
+	              			#Runner&nbsp;&nbsp;#MountainBiker&nbsp;&nbsp;#smile&nbsp;&nbsp;#follow4follow&nbsp;&nbsp;#like4like&nbsp;&nbsp;#look&nbsp;&nbsp;#instalike
+	              			&nbsp;&nbsp;#picoftheday&nbsp;&nbsp;#food&nbsp;&nbsp;#instadaily&nbsp;&nbsp;#instafollow&nbsp;&nbsp;#followme&nbsp;&nbsp;#instagood&nbsp;&nbsp;
+	              			#bestoftheday&nbsp;&nbsp;#instacool&nbsp;&nbsp;#instago&nbsp;&nbsp;#all_shots&nbsp;&nbsp;#follow&nbsp;&nbsp;#webstagram&nbsp;&nbsp;#colorful&nbsp;&nbsp;
+	              			#style&nbsp;&nbsp;#swag
 	              		</p>
 	              	</div>
 	              </div>
 	            </div>
-	            
             </div>
             
        
