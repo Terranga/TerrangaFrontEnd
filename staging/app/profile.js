@@ -6,7 +6,7 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
 	$scope.messages = null;
 
 	$scope.init = function(){
-		console.log('Profile Controller: INIT ');
+		console.log('Profile (Staging) Controller: INIT ');
 		
     	var requestInfo = parseLocation('site');
     	console.log(JSON.stringify(requestInfo));
