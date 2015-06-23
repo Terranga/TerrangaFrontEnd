@@ -7,46 +7,26 @@
     
     <link rel="stylesheet" href="/staging/styles/style.css">
     <script src="https://malsup.github.com/jquery.form.js"></script>
-    <script src="/site/js/fileupload/angular-file-upload-shim.js"></script>
+    <script src="/staging/js/fileupload/angular-file-upload-shim.js"></script>
     <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js'></script>
     <script src="https://code.angularjs.org/1.2.20/angular-sanitize.min.js"></script>  
-    <script src="/site/js/fileupload/angular-file-upload.js"></script>
+    <script src="/staging/js/fileupload/angular-file-upload.js"></script>
     
     <script src='/app/app.js'></script>
     <script src='/app/home.js'></script>
     <script src='/app/profile.js'></script>
-    <script src='/app/profiles.js'></script>
     <script src='/app/register.js'></script>
-    <script src='/app/account.js'></script>
     <script src='/app/inbox.js'></script>
     <script src='/app/newMessage.js'></script>
     <script src='/app/insights.js'></script>
     <script src='/app/newInsight.js'></script>
+    <script src='/app/newDream.js'></script>
     
     
   </head>
 
-  <body ng-app="Terranga" ng-controller="InboxController" style="padding:20px" ng-init="init()">
-    <h2>Inbox:</h2> 
-    <button onClick="window.location='newMessage'">Compose</button>
-	<hr />
-	
-    <div class="section">
-    	<h2>Recieved</h2>
-    	<br />
-    </div>
-  
-    
-    <hr />
-    
-    <div class="section">
-    	<h2>Sent</h2>
-    	<br />
-    </div>
-    
-    
-    
-  
+  <body ng-app="Terranga" ng-controller="HomeController" style="padding:20px" ng-init="init()">
+    <h2>Home</h2>
   </body>
   
   
