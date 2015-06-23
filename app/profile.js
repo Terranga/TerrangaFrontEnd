@@ -17,8 +17,29 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
     	}
     	
 		fetchProfile(requestInfo.identifier);
+		fetchPageVersion();
+		
 	}
 	
+	function fetchPageVersion(){
+		var url = '/api/profilePage';
+		$http.get(url).success(function(data, status, headers, config) {
+            var confirmation = data['confirmation'];
+            console.log('CONFIRMATION: '+JSON.stringify(data));
+            
+            if (confirmation != 'success'){
+                alert(data['message']);
+                return;
+            }
+           $scope.messages = data['messages'];
+           
+           var objDiv = document.getElementById("messages");
+           objDiv.scrollTop = objDiv.scrollHeight;
+           
+        }).error(function(data, status, headers, config) {
+            console.log("error", data, status, headers, config);
+        });
+	}
 	
 	$scope.formattedDate = function(dateStr){
 		return moment(new Date(dateStr)).format('MMM D h:mm a');
