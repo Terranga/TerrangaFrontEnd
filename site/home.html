@@ -31,13 +31,13 @@
           <div class="sl-slider">
             <!-- start slide-->
             <div data-orientation="horizontal" data-slice1-rotation="3" data-slice2-rotation="3" data-slice1-scale="2" data-slice2-scale="1" class="sl-slide">
-              <div style="background: url(/site/img/slides/slide4.jpg);" class="sl-slide-inner">
+              <div style="background: url(/site/img/slides/slide1.jpg);" class="sl-slide-inner">
                 <div class="slide-container">
                   <div class="slide-content text-center">
-                    <h2 class="main-title">A New Way to <span class="text-primary">Travel</span></h2>
+                    <h2 class="main-title">Terranga is a New Way to <span class="text-primary">Travel</span></h2>
                     <blockquote>
                       <p>Get off-the-beaten path, connect with locals &amp; support dreams</p>
-                      <a href="site/register" class="btn btn-light btn-bordered btn-lg">JOIN US</a>
+                      <a href="site/register" class="btn btn-primary btn-lg">JOIN US</a>
                     </blockquote>
                   </div>
                 </div>
@@ -51,7 +51,7 @@
                   <div class="slide-content text-center">
                     <h2 class="main-title">Explore and &nbsp;<span class="text-primary">Experience</span></h2>
                     <blockquote>
-                      <p>Enjoy the real experience when traveling</p>
+                      <p>Discover hidden gems while traveling</p>
                       <a href="site/register" class="btn btn-light btn-bordered btn-lg">JOIN US</a>
                     </blockquote>
                   </div>
@@ -61,12 +61,12 @@
             <!-- end slide-->
             <!-- start slide-->
             <div data-orientation="horizontal" data-slice1-rotation="10" data-slice2-rotation="-15" data-slice1-scale="1.5" data-slice2-scale="1.5" class="sl-slide">
-              <div style="background: url(/site/img/slides/slide1.jpg);" class="sl-slide-inner">
+              <div style="background: url(/site/img/slides/slide12.jpeg);" class="sl-slide-inner">
                 <div class="slide-container">
                   <div class="slide-content text-center">
                     <h2 class="main-title" style="color:#444">Support &nbsp;<span class="text-primary">Dreams</span></h2>
                     <blockquote>
-                      <p style="color:#444">Help make dreams a reality by supporting your tour guide</p>
+                      <p style="color:#444">Impact the people and places you visit</p>
                       <a href="/site/register" class="btn btn-primary btn-lg">JOIN US</a>
                     </blockquote>
                   </div>
@@ -85,20 +85,17 @@
       </section>
       <!-- End Header Section-->
       
-      
-      
-      
-      
-      
-      
+    
       <section class="sep-bottom-md" style="background:#f9f9f9">
         <div class="container">
           <div class="row">
             <div class="col-md-8 col-md-offset-2">
               <div class="section-title text-center sep-bottom-lg">
                 <br /><br /><br />
-                <h3 class="upper">The Terranga Community</h3>
-                <p class="lead">A place for travelers to connect with locals in cities around the world.</p>
+                <h3 class="upper">OUR COMMUNITY IN COLOMBIA</h3>
+                <p class="lead">Terranga is a platform for travelers and locals alike. 
+                A <span style="font-weight:600">global community of culturally curious people, sharing what they love to do in their cities, 
+                and supporting one another&#39s dreams. Welcome to our Colombia pilot!</span></p>
               </div>
             </div>
           </div>
@@ -109,15 +106,12 @@
             <!-- FEATURED PROFILE -->
             <div ng-repeat="profile in featuredProfiles track by $index" class="col-md-3 sep-bottom-lg">
               <div class="featuredProfile">
-                <img src="/site/images/{{ profile.image }}?crop=256" />
-                <h5 style="margin-bottom:0px;"><a style="color:#43AEC6" href="/site/profile/{{ profile.id }}">{{ capitalize(profile.firstName) }}, {{ profile.age }}</a></h5>
-                <br />
-                
+                <img src="/site/images/{{ profile.image }}?crop=512" />
+                <h5 style="margin-bottom:0px;"><a style="color:#43AEC6" href="/site/profile/{{ profile.id }}">{{ capitalize(profile.firstName) }}, {{ profile.age }}</a></h5>                
                 <hr style="width:80%;margin-bottom:8px" />
-                
                 <p>
                   <i class="fa fa-comments-o fa-lg"></i><br />
-                  {{ truncatedText(profile.bio, 120) }}
+                  {{ truncatedText(profile.bio, 70) }}
                 </p>
                 <span><i class="fa fa-map-marker fa-md"></i> {{ capitalize(profile.city) }}, {{ profile.country.toUpperCase() }}</span><br /><br />
                 <a href="/site/profile/{{ profile.id }}" class="btn btn-primary btn-md">Meet {{ capitalize(profile.firstName) }}</a><br /><br />
@@ -131,69 +125,38 @@
         </div>
       </section>
       
-       <!-- Start left section-->
-      <section class="sep-top-2x sep-bottom-2x">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-6 col-md-push-6">
-              <div data-wow-delay=".5s" class="wow bounceInRight">
-              	<img src="site/img/slides/slide9.jpg" alt="" class="img-responsive">
-              </div>
-            </div>
-            <div class="col-md-6 col-md-pull-6">
-              <div data-wow-delay=".5s" class="wow bounceInLeft">
-                <h3 class="upper">The Local Perspective</h3>
-                <p class="lead">
-                  Terranga is a place for people to connect. Want to show travelers around your city? 
-           	      Help us build the community by becoming a local in your hometown!
-                </p>
-                <p class="lead">
-                  Terranga offers unique cultural experiences.
-                  Our locals are not tour guides - they are real people who invite you to see what
-                  life is like in their hometowns. These glimpses into a local's life offer unique
-                  perspectives on local culture. We encourage travelers to donate to our local's dreams
-                  thank them for their generosity.
-                </p>
-                <a href="/site/profiles" class="btn btn-primary btn-lg">Meet Our Locals</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- End left Section-->
-      
-      <!-- Start About section-->
+	<!-- Start About section-->
       <section class="section-gray sep-bottom-1x" style="padding:48px">
-        <div class="row sep-bottom-2x">
+        <div class="row sep-bottom-sm">
             <div class="col-md-4 icon-gradient sep-top-lg">            
-              <div class="icon-box icon-horizontal icon-lg">              
-                <img height="140" width="140" src="/site/img/1-icon.png"/>
+              <div data-wow-delay=".3s" class="icon-box icon-horizontal icon-lg wow bounceInUp">              
+                <img height="140" width="140" style="border-radius:30px" src="/site/img/magnifier.png"/>
                 <div class="icon-box-content">
-                  <h5 class="upper">Find a Local</h5>
+                  <h5 class="upper">Search</h5>
                   <p class="lead" style="padding:0px 40px 0px 40px">
-                  	Terranga has locals all over the world. Find the local who's perfect for you by checking out their profile. 
+                  	our community of locals offering to share what they love to do in their cities. 
                   </p>
                 </div>
               </div>
             </div>
             <div class="col-md-4 icon-gradient sep-top-lg">
-              <div class="icon-box icon-horizontal icon-lg">
-                <img height="140" width="140" src="/site/img/2-icon.png"/>
+              <div data-wow-delay=".4s" class="icon-box icon-horizontal icon-lg wow bounceInUp">
+                <img height="140" width="140" style="border-radius:30px" src="/site/img/speech.png"/>
                 <div class="icon-box-content">
-                  <h5 class="upper">Tell them what you're looking for</h5>
+                  <h5 class="upper">Chat</h5>
                   <p class="lead" style="padding:0px 40px 0px 40px">
-                  	Tell your Terranga local your plans, and they'll help you out! Ask about great lunch spots, wineries, nightlife, etc.
+                  	and coordinate a time and location to meet.
                   </p>
                 </div>
               </div>
             </div>
             <div class="col-md-4 icon-gradient sep-top-lg">
-              <div class="icon-box icon-horizontal icon-lg">
-                <img height="140" width="140" src="/site/img/3-icon.png"/>
+              <div data-wow-delay=".5s" class="icon-box icon-horizontal icon-lg wow bounceInUp">
+                <img height="140" width="140" style="border-radius:30px" src="/site/img/credit.png"/>
                 <div class="icon-box-content">
-                  <h5 class="upper">Have an incredible time</h5>
+                  <h5 class="upper">Contribute</h5>
                   <p class="lead" style="padding:0px 40px 0px 40px">
-                  	Go on a journey! With your Terranga local, you can travel the world and know a local in every city who will help you make the most of your trips.
+                  	to locals&#39 dreams in gratitude for their time.
                   </p>
                 </div>
               </div>
@@ -203,11 +166,41 @@
       <!-- End About section-->
       
       
-      
-     
- 
-      
-      
+       <!-- Start left section-->
+      <section class="sep-top-2x sep-bottom-2x">
+        <div class="container">
+            <div class="col-md-6 col-md-push-6">
+              <div data-wow-delay=".5s" class="wow bounceInRight">
+              	<br/>
+              	<img src="site/img/slides/slide9.jpg" class="img-responsive">
+              </div>
+            </div>
+            <div class="col-md-6 col-md-pull-6">
+              <div data-wow-delay=".5s" class="wow bounceInLeft">
+                <h3 class="upper">WE ARE TERRANGA</h3>
+                <p class="lead">
+                  We know that as travelers it&#39s tough to get off the beaten path; you desire to see more than the typical tour, 
+                  you want to feel the uniqueness of the city, and meet people that inspire you. As locals, you have so much to 
+                  offer. You want to share your passions, stories, and love for your city with travelers. And maybe practice a 
+                  new language!
+                </p>
+                <p class="lead">
+                  Terranga helps travelers and locals safely find each other. But we&#39re not about hiring a local guide 
+                  or taking tours with locals. It&#39s about connecting through mutual passions and experiencing what 
+                  others love to do in their city. With Terranga, there is no need to book. Find out what people love 
+                  to do in their cities, establish a rapport through messaging and meet to share the experiences with them.
+                </p>
+                <p class="lead">
+                  Terranga is unique because we give locals the opportunity to express a dream and travelers the 
+                  opportunity to say thank you by contributing to their dreams.
+                </p>
+                <a href="/site/profiles" class="btn btn-primary btn-lg">Meet Our Locals</a>
+              </div>
+            </div>
+        </div>
+      </section>
+      <!-- End left Section-->
+
       
       <!-- Start Footer section-->
       {{ footer }}
