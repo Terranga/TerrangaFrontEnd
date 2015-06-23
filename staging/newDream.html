@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>New Dream</title>
+    
+    <link rel="stylesheet" href="/staging/styles/style.css">
+    <script src="https://malsup.github.com/jquery.form.js"></script>
+    <script src="/staging/js/fileupload/angular-file-upload-shim.js"></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js'></script>
+    <script src="https://code.angularjs.org/1.2.20/angular-sanitize.min.js"></script>  
+    <script src="/staging/js/fileupload/angular-file-upload.js"></script>
+    
+    <script src='/app/app.js'></script>
+    <script src='/app/home.js'></script>
+    <script src='/app/profile.js'></script>
+    <script src='/app/register.js'></script>
+    <script src='/app/inbox.js'></script>
+    <script src='/app/newMessage.js'></script>
+    <script src='/app/insights.js'></script>
+    <script src='/app/newInsight.js'></script>
+    <script src='/app/newDream.js'></script>
+    
+    
+  </head>
+
+  <body ng-app="Terranga" ng-controller="NewDreamController" style="padding:20px" ng-init="init()">
+    <h2>Create New Dream: </h2> 
+    
+
+    <div class="section">
+    	<input ng-model="dream.profileID" type="text" placeholder="COMPOSED BY: (profileID)"><br /><br />
+    	<input ng-model="dream.title" type="text" placeholder="TITLE: "><br /><br />
+      	<textarea ng-model="dream.description"  placeholder="DESCRIPTION:" rows="20" style="width:100%; padding-left:16px; padding-top:8px"></textarea>
+     	<br /><br /><br />
+        <button ng-click="sendDream()">New Dream</button>     	
+
+    </div>
+    
+    <br /><br />
+    <br /><br />
+    
+  
+  </body>
+  
+  
+  
+  
+  
+</html>
