@@ -4,9 +4,10 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
 	$scope.profile = {"lastName":"", "city":"", "country":"", "firstName":"", "bio":""};
 	$scope.newMessage = {'recipientID':'', 'senderID':'', 'subject':'', 'threadID':'', 'body':''};
 	$scope.messages = null;
+	$scope.pageVersion = null;
 
 	$scope.init = function(){
-		console.log('Profile Controller: INIT ');
+		console.log('Profile (app) Controller: INIT ');
 		
     	var requestInfo = parseLocation('site');
     	console.log(JSON.stringify(requestInfo));
@@ -17,8 +18,27 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
     	}
     	
 		fetchProfile(requestInfo.identifier);
+		fetchPageVersion();
+		
 	}
 	
+	function fetchPageVersion(){
+		var url = '/api/profilePage';
+		$http.get(url).success(function(data, status, headers, config) {
+            var confirmation = data['confirmation'];
+            console.log('CONFIRMATION: '+JSON.stringify(data));
+            
+            if (confirmation != 'success'){
+                alert(data['message']);
+                return;
+            }
+          
+            $scope.pageVersion = data['profilePages'][0]['page']
+           
+        }).error(function(data, status, headers, config) {
+            console.log("error", data, status, headers, config);
+        });
+	}
 	
 	$scope.formattedDate = function(dateStr){
 		return moment(new Date(dateStr)).format('MMM D h:mm a');

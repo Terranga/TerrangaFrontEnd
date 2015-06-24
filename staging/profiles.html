@@ -39,6 +39,11 @@
             <h4 style="font-size:18px">{{ capitalize(selectedProfile.firstName) }} {{ capitalize(selectedProfile.lastName) }}</h4>
             <input ng-model="selectedProfile.city" type="text" style="width:40%;margin-left:auto;margin-right:auto" class="form-control" placeholder="City" /><br />
             <input ng-model="selectedProfile.country" type="text" style="width:40%;margin-left:auto;margin-right:auto" class="form-control" placeholder="Country" /><br />
+            <input ng-model="selectedProfile.homeCity" type="text" style="width:40%;margin-left:auto;margin-right:auto" class="form-control" placeholder="Home City" /><br />
+            <input ng-model="selectedProfile.homeCountry" type="text" style="width:40%;margin-left:auto;margin-right:auto" class="form-control" placeholder="Home Country" /><br />
+            <input ng-model="selectedProfile.profession" type="text" style="width:40%;margin-left:auto;margin-right:auto" class="form-control" placeholder="Profession" /><br />
+            <input ng-model="selectedProfile.points" type="text" style="width:40%;margin-left:auto;margin-right:auto" class="form-control" placeholder="Points" /><br />
+            <input ng-model="languages" type="text" style="width:40%;margin-left:auto;margin-right:auto" class="form-control" placeholder="Languages" /><br />
             <select ng-model="selectedProfile.age" style="width:40%;margin-left:auto;margin-right:auto" class="form-control">
               <option ng-repeat="age in ageArray track by $index" value="{{ age }}">{{ age }} years old</option>
             </select>

@@ -4,12 +4,13 @@ var app = angular.module('ProfilesModule', []);
 app.controller('ProfilesController', ['$scope', '$http', function($scope, $http){
 	$scope.currentUser = {'loggedIn':'no'};
 	$scope.featuredProfiles = null;
-	$scope.selectedProfile = {'firstName':'', 'lastName':'', 'age':'', 'city':'', 'country':'', 'bio':''}; // insert empty values so angular doesn't freak out
+	$scope.selectedProfile = {'firstName':'', 'lastName':'', 'age':'', 'city':'', 'country':'', 'bio':'', 'homeCity':'', 'homeCountry':'', 'profession':'', 'languages':[], 'points':''}; // insert empty values so angular doesn't freak out
 	$scope.insight = {'description':'', 'category':''};
 
 	$scope.ageArray = new Array();
 	$scope.root = 'http://89.terranga-org.appspot.com';
 	$scope.testing = false;
+	$scope.languages = null;
 	
 	$scope.init = function(){
 		console.log('Profiles Controller: INIT');
@@ -48,6 +49,7 @@ app.controller('ProfilesController', ['$scope', '$http', function($scope, $http)
 	
 	$scope.viewProfile = function(index){
 		$scope.selectedProfile = $scope.featuredProfiles[index];
+		$scope.languages = getLanguages();
 		console.log(JSON.stringify($scope.selectedProfile));
 	}
 
@@ -123,6 +125,12 @@ app.controller('ProfilesController', ['$scope', '$http', function($scope, $http)
 	$scope.updateSelectedProfile = function(){
 		if ($scope.selectedProfile==null)
 			return;
+		
+		if ($scope.languages!=null){
+			var langs = $scope.languages.split(",");
+			$scope.selectedProfile.languages = langs;
+		}
+		
 		
     	var json = JSON.stringify($scope.selectedProfile);
 		console.log('UPDATE SELECTED PROFILE: '+json);
@@ -238,6 +246,17 @@ app.controller('ProfilesController', ['$scope', '$http', function($scope, $http)
     	return string.substring(0, limit)+'...';
     }
 	
+    function getLanguages(){
+    	var languages = $scope.selectedProfile.languages;
+    	var langString = "";
+    	for (var i = 0; i<languages.length; i++){
+    		if (i!=0)
+    			langString = langString.concat(","+languages[i]);
+    		else
+    			langString = languages[0];
+    	}
+    	return langString;
+    }
 	
 
 }]);
