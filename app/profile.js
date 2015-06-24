@@ -4,6 +4,7 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
 	$scope.profile = {"lastName":"", "city":"", "country":"", "firstName":"", "bio":""};
 	$scope.newMessage = {'recipientID':'', 'senderID':'', 'subject':'', 'threadID':'', 'body':''};
 	$scope.messages = null;
+	$scope.pageVersion = null;
 
 	$scope.init = function(){
 		console.log('Profile (app) Controller: INIT ');
@@ -31,10 +32,8 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
                 alert(data['message']);
                 return;
             }
-           $scope.messages = data['messages'];
-           
-           var objDiv = document.getElementById("messages");
-           objDiv.scrollTop = objDiv.scrollHeight;
+          
+            $scope.pageVersion = data['profilePages'][0]['page']
            
         }).error(function(data, status, headers, config) {
             console.log("error", data, status, headers, config);
