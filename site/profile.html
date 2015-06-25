@@ -190,7 +190,15 @@
             <div class="section-title upper text-center">
               <h2 class="light small-space" style="font-weight:600">{{ capitalize(profile.firstName) }},&nbsp;{{ profile.age }}</h2>
               <img style="width:240px;height:240px;border:2px solid #ddd;" src="/site/images/{{ profile.image }}?crop=256"/><br /><br />
-              <p style="text-transform:none;color:white;margin-top:5px;font-weight:300;font-size:1.2em">
+              <div ng-if="profile.type=='traveler'">
+              	<img style="height:60px;float:right" src="/site/img/local-icon-dark.png"/>
+              	<img style="height:60px;float:right" src="/site/img/traveler-icon.png"/>
+              </div>
+              <div ng-if="profile.type=='local'">
+              	<img style="height:60px;float:right" src="/site/img/local-icon.png"/>
+              	<img style="height:60px;float:right" src="/site/img/traveler-icon-dark.png"/>
+              </div>
+              <p style="text-transform:none;color:white;margin-left:9%;font-weight:300;font-size:1.2em">
             	<a style="color:#1abc9c" data-toggle="modal" data-target="#reviewModal" href="#"><i class="fa fa-smile-o fa-lg"></i>&nbsp;&nbsp; Gratitude Notes</a>
               </p>
             </div>
@@ -205,7 +213,7 @@
 		  <div class="col-md-12"style="height:180px;margin-left:auto;margin-right:auto;background:rgba(0,0,0,.8);padding-top:10px">
 		  	
 		  	<div class="col-md-3" style="margin-left:15%;">
-           		<p style="font-weight:400;font-size:50px">15<span style="padding-left:3px;font-size:18px">points</span></p>
+           		<p style="font-weight:400;font-size:50px">{{ profile.points }}<span style="padding-left:3px;font-size:18px">points</span></p>
 	        </div>
 		  	
 		  	<div class="col-md-4" style="margin-top:1%;">
@@ -215,7 +223,7 @@
 		  					<td><i class="fa fa-home fa-lg"></i></td>
 		  					<td>
 		  						<p style="font-weight:300;font-size:1.2em">
-			            			&nbspBogot&aacute, Colombia
+			            			&nbsp;{{ capitalize(profile.homeCity) }},&nbsp;{{ capitalize(profile.homeCountry) }}
             					</p>
             				</td>
 		  				</tr>
@@ -223,7 +231,7 @@
 		  					<td style="padding-top:10px"><i style="margin-left:2px"class="fa fa-map-marker fa-lg"></i></td>
 		  					<td style="padding-top:10px">
 		  						<p style="font-weight:300;font-size:1.2em">
-            						&nbspSanta Marta, Colombia
+            						&nbsp;{{ capitalize(profile.city) }},&nbsp;{{ capitalize(profile.country) }}
             					</p>
             				</td>
 		  				</tr>
@@ -231,7 +239,7 @@
 		  					<td style="padding-top:10px"><i class="fa fa-globe fa-lg"></i></td>
 		  					<td style="padding-top:10px">
 		  						<p style="font-weight:300;font-size:1.2em">
-            						&nbspEnglish, Spanish, Portuguese
+            						&nbsp;{{ languages }}
             					</p>
             				</td>
 		  				</tr>
@@ -239,7 +247,7 @@
 		  					<td style="padding-top:10px"><i class="fa fa-building fa-lg"></i></td>
 		  					<td style="padding-top:10px">
 		  						<p style="font-weight:300;font-size:1.2em">
-            						&nbspChief Economist
+            						&nbsp;{{ profile.profession }}
             					</p>
             				</td>
 		  				</tr>
@@ -270,38 +278,22 @@
 	                    <h4 style="color:#222">Let's</h4>
 	                  </div>
 	                  <br />
-	                  <div class="insightsBox">
-	                  <a data-toggle="modal" data-target="#insightModal" href="#">
-	                  	<div style="margin-left:auto;margin-right:auto;width:80%;height:100px;background:url(/site/img/slides/bmx.jpg)">
-	                  		<div style="background:rgba(0, 0, 0, .6);height:100px;text-align:left;">
-	                  			<img style="float:left;margin-right:15px;" src="/site/img/soccer.png"/>
-	                  			<br/>
-	                  			<p style="line-height:1.4em;padding-top:10px;margin-left:20px;font-weight:300;font-size:22px;color:white;font-family: 'Open Sans', sans-serif;">
-	                  				to play pickup soccer...
-	                  			</p>
+	                  <div class="insightsBox" style="height:380px;overflow:auto">
+	                  	<a ng-repeat="insight in profile.insights track by $index" data-toggle="modal" data-target="#insightModal" href="#">
+	                  		<div style="margin-left:auto;margin-right:auto;width:80%;height:100px;background:url(/site/img/slides/bmx.jpg)">
+	                  			<div style="background:rgba(0, 0, 0, .6);height:100px;text-align:left;">
+		                  			<img ng-if="insight.categoryTag=='sports' " style="float:left;margin-right:15px;" src="/site/img/soccer.png"/>
+		                  			<img ng-if="insight.categoryTag=='food' " style="float:left;margin-right:15px;" src="/site/img/food.png"/>
+		                  			<br/>
+		                  			<p style="line-height:1.4em;padding-top:10px;margin-left:20px;font-weight:300;font-size:22px;color:white;font-family: 'Open Sans', sans-serif;">
+		                  				{{ insight.description }}
+		                  			</p>
+	                  			</div>
 	                  		</div>
-	                  	</div>
+	                  		<br/>
 	                  	</a>
-	                  	<br/>
-	                  	<div style="margin-left:auto;margin-right:auto;width:80%;height:100px;background:url(/site/img/slides/nightlife.jpg)">
-	                  		<div style="background:rgba(0, 0, 0, .6);height:100px;text-align:left;">
-	                  			<img style="float:left;margin-right:15px;" src="/site/img/food.png"/>
-	                  			<br/>
-	                  			<p style="line-height:1.4em;padding-top:10px;margin-left:20px;font-weight:300;font-size:22px;color:white;font-family: 'Open Sans', sans-serif;">
-	                  				to my favorite exotic fruit stand
-	                  			</p>
-	                  		</div>
-	                  	</div>
-	                  	<br/>
-	                  	<div style="margin-left:auto;margin-right:auto;width:80%;height:100px;background:url(/site/img/slides/food.jpg)">
-	                  		<div style="background:rgba(0, 0, 0, .6);height:100px;text-align:left;">
-	                  			<img style="float:left;margin-right:15px;" src="/site/img/rugby.png"/>
-	                  			<p style="line-height:1.4em;padding-top:15px;margin-left:20px;font-weight:300;font-size:22px;color:white;font-family: 'Open Sans', sans-serif;">
-	                  				to my underwater rugby practice... yes, it exists
-	                  			</p>
-	                  		</div>
-	                  	</div>
-	                  </div>
+	                </div>
+	                
 	                  <br /><br /><br />
 	                </div>
 	              </div>
@@ -328,39 +320,21 @@
 		                    <h4 style="color:#222">My Dream is to</h4>
 		                  </div>
 		                  <br />
-		                  <div class="insightsBox">
-		                  <a data-toggle="modal" data-target="#dreamModal" href="#">
-		                  	<div style="margin-left:auto;margin-right:auto;width:80%;height:100px;background:url(/site/img/slides/bmx.jpg)">
-		                  		<div style="background:rgba(0, 0, 0, .6);height:100px;text-align:left;">
-		                  			<img style="float:left;margin-right:15px;" src="/site/img/rugby.png"/>
-		                  			<br/>
-	                  			<p style="line-height:1.4em;padding-top:10px;margin-left:20px;font-weight:300;font-size:22px;color:white;font-family: 'Open Sans', sans-serif;">
-	                  				to travel to South America...
-	                  			</p>
+		                  <div class="insightsBox" style="height:380px;overflow:auto">
+		                  	<a ng-repeat="insight in profile.insights track by $index" data-toggle="modal" data-target="#insightModal" href="#">
+		                  		<div style="margin-left:auto;margin-right:auto;width:80%;height:100px;background:url(/site/img/slides/bmx.jpg)">
+		                  			<div style="background:rgba(0, 0, 0, .6);height:100px;text-align:left;">
+			                  			<img ng-if="insight.categoryTag=='sports' " style="float:left;margin-right:15px;" src="/site/img/soccer.png"/>
+			                  			<img ng-if="insight.categoryTag=='food' " style="float:left;margin-right:15px;" src="/site/img/food.png"/>
+			                  			<br/>
+			                  			<p style="line-height:1.4em;padding-top:10px;margin-left:20px;font-weight:300;font-size:22px;color:white;font-family: 'Open Sans', sans-serif;">
+			                  				{{ insight.description }}
+			                  			</p>
+		                  			</div>
 		                  		</div>
-		                  	</div>
+		                  		<br/>
 		                  	</a>
-		                  	<br/>
-		                  	<div style="margin-left:auto;margin-right:auto;width:80%;height:100px;background:url(/site/img/slides/bmx.jpg)">
-		                  		<div style="background:rgba(0, 0, 0, .6);height:100px;text-align:left;">
-		                  			<img style="float:left;margin-right:15px;" src="/site/img/rugby.png"/>
-		                  			<br/>
-	                  			<p style="line-height:1.4em;padding-top:10px;margin-left:20px;font-weight:300;font-size:22px;color:white;font-family: 'Open Sans', sans-serif;">
-	                  				to study abroad...
-	                  			</p>
-		                  		</div>
-		                  	</div>
-		                  	<br/>
-		                  	<div style="margin-left:auto;margin-right:auto;width:80%;height:100px;background:url(/site/img/slides/bmx.jpg)">
-		                  		<div style="background:rgba(0, 0, 0, .6);height:100px;text-align:left;">
-		                  			<img style="float:left;margin-right:15px;" src="/site/img/rugby.png"/>
-		                  			<br/>
-	                  			<p style="line-height:1.4em;padding-top:10px;margin-left:20px;font-weight:300;font-size:22px;color:white;font-family: 'Open Sans', sans-serif;">
-	                  				to study abroad...
-	                  			</p>
-		                  		</div>
-		                  	</div>
-		                  </div>
+		                </div>
 		                  <br /><br /><br />
 		                </div>
 		             </div>

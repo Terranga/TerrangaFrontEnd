@@ -1,10 +1,12 @@
 var app = angular.module('ProfileModule', []);
 app.controller('ProfileController', ['$scope', '$http', '$upload', function($scope, $http, $upload){
 	$scope.currentUser = {'loggedIn':'no'};
-	$scope.profile = {"lastName":"", "city":"", "country":"", "firstName":"", "bio":""};
+	$scope.profile = {'firstName':'', 'lastName':'', 'age':'', 'city':'', 'country':'', 'bio':'', 'homeCity':'', 'image':'', 'homeCountry':'', 'profession':'', 'languages':[], 'points':''}; // insert empty values so angular doesn't freak out
 	$scope.newMessage = {'recipientID':'', 'senderID':'', 'subject':'', 'threadID':'', 'body':''};
 	$scope.messages = null;
 	$scope.pageVersion = null;
+	$scope.languages = null;
+	$scope.insight = {'description':'', 'category':''};
 
 	$scope.init = function(){
 		console.log('Profile (app) Controller: INIT ');
@@ -23,7 +25,7 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
 	}
 	
 	function fetchPageVersion(){
-		var url = '/api/profilePage';
+		var url = 'http://www.232.practice-jake.appspot.com/api/profilePage';
 		$http.get(url).success(function(data, status, headers, config) {
             var confirmation = data['confirmation'];
             console.log('CONFIRMATION: '+JSON.stringify(data));
@@ -52,7 +54,7 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
 			return;
 		}
 		var json = JSON.stringify($scope.newMessage);
-		var url = '/api/messages';
+		var url = 'http://www.232.practice-jake.appspot.com/api/messages';
         $http.post(url, json).success(function(data, status, headers, config) {
             var confirmation = data['confirmation'];
             console.log('CONFIRMATION: '+JSON.stringify(data));
@@ -71,7 +73,7 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
 	function fetchMessages(){
 		if ($scope.currentUser.loggedIn=='no')
 			return;
-		var url = '/api/messages?senderID='+$scope.currentUser.id+'&recipientID='+$scope.profile.id;
+		var url = 'http://www.232.practice-jake.appspot.com/api/messages?senderID='+$scope.currentUser.id+'&recipientID='+$scope.profile.id;
         $http.get(url).success(function(data, status, headers, config) {
             var confirmation = data['confirmation'];
             console.log('CONFIRMATION: '+JSON.stringify(data));
@@ -92,7 +94,7 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
 	
 	function fetchProfile(profileId){
 		console.log('FETCH PROFILE: '+profileId);
-		var url = '/api/profiles/'+profileId;
+		var url = 'http://232.practice-jake.appspot.com/api/profiles/'+profileId;
 		$http.get(url).success(function(data, status, headers, config) {
             var confirmation = data['confirmation'];
             console.log('CONFIRMATION : '+ JSON.stringify(data));
@@ -108,6 +110,8 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
             var p = data['profile'];
             $scope.profile = p;
     		fetchMessages();
+    		$scope.languages = getLanguages();
+    		
 
             
         }).error(function(data, status, headers, config) {
@@ -237,6 +241,18 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
     	}
 
     	return requestInfo;
+    }
+    
+    function getLanguages(){
+    	var languages = $scope.profile.languages;
+    	var langString = "";
+    	for (var i = 0; i<languages.length; i++){
+    		if (i!=0)
+    			langString = langString.concat(", "+$scope.capitalize(languages[i]));
+    		else
+    			langString = $scope.capitalize(languages[0]);
+    	}
+    	return langString;
     }
 
 	
