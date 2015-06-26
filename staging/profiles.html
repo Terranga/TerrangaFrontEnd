@@ -63,20 +63,13 @@
                   					<h5>BIO</h5>
                   				</td>
                   				<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                  				<td style="border-top:1px solid #ddd;border-left:1px solid #ddd;border-right:1px solid #ddd;background:#f9f9f9">
-                  					<h5>DREAM</h5>
-                  				</td>
                   			</tr>
                   		</thead>
                   		<tbody>
                   			<tr style="text-align:center;font-weight:500;font-size:15px">
                   				<td style="vertical-align:text-top;border-left:1px solid #ddd;border-right:1px solid #ddd;border-bottom:1px solid #ddd;padding:20px 20px 0px 20px;width:300px;background:#f9f9f9;font-weight:500">
-                  				  <textarea ng-model="selectedProfile.bio" style="width:100%;border:none;min-height:240px"></textarea><br/><br/>
+                  				  <textarea ng-model="bio" style="width:100%;border:none;min-height:240px"></textarea><br/><br/>
                   				</td>
-                  				<td></td>
-                  				<td style="vertical-align:text-top;border-left:1px solid #ddd;border-right:1px solid #ddd;border-bottom:1px solid #ddd;padding:20px 20px 0px 20px;width:300px;background:#f9f9f9;font-weight:500">
-                  				  <textarea ng-model="selectedProfile.dream" style="width:100%;border:none;min-height:240px"></textarea><br/><br/>
-	                  			</td>
                   			</tr>
                   		</tbody>
                   	</table>             	
@@ -253,6 +246,63 @@
     </div>
   </div>
 </div>			
+
+
+
+
+<div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div style="width:60%" class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="border:none">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <div class="social" style="text-align:center">
+            <img style="width:160px" src="/site/img/logo-dark.png" alt=""><br /><br />
+            <img style="width:84px;border-radius:42px;border:1px solid #ddd" src="/site/images/{{ selectedProfile.image }}?crop=256" />
+            <h4 style="font-size:18px">Reviews: {{ capitalize(selectedProfile.firstName) }} {{ capitalize(selectedProfile.lastName) }}</h4>
+            
+            <br />
+            <hr /><br />
+			<div>
+      <table class="table table-striped" style="width:80%;margin-left:auto;margin-right:auto">
+        <thead>
+          <tr>
+            <td><strong>Reviewed By</strong></td>
+            <td><strong>Score</strong></td>
+            <td><strong>Description</strong></td>
+          </tr>
+        
+        </thead>
+      
+        <tbody>
+          <tr ng-repeat="review in selectedProfile.reviews track by $index">
+            <td>{{ review.reviewedBy }}</td>
+            <td>{{ review.score }}</td>
+            <td>{{ review.description }}</td>
+          </tr>
+
+        </tbody>
+      
+      
+      </table>
+      
+			
+			
+            </div>
+            
+            <br/>
+          </div>
+      </div>
+      
+        <div style="width:100%;text-align:center;padding:40px;border-bottom-left-radius:6px;border-bottom-right-radius:6px;background:#ddd">
+          <input ng-model="review.reviewedBy" type="text" style="width:60%;margin-left:auto;margin-right:auto" class="form-control" placeholder="Reviewed By" /><br />
+          <input ng-model="review.score" type="text" style="width:60%;margin-left:auto;margin-right:auto" class="form-control" placeholder="Score" /><br />
+          <textarea ng-model="review.description" class="form-control" style="height:96px;width:60%;margin-left:auto;margin-right:auto" placeholder="Description"></textarea><br /><br />
+          <a ng-click="addReview()" style="color:#000;background-color:red;padding:16px;border:1px solid #ddd;">Add Review</a>
+        </div>
+      
+    </div>
+  </div>
+</div>			
   
   
   
@@ -287,6 +337,7 @@
             <td><a ng-click="viewInsights($index)" data-toggle="modal" data-target="#insightsModal" href="">Insights</a></td>
             <td><a ng-click="viewDreams($index)" data-toggle="modal" data-target="#dreamsModal" href="">Dreams</a></td>
             <td><a ng-click="viewEndorsements($index)" data-toggle="modal" data-target="#endorsementModal" href="">Endorsements</a></td>
+            <td><a ng-click="viewReviews($index)" data-toggle="modal" data-target="#reviewModal" href="">Reviews</a></td>
             <td><a ng-click="deleteProfile($index)" style="color:red" href="">Delete</a></td>
           </tr>
 
