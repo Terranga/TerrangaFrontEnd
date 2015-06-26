@@ -6,6 +6,7 @@ app.controller('ProfilesController', ['$scope', '$http', function($scope, $http)
 	$scope.featuredProfiles = null;
 	$scope.selectedProfile = {'firstName':'', 'lastName':'', 'age':'', 'city':'', 'country':'', 'bio':'', 'homeCity':'', 'homeCountry':'', 'profession':'', 'languages':[], 'points':''}; // insert empty values so angular doesn't freak out
 	$scope.insight = {'description':'', 'category':''};
+	$scope.dream = {'title':'', 'description':''}
 
 	$scope.ageArray = new Array();
 	$scope.root = 'http://89.terranga-org.appspot.com';
@@ -54,6 +55,11 @@ app.controller('ProfilesController', ['$scope', '$http', function($scope, $http)
 	}
 
 	$scope.viewInsights = function(index){
+		$scope.selectedProfile = $scope.featuredProfiles[index];
+		console.log(JSON.stringify($scope.selectedProfile));
+	}
+	
+	$scope.viewDreams = function(index){
 		$scope.selectedProfile = $scope.featuredProfiles[index];
 		console.log(JSON.stringify($scope.selectedProfile));
 	}
@@ -112,6 +118,38 @@ app.controller('ProfilesController', ['$scope', '$http', function($scope, $http)
             
             $scope.selectedProfile.insights.unshift(data['insight']);
         	$scope.insight = {'description':'', 'category':''}; // clear the insight
+            
+            
+        }).error(function(data, status, headers, config) {
+            console.log("error", data, status, headers, config);
+        });
+		
+		
+	}
+	
+	
+	$scope.addDream = function(){
+		if ($scope.selectedProfile==null)
+			return;
+		
+		$scope.dream['profileID'] = $scope.selectedProfile.id;
+		var json = JSON.stringify($scope.dream);
+		console.log('ADD DREAM: '+json);
+
+		var path = '/api/dreams';
+    	var url = ($scope.testing==true) ? $scope.root+path : path;
+    	console.log('URL: '+url);
+        $http.post(url, json).success(function(data, status, headers, config) {
+            var confirmation = data['confirmation'];
+            console.log('CONFIRMATION: '+JSON.stringify(data));
+
+            if (confirmation != 'success'){
+                alert(data['message']);
+                return;
+            }
+            
+            $scope.selectedProfile.dreams.unshift(data['dream']);
+        	$scope.dream = {'title':'', 'description':''}; // clear the insight
             
             
         }).error(function(data, status, headers, config) {
