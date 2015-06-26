@@ -164,6 +164,7 @@
         <thead>
           <tr>
             <td><strong>Title</strong></td>
+            <td><strong>Fundraising Goal</strong></td>
             <td><strong>Description</strong></td>
           </tr>
         
@@ -172,6 +173,7 @@
         <tbody>
           <tr ng-repeat="dream in selectedProfile.dreams track by $index">
             <td>{{ dream.title }}</td>
+            <td>{{ dream.fundraisingGoal }}</td>
             <td>{{ dream.description }}</td>
           </tr>
 
@@ -190,8 +192,62 @@
       
         <div style="width:100%;text-align:center;padding:40px;border-bottom-left-radius:6px;border-bottom-right-radius:6px;background:#ddd">
           <input ng-model="dream.title" type="text" style="width:60%;margin-left:auto;margin-right:auto" class="form-control" placeholder="Category" /><br />
+          <input ng-model="dream.fundraisingGoal" type="text" style="width:60%;margin-left:auto;margin-right:auto" class="form-control" placeholder="Fundraising Goal" /><br />
           <textarea ng-model="dream.description" class="form-control" style="height:96px;width:60%;margin-left:auto;margin-right:auto" placeholder="Description"></textarea><br /><br />
           <a ng-click="addDream()" style="color:#000;background-color:red;padding:16px;border:1px solid #ddd;">Add Dream</a>
+        </div>
+      
+    </div>
+  </div>
+</div>	
+
+
+
+<div class="modal fade" id="endorsementModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div style="width:60%" class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="border:none">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <div class="social" style="text-align:center">
+            <img style="width:160px" src="/site/img/logo-dark.png" alt=""><br /><br />
+            <img style="width:84px;border-radius:42px;border:1px solid #ddd" src="/site/images/{{ selectedProfile.image }}?crop=256" />
+            <h4 style="font-size:18px">Endorsements: {{ capitalize(selectedProfile.firstName) }} {{ capitalize(selectedProfile.lastName) }}</h4>
+            
+            <br />
+            <hr /><br />
+			<div>
+      <table class="table table-striped" style="width:80%;margin-left:auto;margin-right:auto">
+        <thead>
+          <tr>
+            <td><strong>Endorsed By</strong></td>
+            <td><strong>Description</strong></td>
+          </tr>
+        
+        </thead>
+      
+        <tbody>
+          <tr ng-repeat="endorsement in selectedProfile.endorsements track by $index">
+            <td>{{ endorsement.endorsedBy }}</td>
+            <td>{{ endorsement.description }}</td>
+          </tr>
+
+        </tbody>
+      
+      
+      </table>
+      
+			
+			
+            </div>
+            
+            <br/>
+          </div>
+      </div>
+      
+        <div style="width:100%;text-align:center;padding:40px;border-bottom-left-radius:6px;border-bottom-right-radius:6px;background:#ddd">
+          <input ng-model="endorsement.endorsedBy" type="text" style="width:60%;margin-left:auto;margin-right:auto" class="form-control" placeholder="Endorsed By" /><br />
+          <textarea ng-model="endorsement.description" class="form-control" style="height:96px;width:60%;margin-left:auto;margin-right:auto" placeholder="Description"></textarea><br /><br />
+          <a ng-click="addEndorsement()" style="color:#000;background-color:red;padding:16px;border:1px solid #ddd;">Add Endorsement</a>
         </div>
       
     </div>
@@ -230,6 +286,7 @@
             <td>{{ profile.age }}</td>
             <td><a ng-click="viewInsights($index)" data-toggle="modal" data-target="#insightsModal" href="">Insights</a></td>
             <td><a ng-click="viewDreams($index)" data-toggle="modal" data-target="#dreamsModal" href="">Dreams</a></td>
+            <td><a ng-click="viewEndorsements($index)" data-toggle="modal" data-target="#endorsementModal" href="">Endorsements</a></td>
             <td><a ng-click="deleteProfile($index)" style="color:red" href="">Delete</a></td>
           </tr>
 
