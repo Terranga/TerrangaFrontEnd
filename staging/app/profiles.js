@@ -4,13 +4,17 @@ var app = angular.module('ProfilesModule', []);
 app.controller('ProfilesController', ['$scope', '$http', function($scope, $http){
 	$scope.currentUser = {'loggedIn':'no'};
 	$scope.featuredProfiles = null;
-	$scope.selectedProfile = {'firstName':'', 'lastName':'', 'age':'', 'city':'', 'country':'', 'bio':'', 'homeCity':'', 'homeCountry':'', 'profession':'', 'languages':[], 'points':''}; // insert empty values so angular doesn't freak out
+	$scope.selectedProfile = {'firstName':'', 'lastName':'', 'age':'', 'city':'', 'country':'', 'bio':[], 'homeCity':'', 'homeCountry':'', 'profession':'', 'languages':[], 'points':''}; // insert empty values so angular doesn't freak out
 	$scope.insight = {'description':'', 'category':''};
+	$scope.dream = {'title':'','fundraisingGoal':'', 'description':''};
+	$scope.endorsement = {'endorsedBy':'', 'description':''};
+	$scope.review = {'reviewedBy':'', 'description':'', 'score':''};
 
 	$scope.ageArray = new Array();
 	$scope.root = 'http://89.terranga-org.appspot.com';
 	$scope.testing = false;
 	$scope.languages = null;
+	$scope.bio = null;
 	
 	$scope.init = function(){
 		console.log('Profiles Controller: INIT');
@@ -50,10 +54,26 @@ app.controller('ProfilesController', ['$scope', '$http', function($scope, $http)
 	$scope.viewProfile = function(index){
 		$scope.selectedProfile = $scope.featuredProfiles[index];
 		$scope.languages = getLanguages();
+		$scope.bio = getBio();
 		console.log(JSON.stringify($scope.selectedProfile));
 	}
 
 	$scope.viewInsights = function(index){
+		$scope.selectedProfile = $scope.featuredProfiles[index];
+		console.log(JSON.stringify($scope.selectedProfile));
+	}
+	
+	$scope.viewDreams = function(index){
+		$scope.selectedProfile = $scope.featuredProfiles[index];
+		console.log(JSON.stringify($scope.selectedProfile));
+	}
+	
+	$scope.viewReviews = function(index){
+		$scope.selectedProfile = $scope.featuredProfiles[index];
+		console.log(JSON.stringify($scope.selectedProfile));
+	}
+	
+	$scope.viewEndorsements = function(index){
 		$scope.selectedProfile = $scope.featuredProfiles[index];
 		console.log(JSON.stringify($scope.selectedProfile));
 	}
@@ -122,6 +142,103 @@ app.controller('ProfilesController', ['$scope', '$http', function($scope, $http)
 	}
 	
 	
+	$scope.addDream = function(){
+		if ($scope.selectedProfile==null)
+			return;
+		
+		$scope.dream['profileID'] = $scope.selectedProfile.id;
+		var json = JSON.stringify($scope.dream);
+		console.log('ADD DREAM: '+json);
+
+		var path = '/api/dreams';
+    	var url = ($scope.testing==true) ? $scope.root+path : path;
+    	console.log('URL: '+url);
+        $http.post(url, json).success(function(data, status, headers, config) {
+            var confirmation = data['confirmation'];
+            console.log('CONFIRMATION: '+JSON.stringify(data));
+
+            if (confirmation != 'success'){
+                alert(data['message']);
+                return;
+            }
+            
+            $scope.selectedProfile.dreams.unshift(data['dream']);
+        	$scope.dream = {'title':'','fundraisingGoal':'', 'description':''};
+            
+            
+        }).error(function(data, status, headers, config) {
+            console.log("error", data, status, headers, config);
+        });
+		
+		
+	}
+	
+	
+	$scope.addEndorsement = function(){
+		if ($scope.selectedProfile==null)
+			return;
+		
+		$scope.endorsement['endorsed'] = $scope.selectedProfile.id;
+		var json = JSON.stringify($scope.endorsement);
+		console.log('ADD ENDORSEMENT: '+json);
+
+		var path = '/api/endorsements';
+    	var url = ($scope.testing==true) ? $scope.root+path : path;
+    	console.log('URL: '+url);
+        $http.post(url, json).success(function(data, status, headers, config) {
+            var confirmation = data['confirmation'];
+            console.log('CONFIRMATION: '+JSON.stringify(data));
+
+            if (confirmation != 'success'){
+                alert(data['message']);
+                return;
+            }
+            
+            $scope.selectedProfile.endorsements.unshift(data['endorsement']);
+        	$scope.endorsement = {'endorsedBy':'', 'description':''};
+            
+            
+        }).error(function(data, status, headers, config) {
+            console.log("error", data, status, headers, config);
+        });
+		
+		
+	}
+	
+	
+	
+	$scope.addReview = function(){
+		if ($scope.selectedProfile==null)
+			return;
+		
+		$scope.review['reviewed'] = $scope.selectedProfile.id;
+		var json = JSON.stringify($scope.review);
+		console.log('ADD REVIEW: '+json);
+
+		var path = '/api/reviews';
+    	var url = ($scope.testing==true) ? $scope.root+path : path;
+    	console.log('URL: '+url);
+        $http.post(url, json).success(function(data, status, headers, config) {
+            var confirmation = data['confirmation'];
+            console.log('CONFIRMATION: '+JSON.stringify(data));
+
+            if (confirmation != 'success'){
+                alert(data['message']);
+                return;
+            }
+            
+            $scope.selectedProfile.reviews.unshift(data['review']);
+            $scope.review = {'reviewedBy':'', 'description':'', 'score':''};
+            
+            
+        }).error(function(data, status, headers, config) {
+            console.log("error", data, status, headers, config);
+        });
+		
+		
+	}
+	
+	
 	$scope.updateSelectedProfile = function(){
 		if ($scope.selectedProfile==null)
 			return;
@@ -129,6 +246,11 @@ app.controller('ProfilesController', ['$scope', '$http', function($scope, $http)
 		if ($scope.languages!=null){
 			var langs = $scope.languages.split(",");
 			$scope.selectedProfile.languages = langs;
+		}
+		
+		if ($scope.bio != null){
+			var bioTemp = $scope.bio.split(",");
+			$scope.selectedProfile.bio = bioTemp
 		}
 		
 		
@@ -256,6 +378,18 @@ app.controller('ProfilesController', ['$scope', '$http', function($scope, $http)
     			langString = languages[0];
     	}
     	return langString;
+    }
+    
+    function getBio(){
+    	var bioTemp = $scope.selectedProfile.bio;
+    	var bioString = "";
+    	for (var i = 0; i<bioTemp.length; i++){
+    		if (i!=0)
+    			bioString = bioString.concat(", "+bioTemp[i]);
+    		else
+    			bioString = bioTemp[0];
+    	}
+    	return bioString;
     }
 	
 
