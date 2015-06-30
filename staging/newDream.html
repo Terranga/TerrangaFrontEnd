@@ -1,9 +1,9 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<!-- TEST COMMIT COMMENT -->
+
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>Terranga | ADMIN</title>
+    <title>New Dream</title>
     
     <link rel="stylesheet" href="/staging/styles/style.css">
     <script src="https://malsup.github.com/jquery.form.js"></script>
@@ -20,23 +20,30 @@
     <script src='/staging/app/account.js'></script>
     <script src='/staging/app/admin.js'></script>
     <script src='/staging/app/newDream.js'></script>
-    
-    
+    <script src='/staging/app/newInsight.js'></script>
+    <script src='/staging/app/newEndorsement.js'></script>
+    <script src='/staging/app/newReview.js'></script>
     
     
   </head>
 
-  <body ng-app="Terranga" ng-controller="AdminController" style="padding:20px" ng-init="init()">
-    <h2>Terranga Admin Console</h2>
-    <div>      
-    	<h3>Profile View Controller</h3>
-    	<select ng-model="item.value" ng-change="onChanged()" ng-options="choice for choice in possibleChoices"></select>
-    	<button ng-click="update()">Update</button>
+  <body ng-app="Terranga" ng-controller="NewDreamController" style="padding:20px" ng-init="init()">
+    <h2>Create New Dream: </h2> 
+    
+
+    <div class="section">
+    	<input ng-model="dream.profileID" type="text" placeholder="COMPOSED BY: (profileID)"><br /><br />
+    	<input ng-model="dream.title" type="text" placeholder="TITLE: "><br /><br />
+      	<textarea ng-model="dream.description"  placeholder="DESCRIPTION:" rows="20" style="width:100%; padding-left:16px; padding-top:8px"></textarea>
+     	<br /><br /><br />
+        <button ng-click="sendDream()">New Dream</button>     	
+
     </div>
     
-    <button ng-click="createProfilePage()">CreatePage</button>
-
-
+    <br /><br />
+    <br /><br />
+    
+  
   </body>
   
   

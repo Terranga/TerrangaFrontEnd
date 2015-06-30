@@ -68,7 +68,7 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
 		}
 
 		
-        var keys = ['firstName', 'lastName', 'city','country','email', 'phone', 'bio', 'dream'];
+        var keys = ['firstName', 'lastName', 'city','country','email', 'phone'];
         
         var validUpdate = true;
         for(var i=0;i<keys.length;i++){

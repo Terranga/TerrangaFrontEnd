@@ -1,4 +1,5 @@
-var app = angular.module('Terranga', ['HomeModule', 'ProfileModule', 'ProfilesModule', 'RegisterModule', 'AccountModule', 'AdminModule']);
+var app = angular.module('Terranga', ['HomeModule', 'ProfileModule', 'ProfilesModule', 'RegisterModule', 'AccountModule', 'AdminModule', 'NewDreamModule', 'NewInsightModule','NewEndorsementModule', 'NewReviewModule',
+                                      ]);
 
 
 app.directive('spinner', function() {
