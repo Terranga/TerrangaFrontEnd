@@ -7,6 +7,10 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
 	$scope.pageVersion = null;
 	$scope.languages = null;
 	$scope.insight = {'description':'', 'category':''};
+	$scope.endorser = null;
+	$scope.selectedInsight = null;
+	$scope.selectedDream = null;
+	$scope.reviewers = new Array();
 
 	$scope.init = function(){
 		console.log('Profile (app) Controller: INIT ');
@@ -25,7 +29,7 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
 	}
 	
 	function fetchPageVersion(){
-		var url = 'http://www.232.practice-jake.appspot.com/api/profilePage';
+		var url = 'http://practice-jake.appspot.com/api/profilePage';
 		$http.get(url).success(function(data, status, headers, config) {
             var confirmation = data['confirmation'];
             console.log('CONFIRMATION: '+JSON.stringify(data));
@@ -46,6 +50,10 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
 		return moment(new Date(dateStr)).format('MMM D h:mm a');
 	}
 	
+	$scope.formattedReviewData = function(dateStr){
+		return moment(new Date(dateStr)).format('MMMM YYYY');
+	}
+	
 	$scope.sendMessage = function(){
 		$scope.newMessage.recipientID = $scope.profile.id;
 		$scope.newMessage.senderID = $scope.currentUser.id;
@@ -54,7 +62,7 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
 			return;
 		}
 		var json = JSON.stringify($scope.newMessage);
-		var url = 'http://www.232.practice-jake.appspot.com/api/messages';
+		var url = 'http://practice-jake.appspot.com/api/messages';
         $http.post(url, json).success(function(data, status, headers, config) {
             var confirmation = data['confirmation'];
             console.log('CONFIRMATION: '+JSON.stringify(data));
@@ -64,6 +72,7 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
                 return;
             }
             $scope.messages.push(data['message']);
+            $scope.newMessage = {'recipientID':'', 'senderID':'', 'subject':'', 'threadID':'', 'body':''};
             
         }).error(function(data, status, headers, config) {
             console.log("error", data, status, headers, config);
@@ -73,7 +82,7 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
 	function fetchMessages(){
 		if ($scope.currentUser.loggedIn=='no')
 			return;
-		var url = 'http://www.232.practice-jake.appspot.com/api/messages?senderID='+$scope.currentUser.id+'&recipientID='+$scope.profile.id;
+		var url = 'http://practice-jake.appspot.com/api/messages?senderID='+$scope.currentUser.id+'&recipientID='+$scope.profile.id;
         $http.get(url).success(function(data, status, headers, config) {
             var confirmation = data['confirmation'];
             console.log('CONFIRMATION: '+JSON.stringify(data));
@@ -92,9 +101,28 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
         });
 	}
 	
+	function fetchReviewers(){
+		for (var i=0; i<$scope.profile.reviews.length; i++){
+			var url = 'http://practice-jake.appspot.com/api/profiles/'+$scope.profile.reviews[i].reviewedBy;
+			$http.get(url).success(function(data, status, headers, config) {
+	            var confirmation = data['confirmation'];
+
+	            if (confirmation != 'success'){
+	                alert(data['message']);
+	                return;
+	            }
+	            $scope.reviewers.push(data['profile']);
+	    		console.log('Reviewers: '+ JSON.stringify($scope.reviewers));
+
+			}).error(function(data, status, headers, config) {
+	            console.log("error", data, status, headers, config);
+	        });
+		}
+	}
+	
 	function fetchProfile(profileId){
 		console.log('FETCH PROFILE: '+profileId);
-		var url = 'http://232.practice-jake.appspot.com/api/profiles/'+profileId;
+		var url = 'http://practice-jake.appspot.com/api/profiles/'+profileId;
 		$http.get(url).success(function(data, status, headers, config) {
             var confirmation = data['confirmation'];
             console.log('CONFIRMATION : '+ JSON.stringify(data));
@@ -110,8 +138,25 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
             var p = data['profile'];
             $scope.profile = p;
     		fetchMessages();
+    		fetchReviewers();
     		$scope.languages = getLanguages();
-    		
+    		if ($scope.profile.endorsements[0]!=null){
+    			var url2 = 'http://practice-jake.appspot.com/api/profiles/'+$scope.profile.endorsements[0].endorsedBy;
+    			$http.get(url2).success(function(data, status, headers, config) {
+    	            var confirmation = data['confirmation'];
+    	            console.log('CONFIRMATION : '+ JSON.stringify(data));
+    	            
+    	            if (confirmation != 'success'){
+    	                alert(data['message']);
+    	                return;
+    	            }
+    	            $scope.endorser = data['profile'];
+    	            
+    			}).error(function(data, status, headers, config) {
+    	            console.log("error", data, status, headers, config);
+    	        });
+    			
+    		}
 
             
         }).error(function(data, status, headers, config) {
@@ -253,6 +298,21 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
     			langString = $scope.capitalize(languages[0]);
     	}
     	return langString;
+    }
+    
+    $scope.viewInsight = function(index){
+		$scope.selectedInsight = $scope.profile.insights[index];
+		console.log(JSON.stringify($scope.selectedInsight));
+	}
+    
+    $scope.viewDream = function(index){
+		$scope.selectedDream = $scope.profile.dreams[index];
+		console.log(JSON.stringify($scope.selectedDream));
+	}
+    
+    $scope.getWidth = function(){
+    	var percent = $scope.selectedDream.fundraisingCurrent / $scope.selectedDream.fundraisingGoal * 100;
+    	return percent.concat("%");
     }
 
 	

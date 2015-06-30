@@ -49,22 +49,21 @@
           </div>
           <br/>
 		<div style="height:300px;width:90%;background:rgba(0,179,255,0.2);margin-left:auto;margin-right:auto;">
-			<button class="close" style="float:right;margin-top:25%;margin-right:15px">></button>
-			<div style="text-align:center;overflow:auto;position:relative;top:5%;background:rgba(255,255,255,.8);height:50px;width:85%;margin-left:auto;margin-right:1.8%;">
-				<h5 style="font-family:Roboto">
-					Play pickup soccer
+			<button ng-click="viewInsight( ($index!=reviewers.length) ? ($index=$index+1) : ($index=0) )" class="close" style="float:right;margin-top:25%;margin-right:15px">></button>
+			<div style="text-align:center;overflow:auto;position:relative;top:5%;background:url(/site/img/insights/tiles/{{ selectedInsight.categoryTag }}.jpg);height:50px;width:85%;margin-left:auto;margin-right:1.8%;">
+				<h5 style="margin-top:15px;font-family:Roboto;color:white">
+					{{ selectedInsight.description }}
 				</h5>
 			</div>
 			<div style="margin-top:15px;text-align:center;position:relative;top:5%;background:rgba(255,255,255,.8);height:160px;width:85%;margin-left:auto;margin-right:auto;">
 				<div style="padding-top:5%;width:65%;text-align:center;margin-left:auto;margin-right:auto;">
 					<h6 style="font-family:Roboto">
-						Every Sunday I play soccer with a group of guys and girls, it's really fun. I love to play futbol
-						and am happy to have people join. Message me if you're interested!
+						{{ selectedInsight.longDescription }}
 					</h6>
 				</div>
 			</div>
 			<div style="margin-top:25px;margin-left:auto;margin-right:auto;text-align:center">
-				<button data-dismiss="modal" data-toggle="modal" data-target="#messageModal" style="margin-left:auto;margin-right:auto;width:15%;height:40px;">Chat</button>
+				<button type="button" class="btn btn-primary btn-bordered" data-dismiss="modal" data-toggle="modal" data-target="#messageModal" style="margin-left:auto;margin-right:auto;height:40px;">Chat</button>
 			</div>
 	</div>
    </div>
@@ -86,25 +85,23 @@
           <br/>
 		<div style="height:400px;width:90%;background:rgba(0,179,255,0.2);margin-left:auto;margin-right:auto;">
 			<button class="close" style="float:right;margin-top:25%;margin-right:15px">></button>
-			<div style="text-align:center;overflow:auto;position:relative;top:6%;background:url('/site/img/slides/bmx.jpg');width:85%;margin-left:auto;margin-right:1.8%;">
+			<div style="text-align:center;overflow:auto;position:relative;top:6%;background:url(/site/img/insights/tiles/{{ selectedDream.title }}.jpg);width:85%;margin-left:auto;margin-right:1.8%;">
 				<h5 style="font-family:Roboto;color:white;font-weight:500">
-					Travel around South America
+					{{ selectedDream.description }}
 				</h5>
 			</div>
 			<div style="margin-top:15px;text-align:center;position:relative;top:5%;background:rgba(255,255,255,.8);height:160px;width:85%;margin-left:auto;margin-right:auto;">
 				<div style="padding-top:2%;width:65%;text-align:center;margin-left:auto;margin-right:auto;">
 					<h6 style="font-family:Roboto">
-						I dream about visiting different countries for a period of time enough to learn the local language
-						and get familiar with other cultures. I love learning different languages, right now I'm taking Korean!
-						So it would be awesome to travel around my region and meet people from all over the world.
+						{{ selectedDream.longDescription }}
 					</h6>
 				</div>
 			</div>
 			<div class="sep-top-xs" style="margin-top:25px;margin-left:auto;margin-right:auto;text-align:center;width:80%">
 				<div class="progress minimal" style="border: 2px solid #999;">
-                  <div role="progressbar" aria-valuenow="1200" aria-valuemin="0" aria-valuemax="2000" style="width: 70%;" class="progress-bar">$1200 closer to my dream</div>
+                  <div role="progressbar" aria-valuenow="{{ selectedDream.fundraisingCurrent }}" aria-valuemin="0" aria-valuemax="{{ selectedDream.fundraisingGoal }}" style="width:70%;" class="progress-bar">${{ selectedDream.fundraisingCurrent }} closer to my dream</div>
                 </div>
-                <span class="indicator-line"></span><span class="pull-left">$0</span><span style="position: absolute;left: 0;right: 0;text-align: center;">4 people contributed</span><span class="pull-right">$2000</span>
+                <span class="indicator-line"></span><span class="pull-left">$0</span><span style="position: absolute;left: 0;right: 0;text-align: center;">{{ selectedDream.numContributers }} people contributed</span><span class="pull-right">${{ selectedDream.fundraisingGoal }}</span>
 			
 				<button type="button" class="btn btn-primary btn-bordered" data-dismiss="modal" style="margin-top:40px;margin-left:auto;margin-right:auto;height:40px;">Contribute</button>
 			</div>
@@ -125,50 +122,24 @@
             	<h4 style="margin-top:0px;margin-bottom:15px">Gratitude Notes</h4>
           </div>
 		<div style="overflow:scroll;height:400px;width:90%;background:rgba(0,179,255,0.2);margin-left:auto;margin-right:auto;">
-			<div class="row" style="width:95%;padding-top:20px;padding-left:10px">
-           		<div class="col-md-4" style="padding-right:0px">
-            		<img style="height:110px;width:110px;border:1px solid #ddd;border-radius:55px"src="/site/img/jose.JPG"/>
-            		<p style="margin-top:5px;margin-left:30px;font-weight:300;font-size:1.4em">Jose</p>
-           		</div>
-           		<div class="col-md-8" style="padding-left:0px">
-           			<p style="font-weight:300;font-size:1.2em">
-           				"Jose is really awesome. He has such a love for Medellin and Colombia and truly encompasses Terranga values."
-           			</p>
-           			<p style="font-weight:300;font-size:1.2em">
-           				From NYC - August 2015
-           			</p>
-           		</div>	
+			<div ng-repeat="review in profile.reviews track by $index">
+				<div class="row" style="width:95%;padding-top:20px;padding-left:10px">
+	           		<div class="col-md-4" style="padding-right:0px">
+	            		<a href="/site/profile/{{ reviewers[$index].id }}"><img style="height:110px;width:110px;border:1px solid #ddd;border-radius:55px"src="/site/images/{{ reviewers[$index].image }}?crop=256"/></a>
+	            		<p style="margin-top:5px;margin-left:35px;font-weight:300;font-size:1.4em">{{ capitalize(reviewers[$index].firstName) }}</p>
+	           		</div>
+	           		<div class="col-md-8" style="padding-left:0px">
+	           			<p style="font-weight:300;font-size:1.2em">
+	           				"{{ review.description }}"
+	           			</p>
+	           			<p style="font-weight:300;font-size:1.2em">
+	           				From {{ capitalize(reviewers[$index].city) }} - {{ formattedReviewData(review.timestamp) }}
+	           			</p>
+	           		</div>	
+		       </div>
+		       <hr/>
 	       </div>
-	       <hr/>
-	       <div class="row" style="width:95%;padding-top:20px;padding-left:10px">
-           		<div class="col-md-4" style="padding-right:0px">
-            		<img style="height:110px;width:110px;border:1px solid #ddd;border-radius:55px"src="/site/img/jose.JPG"/>
-            		<p style="margin-top:5px;margin-left:30px;font-weight:300;font-size:1.4em">Jose</p>
-           		</div>
-           		<div class="col-md-8" style="padding-left:0px">
-           			<p style="font-weight:300;font-size:1.2em">
-           				"Jose is really awesome. He has such a love for Medellin and Colombia and truly encompasses Terranga values."
-           			</p>
-           			<p style="font-weight:300;font-size:1.2em">
-           				From NYC - August 2015
-           			</p>
-           		</div>	
-	       </div>
-	       <hr/>
-	       <div class="row" style="width:95%;padding-top:20px;padding-left:10px">
-           		<div class="col-md-4" style="padding-right:0px">
-            		<img style="height:110px;width:110px;border:1px solid #ddd;border-radius:55px"src="/site/img/jose.JPG"/>
-            		<p style="margin-top:5px;margin-left:30px;font-weight:300;font-size:1.4em">Jose</p>
-           		</div>
-           		<div class="col-md-8" style="padding-left:0px"s>
-           			<p style="font-weight:300;font-size:1.2em">
-           				"Jose is really awesome. He has such a love for Medellin and Colombia and truly encompasses Terranga values."
-           			</p>
-           			<p style="font-weight:300;font-size:1.2em">
-           				From NYC - August 2015
-           			</p>
-           		</div>	
-	       </div>
+
 		</div>
    </div>
   </div>
@@ -189,7 +160,7 @@
           <div class="container">
             <div class="section-title upper text-center">
               <h2 class="light small-space" style="font-weight:600">{{ capitalize(profile.firstName) }},&nbsp;{{ profile.age }}</h2>
-              <img style="width:240px;height:240px;border:2px solid #ddd;" src="/site/images/{{ profile.image }}?crop=256"/><br /><br />
+              <img style="width:240px;height:240px;border:2px solid #ddd;border-radius:120px" src="/site/images/{{ profile.image }}?crop=256"/><br /><br />
               <div ng-if="profile.type=='traveler'">
               	<img style="height:60px;float:right" src="/site/img/local-icon-dark.png"/>
               	<img style="height:60px;float:right" src="/site/img/traveler-icon.png"/>
@@ -198,7 +169,7 @@
               	<img style="height:60px;float:right" src="/site/img/local-icon.png"/>
               	<img style="height:60px;float:right" src="/site/img/traveler-icon-dark.png"/>
               </div>
-              <p style="text-transform:none;color:white;margin-left:9%;font-weight:300;font-size:1.2em">
+              <p style="text-transform:none;color:white;margin-left:10%;font-weight:300;font-size:1.2em">
             	<a style="color:#1abc9c" data-toggle="modal" data-target="#reviewModal" href="#"><i class="fa fa-smile-o fa-lg"></i>&nbsp;&nbsp; Gratitude Notes</a>
               </p>
             </div>
@@ -263,9 +234,9 @@
 		  </div>
 		  <div class="col-md-12"style="min-height:70px;margin-left:auto;margin-right:auto;background:rgba(0,0,0,.8);margin-top:10px;text-align:center;">
 		  	<p style="width:50%;margin-left:auto;margin-right:auto;font-weight:300;font-size:1.2em;margin-top:10px;">
-           		My name is <span style="color:#75ACFF">Jose</span>. My most unique hobby is <span style="color:#75ACFF">underwater rugby</span>.
-           		On my free days I <span style="color:#75ACFF">go hiking</span>. 
-           		One thing you don't know about me is <span style="color:#75ACFF">I speak Korean</span>.
+           		My name is <span style="color:#75ACFF">{{ profile.bio[0] }}</span>. My most unique hobby is <span style="color:#75ACFF">{{ profile.bio[1] }}</span>.
+           		On my free days I <span style="color:#75ACFF">{{ profile.bio[2] }}</span>. 
+           		One thing you don't know about me is <span style="color:#75ACFF">{{ profile.bio[3] }}</span>.
             </p>
 		  </div>
 		  
@@ -280,10 +251,9 @@
 	                  <br />
 	                  <div class="insightsBox" style="height:380px;overflow:auto">
 	                  	<a ng-repeat="insight in profile.insights track by $index" data-toggle="modal" data-target="#insightModal" href="#">
-	                  		<div style="margin-left:auto;margin-right:auto;width:80%;height:100px;background:url(/site/img/slides/bmx.jpg)">
+	                  		<div ng-click="viewInsight($index)" style="margin-left:auto;margin-right:auto;width:80%;height:100px;background:url(/site/img/insights/tiles/{{ insight.categoryTag }}.jpg)">
 	                  			<div style="background:rgba(0, 0, 0, .6);height:100px;text-align:left;">
-		                  			<img ng-if="insight.categoryTag=='sports' " style="float:left;margin-right:15px;" src="/site/img/soccer.png"/>
-		                  			<img ng-if="insight.categoryTag=='food' " style="float:left;margin-right:15px;" src="/site/img/food.png"/>
+		                  			<img style="float:left;margin-right:15px;" src="/site/img/insights/{{ insight.categoryTag }}-icon.png"/>
 		                  			<br/>
 		                  			<p style="line-height:1.4em;padding-top:10px;margin-left:20px;font-weight:300;font-size:22px;color:white;font-family: 'Open Sans', sans-serif;">
 		                  				{{ insight.description }}
@@ -300,12 +270,12 @@
 	              <div class="row">
 	              	<div class="col-md-6"style="height:180px;width:100%;background:rgba(0,0,0,.8);margin-top:20px;margin-left:auto;margin-right:auto;">
 	              		<div class="col-md-4">
-		              		<p style="margin-top:5px;font-weight:300;font-size:1.4em">Endorsed by Jose</p>
-		              		<a href="#"><img style="height:110px;width:110px;border:1px solid #ddd;border-radius:55px"src="/site/img/jose.JPG"/></a>
+		              		<p style="margin-top:5px;font-weight:300;font-size:1.4em">Endorsed by {{ capitalize(endorser.firstName) }}</p>
+		              		<a href="/site/profile/{{ endorser.id }}"><img style="height:110px;width:110px;border:1px solid #ddd;border-radius:55px"src="/site/images/{{ endorser.image }}?crop=256"/></a>
 	              		</div>
 	              		<div class="col-md-6">
 	              			<p style="margin-top:40px;font-weight:300;font-size:1.2em">
-	              				"Jose is really awesome. He has such a love for Medellin and Colombia and truly encompasses Terranga values."
+	              				{{ profile.endorsements[0].description }}
 	              			</p>
 	              		</div>
 	              	</div>
@@ -321,14 +291,13 @@
 		                  </div>
 		                  <br />
 		                  <div class="insightsBox" style="height:380px;overflow:auto">
-		                  	<a ng-repeat="insight in profile.insights track by $index" data-toggle="modal" data-target="#insightModal" href="#">
-		                  		<div style="margin-left:auto;margin-right:auto;width:80%;height:100px;background:url(/site/img/slides/bmx.jpg)">
-		                  			<div style="background:rgba(0, 0, 0, .6);height:100px;text-align:left;">
-			                  			<img ng-if="insight.categoryTag=='sports' " style="float:left;margin-right:15px;" src="/site/img/soccer.png"/>
-			                  			<img ng-if="insight.categoryTag=='food' " style="float:left;margin-right:15px;" src="/site/img/food.png"/>
+		                  	<a ng-repeat="dream in profile.dreams track by $index" data-toggle="modal" data-target="#dreamModal" href="#">
+		                  		<div ng-click="viewDream($index)" style="margin-left:auto;margin-right:auto;width:80%;height:100px;background:url(/site/img/insights/tiles/{{ dream.title }}.jpg)">
+		                  			<div ng-click="viewDream($index)" style="background:rgba(0, 0, 0, .6);height:100px;text-align:left;">
+			                  			<img style="float:left;margin-right:15px;" src="/site/img/insights/{{ dream.title }}-icon.png"/>
 			                  			<br/>
 			                  			<p style="line-height:1.4em;padding-top:10px;margin-left:20px;font-weight:300;font-size:22px;color:white;font-family: 'Open Sans', sans-serif;">
-			                  				{{ insight.description }}
+			                  				{{ dream.description }}
 			                  			</p>
 		                  			</div>
 		                  		</div>
@@ -340,12 +309,8 @@
 		             </div>
 		             <div class="row">
 	              	<div class="col-md-12"style="height:180px;background:rgba(0,0,0,.8);margin-top:20px">
-	              		<p style="margin-top:30px;font-weight:300;font-size:1.2em">
-	              			<a>#HistoryBuff</a>&nbsp;&nbsp;<a>#Backpacker</a>&nbsp;&nbsp;<a>#Joker</a>&nbsp;&nbsp;<a>#Smoker</a>&nbsp;&nbsp;<a>#MidnightToker</a>&nbsp;&nbsp;<a>#EDMHead</a>&nbsp;&nbsp;
-	              			<a>#Runner</a>&nbsp;&nbsp;<a>#MountainBiker</a>&nbsp;&nbsp;<a>#smile</a>&nbsp;&nbsp;#follow4follow&nbsp;&nbsp;#like4like&nbsp;&nbsp;#look&nbsp;&nbsp;#instalike
-	              			&nbsp;&nbsp;#picoftheday&nbsp;&nbsp;#food&nbsp;&nbsp;#instadaily&nbsp;&nbsp;#instafollow&nbsp;&nbsp;#followme&nbsp;&nbsp;#instagood&nbsp;&nbsp;
-	              			#bestoftheday&nbsp;&nbsp;#instacool&nbsp;&nbsp;#instago&nbsp;&nbsp;#all_shots&nbsp;&nbsp;#follow&nbsp;&nbsp;#webstagram&nbsp;&nbsp;#colorful&nbsp;&nbsp;
-	              			#style&nbsp;&nbsp;#swag
+	              		<p style="margin-top:30px;font-weight:300;font-size:1.2em;text-align:center">
+	              			<a ng-repeat="hashtag in profile.hashtags track by $index">{{ hashtag }}&nbsp;&nbsp;</a>
 	              		</p>
 	              	</div>
 	              </div>

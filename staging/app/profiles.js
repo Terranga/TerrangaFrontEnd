@@ -4,9 +4,9 @@ var app = angular.module('ProfilesModule', []);
 app.controller('ProfilesController', ['$scope', '$http', function($scope, $http){
 	$scope.currentUser = {'loggedIn':'no'};
 	$scope.featuredProfiles = null;
-	$scope.selectedProfile = {'firstName':'', 'lastName':'', 'age':'', 'city':'', 'country':'', 'bio':[], 'homeCity':'', 'homeCountry':'', 'profession':'', 'languages':[], 'points':''}; // insert empty values so angular doesn't freak out
-	$scope.insight = {'description':'', 'category':''};
-	$scope.dream = {'title':'','fundraisingGoal':'', 'description':''};
+	$scope.selectedProfile = {'firstName':'', 'lastName':'', 'age':'', 'city':'', 'country':'', 'bio':[], 'homeCity':'', 'homeCountry':'', 'profession':'', 'languages':[], 'points':'', 'hashtags':[]}; // insert empty values so angular doesn't freak out
+	$scope.insight = {'description':'', 'longDescription':'' , 'category':''};
+	$scope.dream = {'title':'','fundraisingGoal':'', 'description':'', 'longDescription':''};
 	$scope.endorsement = {'endorsedBy':'', 'description':''};
 	$scope.review = {'reviewedBy':'', 'description':'', 'score':''};
 
@@ -15,6 +15,7 @@ app.controller('ProfilesController', ['$scope', '$http', function($scope, $http)
 	$scope.testing = false;
 	$scope.languages = null;
 	$scope.bio = null;
+	$scope.hashtags = null;
 	
 	$scope.init = function(){
 		console.log('Profiles Controller: INIT');
@@ -55,6 +56,7 @@ app.controller('ProfilesController', ['$scope', '$http', function($scope, $http)
 		$scope.selectedProfile = $scope.featuredProfiles[index];
 		$scope.languages = getLanguages();
 		$scope.bio = getBio();
+		$scope.hashtags = getHashtags();
 		console.log(JSON.stringify($scope.selectedProfile));
 	}
 
@@ -131,7 +133,7 @@ app.controller('ProfilesController', ['$scope', '$http', function($scope, $http)
             }
             
             $scope.selectedProfile.insights.unshift(data['insight']);
-        	$scope.insight = {'description':'', 'category':''}; // clear the insight
+        	$scope.insight = {'description':'', 'longDescription':'' , 'category':''}; // clear the insight
             
             
         }).error(function(data, status, headers, config) {
@@ -163,7 +165,7 @@ app.controller('ProfilesController', ['$scope', '$http', function($scope, $http)
             }
             
             $scope.selectedProfile.dreams.unshift(data['dream']);
-        	$scope.dream = {'title':'','fundraisingGoal':'', 'description':''};
+        	$scope.dream = {'title':'','fundraisingGoal':'', 'description':'', 'longDescription':''};
             
             
         }).error(function(data, status, headers, config) {
@@ -251,6 +253,10 @@ app.controller('ProfilesController', ['$scope', '$http', function($scope, $http)
 		if ($scope.bio != null){
 			var bioTemp = $scope.bio.split(",");
 			$scope.selectedProfile.bio = bioTemp
+		}
+		if ($scope.hashtags != null){
+			var hashtagsTemp = $scope.hashtags.split(",");
+			$scope.selectedProfile.hashtags = hashtagsTemp;
 		}
 		
 		
@@ -385,11 +391,23 @@ app.controller('ProfilesController', ['$scope', '$http', function($scope, $http)
     	var bioString = "";
     	for (var i = 0; i<bioTemp.length; i++){
     		if (i!=0)
-    			bioString = bioString.concat(", "+bioTemp[i]);
+    			bioString = bioString.concat(","+bioTemp[i]);
     		else
     			bioString = bioTemp[0];
     	}
     	return bioString;
+    }
+    
+    function getHashtags(){
+    	var hashtagTemp = $scope.selectedProfile.hashtags;
+    	var hashtagString = "";
+    	for (var i = 0; i<hashtagTemp.length; i++){
+    		if (i!=0)
+    			hashtagString = hashtagString.concat(","+hashtagTemp[i]);
+    		else
+    			hashtagString = hashtagTemp[0];
+    	}
+    	return hashtagString;
     }
 	
 
