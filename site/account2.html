@@ -62,9 +62,9 @@
                 	<option ng-repeat="country in countries track by $index" value= "{{ country }}" >{{ capitalize(country) }}</option>
                 </select>
                 <label class="upper" style="margin-top:10px">Languages</label>
-                <input ng-model="currentUser.phone" type="text" placeholder="Langugages" class="form-control input-lg">
+                <input ng-model="languages" type="text" placeholder="Langugages" class="form-control input-lg">
                 <label class="upper" style="margin-top:10px">Occupation</label>
-                <input ng-model="currentUser.phone" type="text" placeholder="Occupation" class="form-control input-lg">
+                <input ng-model="currentUser.profession" type="text" placeholder="Occupation" class="form-control input-lg">
             </div>
           </div>
             
@@ -74,18 +74,51 @@
               
                 <div style="width:90%;height:90%;background:rgba(255, 255, 255, 0.96);margin-left:auto;margin-right:auto;">
                   <div style="height:80px;background:#f1f1f1;text-align:center;padding-top:18px;border:1px solid #ddd">
-                    <h4 style="color:#444">Tell Us About Yourself</h4>
+                    <h4 style="color:#444">Mad Lib Yourself</h4>
                   </div>
                   <br />
                   <div class="row" style="width:95%;margin-left:auto;margin-right:auto">
-	                  <div class="col-md-6">
-	                  	<label class="upper" style="margin-top:10px;float:left">My name is </label>
-	                	<input style="float:right;clear:left" ng-model="currentUser.phone" type="text" placeholder="Name" class="form-control input-lg">
+	                  <div class="col-md-3">
+	                	<input ng-model="currentUser.bio[0]" type="text" placeholder="My name" class="form-control input-lg">
 	                  </div>
-	                  
+	                  <div class="col-md-3">
+	                	<input ng-model="currentUser.bio[1]" type="text" placeholder="My unique hobby" class="form-control input-lg">
+	                  </div>
+	                  <div class="col-md-3">
+	                	<input ng-model="currentUser.bio[2]" type="text" placeholder="I spend free time" class="form-control input-lg">
+	                  </div>
+	                  <div class="col-md-3">
+	                	<input ng-model="currentUser.bio[3]" type="text" placeholder="One random fact is" class="form-control input-lg">
+	                  </div>
                   </div>
+	                  
+                  <br/><br/>
+                  <div style="margin-left:auto;margin-right:auto;text-align:center;height:60px;width:60%;border:1px solid #ddd;background:url('/site/img/insights/tiles/culture.jpg')">
+                  	<h5 style="color:white;margin-top:20px">Build your Insights</h5>
+                  </div>
+                  <br/>
+                  <div style="margin-left:auto;margin-right:auto;text-align:center;height:60px;width:60%;border:1px solid #ddd;background:url('/site/img/insights/tiles/outdoors.jpg')">
+                  	<h5 style="color:white;margin-top:20px">Build your Dreams</h5>
+                  </div>
+                  <br/><br/>
+                  
+                  
+                  
+                  <h4 style="text-align:center">Hash Tag Yourself</h4>
+                  <br/>
+                  <div style="margin-left:auto;margin-right:auto;background:white;border:1px solid #ddd;height:100px;width:70%">
+                  	<p style="text-align:center;margin-top:10px"><span ng-repeat="hashtag in currentUser.hashtags" style="color:#75ACFF">{{ hashtag }}&nbsp;</span></p>
+                  </div>
+                  <div style="text-align:center;margin-top:5px;width:15%;margin-left:auto;margin-right:auto">
+                	<input ng-model="newHashtag" type="text" placeholder="#HashTag" class="form-control input-lg">
+                	<button style="margin-top:5px" ng-click="addHashtag()" class="btn btn-primary btn-xs">Add</button>
+                  </div>
+                  
+                  
+                  
+                  
 				<div style="margin-left:auto;margin-right:auto;text-align:center;padding-top:40px">
-              		<button style="width:200px;height:60px"ng-click="updateCurrentUser()" class="btn btn-primary">UPDATE</button>
+              		<button ng-click="updateCurrentUser()" class="btn btn-primary btn-lg">Update</button>
               	</div>                  	
                   
                   <br /><br /><br />
