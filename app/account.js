@@ -82,6 +82,11 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
 			return;
 		}
 		
+		if ($scope.languages!=null){
+			var langs = $scope.languages.split(",");
+			$scope.currentUser.languages = langs;
+		}
+		
         var keys = ['age', 'city','country','homeCity', 'homeCountry', 'languages', 'profession'];
         
         var validUpdate = true;
@@ -96,11 +101,6 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
         	alert('Please complete all fields.');
         	return;
         }
-        
-        if ($scope.languages!=null){
-			var langs = $scope.languages.split(",");
-			$scope.currentUser.languages = langs;
-		}
         
         var json = JSON.stringify($scope.currentUser);
 		console.log('UPDATE CURRENT USER: '+ json);

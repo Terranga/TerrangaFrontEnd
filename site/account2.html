@@ -56,9 +56,9 @@
                 	<option ng-repeat="country in countries track by $index" value= "{{ country }}" >{{ capitalize(country) }}</option>
                 </select>
                 <label class="upper" style="margin-top:10px">Home City</label>
-                <input ng-model="currentUser.city" type="text" placeholder="Home City" class="form-control input-lg">
+                <input ng-model="currentUser.homeCity" type="text" placeholder="Home City" class="form-control input-lg">
                 <label class="upper" style="margin-top:10px">Home Country</label>
-                <select class="form-control input-lg" ng-model="currentUser.country" >
+                <select class="form-control input-lg" ng-model="currentUser.homeCountry" >
                 	<option ng-repeat="country in countries track by $index" value= "{{ country }}" >{{ capitalize(country) }}</option>
                 </select>
                 <label class="upper" style="margin-top:10px">Languages</label>
