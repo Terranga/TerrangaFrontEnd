@@ -2,10 +2,11 @@ var app = angular.module('AccountModule', ['angularFileUpload']);
 app.controller('AccountController', ['$scope', '$http', '$upload', function($scope, $http, $upload){
 	$scope.currentUser = {'loggedIn':'no'};
 	$scope.ages = [];
-	$scope.name = null;
+	$scope.languages = null;
 	$scope.loading=false;
+	$scope.newHashtag = null;
+	$scope.newInsight = {'category':'', 'description':'', 'longDescription':''};
 	$scope.countries = ['united states','afghanistan', 'albania', 'algeria', 'american samoa', 'andorra', 'angola', 'anguilla', 'antigua and barbuda', 'argentina', 'armenia', 'aruba', 'australia', 'austria', 'azerbaijan', 'bangladesh', 'barbados', 'bahamas', 'bahrain', 'belarus', 'belgium', 'belize', 'benin', 'bermuda', 'bhutan', 'bolivia', 'bosnia and herzegovina', 'boswana', 'brazil', 'british indian ocean territory', 'british virgin islands', 'brunei darussalam', 'bulgaria', 'burkina faso', 'burma', 'burundi', 'cambodia', 'cameroon', 'canada', 'cape verde', 'cayman islands', 'central african republic', 'chad', 'chile', 'china', 'christmas island', 'cocos (keeling) islands', 'colombia', 'comoros', 'congo-brazzaville', 'congo-kinshasa', 'cook islands', 'costa rica', 'croatia', 'cyprus', 'czech republic', 'denmark', 'djibouti', 'dominica', 'dominican republic', 'east timor', 'ecuador', 'el salvador', 'egypt', 'equatorial guinea', 'eritrea', 'estonia', 'ethiopia', 'falkland islands', 'faroe islands', 'federated states of micronesia', 'fiji', 'finland', 'france', 'french guiana', 'french polynesia', 'french southern lands', 'gabon', 'gambia', 'georgia', 'germany', 'ghana', 'gibraltar', 'greece', 'greenland', 'grenada', 'guadeloupe', 'guam', 'guatemala', 'guernsey', 'guinea', 'guinea-bissau', 'guyana', 'haiti', 'heard and mcdonald islands', 'honduras', 'hong kong', 'hungary', 'iceland', 'india', 'indonesia', 'iraq', 'ireland', 'isle of man', 'israel', 'italy', 'jamaica', 'japan', 'jersey', 'jordan', 'kazakhstan', 'kenya', 'kiribati', 'kuwait', 'kyrgyzstan', 'laos', 'latvia', 'lebanon', 'lesotho', 'liberia', 'libya', 'liechtenstein', 'lithuania', 'luxembourg', 'macau', 'macedonia', 'madagascar', 'malawi', 'malaysia', 'maldives', 'mali', 'malta', 'marshall islands', 'martinique', 'mauritania', 'mauritius', 'mayotte', 'mexico', 'moldova', 'monaco', 'mongolia', 'montenegro', 'montserrat', 'morocco', 'mozambique', 'namibia', 'nauru', 'nepal', 'netherlands', 'new caledonia', 'new zealand', 'nicaragua', 'niger', 'nigeria', 'niue', 'norfolk island', 'northern mariana islands', 'norway', 'oman', 'pakistan', 'palau', 'panama', 'papua new guinea', 'paraguay', 'peru', 'philippines', 'pitcairn islands', 'poland', 'portugal', 'puerto rico', 'qatar', 'romania', 'russia', 'rwanda', 'saint helena', 'saint kitts and nevis', 'saint lucia', 'saint martin', 'saint pierre and miquelon', 'saint vincent', 'samoa', 'san marino', 'saudi arabia', 'senegal', 'serbia', 'seychelles', 'sierra leone', 'singapore', 'sint maarten', 'slovakia', 'slovenia', 'solomon islands', 'somalia', 'south africa', 'south georgia', 'south korea', 'spain', 'sri lanka', 'sudan', 'suriname', 'svalbard and jan mayen', 'sweden', 'swaziland', 'switzerland', 'syria', 'taiwan', 'tajikistan', 'tanzania', 'thailand', 'togo', 'tokelau', 'tonga', 'trinidad and tobago', 'tunisia', 'turkey', 'turkmenistan', 'turks and caicos islands', 'tuvalu', 'uganda', 'ukraine', 'united arab emirates', 'united kingdom', 'uruguay', 'uzbekistan', 'vanuatu', 'vatican city', 'vietnam', 'venezuela', 'wallis and futuna', 'western sahara', 'yemen', 'zambia', 'zimbabwe'];
-
 
 	$scope.init = function(){
 		console.log('Account Controller: INIT ');
@@ -15,6 +16,58 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
 		}
 	}
 	
+	$scope.addInsight = function(){
+		console.log("ADD INSIGHT");
+		$scope.newInsight['profile'] = $scope.currentUser.id;
+		var url = '/api/insights';
+		var json = JSON.stringify($scope.newInsight)
+		$http.post(url, json).success(function(data, status, headers, config) {
+            var confirmation = data['confirmation'];
+            console.log('CONFIRMATION: '+JSON.stringify(data));
+
+            if (confirmation != 'success'){
+                alert(data['message']);
+                return;
+            }
+            
+            $scope.currentUser.insights.unshift(data['insight']);
+        	$scope.newInsight = {'description':'', 'longDescription':'' , 'category':''}; // clear the insight
+            
+        }).error(function(data, status, headers, config) {
+            console.log("error", data, status, headers, config);
+        });
+		
+	}
+	
+	$scope.addHashtag = function(){
+		console.log("ADD HASHTAG");
+		if ($scope.newHashtag==null){
+			alert("Please enter a hashtag");
+			return;
+		}
+		
+		$scope.currentUser.hashtags.push($scope.newHashtag);
+		
+		$scope.loading=true;
+		var json = JSON.stringify($scope.currentUser);		
+    	var url = '/api/profiles/'+ $scope.currentUser.id;
+    	
+        $http.put(url, json).success(function(data, status, headers, config) {
+            var confirmation = data['confirmation'];
+            console.log('CONFIRMATION: '+ JSON.stringify(data));
+            
+            if (confirmation != 'success'){
+                alert(data['message']);
+                return;
+            }
+            $scope.loading=false;
+            $scope.newHashtag=null;
+            alert('HASHTAG ADDED');
+            
+        }).error(function(data, status, headers, config) {
+            console.log("error", data, status, headers, config);
+        });
+	}
 	
 	
 	function fetchCurrentUser(){
@@ -32,14 +85,14 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
             
             var c = data['currentUser'];
             
-            var keys = ['firstName', 'lastName', 'city','country','email', 'phone'];
+            var keys = ['age', 'city','country','homeCity', 'homeCountry', 'languages', 'profession'];
             for(var i=0;i<keys.length;i++){
             	var key = keys[i];
             	if(c[key]=='none')
             		c[key]='';
             }
             $scope.currentUser = c;
-            $scope.name = $scope.capitalize(c['firstName'])+" "+$scope.capitalize(c['lastName']);
+            $scope.languages = getLanguages();
             
         }).error(function(data, status, headers, config) {
             console.log("error", data, status, headers, config);
@@ -52,23 +105,13 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
 			alert('Log in first, dummy');
 			return;
 		}
-		if ($scope.name.indexOf(" ")==-1){
-			alert('Please enter both your first and last name');
-			return;
-		}
-		var parts = $scope.name.split(" ");
-		$scope.currentUser['firstName']=parts.shift();
-		for (var i=0;i<parts.length;i++){
-			if(i==0)
-				$scope.currentUser['lastName']=parts[i];
-			else 
-				$scope.currentUser['lastName']+=parts[i];
-			if (i<parts.length)
-				$scope.currentUser['lastName']+=" ";
-		}
-
 		
-        var keys = ['firstName', 'lastName', 'city','country','email', 'phone', 'bio', 'dream'];
+		if ($scope.languages!=null){
+			var langs = $scope.languages.split(",");
+			$scope.currentUser.languages = langs;
+		}
+		
+        var keys = ['age', 'city','country','homeCity', 'homeCountry', 'languages', 'profession'];
         
         var validUpdate = true;
         for(var i=0;i<keys.length;i++){
@@ -83,9 +126,8 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
         	return;
         }
         
+        var json = JSON.stringify($scope.currentUser);
 		console.log('UPDATE CURRENT USER: '+ json);
-
-		var json = JSON.stringify($scope.currentUser);		
     	var url = '/api/profiles/'+ $scope.currentUser.id;
     	
         $http.put(url, json).success(function(data, status, headers, config) {
@@ -105,6 +147,19 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
 		
 		
 	}
+	
+	
+	function getLanguages(){
+    	var languages = $scope.currentUser.languages;
+    	var langString = "";
+    	for (var i = 0; i<languages.length; i++){
+    		if (i!=0)
+    			langString = langString.concat(","+languages[i]);
+    		else
+    			langString = languages[0];
+    	}
+    	return langString;
+    }
 	
 	$scope.logout = function(){
 		console.log('LOG OUT: ');
@@ -226,7 +281,7 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
 	}
 	
 	function fetchUploadString(files, property, entity){
-		var keys = ['firstName', 'lastName', 'city','country','email', 'phone','bio'];
+		var keys = ['age', 'city','country','homeCity', 'homeCountry', 'languages', 'profession'];
         
         var validUpdate = true;
         for(var i=0;i<keys.length;i++){

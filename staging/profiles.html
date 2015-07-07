@@ -92,7 +92,7 @@
 </div>			
   
 
- <!-- Profile Modal -->
+ <!-- Insight Modal -->
 <div class="modal fade" id="insightsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div style="width:60%" class="modal-dialog">
     <div class="modal-content">
@@ -113,23 +113,15 @@
             <td><strong>Description</strong></td>
             <td><strong>Long Description</strong></td>
           </tr>
-        
         </thead>
-      
         <tbody>
           <tr ng-repeat="insight in selectedProfile.insights track by $index">
             <td>{{ insight.categoryTag }}</td>
             <td>{{ insight.description }}</td>
             <td>{{ insight.longDescription }}</td>
           </tr>
-
         </tbody>
-      
-      
       </table>
-      
-			
-			
             </div>
             
             <br/>

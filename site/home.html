@@ -31,13 +31,13 @@
           <div class="sl-slider">
             <!-- start slide-->
             <div data-orientation="horizontal" data-slice1-rotation="3" data-slice2-rotation="3" data-slice1-scale="2" data-slice2-scale="1" class="sl-slide">
-              <div style="background: url(/site/img/slides/slide1.jpg);" class="sl-slide-inner">
+              <div style="background: url(/site/img/slides/slide13.jpeg);" class="sl-slide-inner">
                 <div class="slide-container">
                   <div class="slide-content text-center">
                     <h2 class="main-title">Terranga is a New Way to <span class="text-primary">Travel</span></h2>
                     <blockquote>
-                      <p>Get off-the-beaten path, connect with locals &amp; support dreams</p>
-                      <a href="site/register" class="btn btn-primary btn-lg">JOIN US</a>
+                      <p>Get off-the-beaten path, make real connections &amp; support dreams</p>
+                      <a href="site/register" class="btn btn-primary btn-lg">HOP ON</a>
                     </blockquote>
                   </div>
                 </div>
@@ -49,10 +49,10 @@
               <div style="background: url(/site/img/slides/slide6.jpg);" class="sl-slide-inner">
                 <div class="slide-container">
                   <div class="slide-content text-center">
-                    <h2 class="main-title">Explore and &nbsp;<span class="text-primary">Experience</span></h2>
+                    <h2 class="main-title">Explore and&nbsp;<span class="text-primary">Experience</span></h2>
                     <blockquote>
                       <p>Discover hidden gems while traveling</p>
-                      <a href="site/register" class="btn btn-light btn-bordered btn-lg">JOIN US</a>
+                      <a href="site/register" class="btn btn-primary btn-lg">JOIN US</a>
                     </blockquote>
                   </div>
                 </div>
@@ -64,7 +64,7 @@
               <div style="background: url(/site/img/slides/slide12.jpeg);" class="sl-slide-inner">
                 <div class="slide-container">
                   <div class="slide-content text-center">
-                    <h2 class="main-title" style="color:#444">Support &nbsp;<span class="text-primary">Dreams</span></h2>
+                    <h2 class="main-title" style="color:#444">Support&nbsp;<span class="text-primary">Dreams</span></h2>
                     <blockquote>
                       <p style="color:#444">Impact the people and places you visit</p>
                       <a href="/site/register" class="btn btn-primary btn-lg">JOIN US</a>
@@ -92,10 +92,14 @@
             <div class="col-md-8 col-md-offset-2">
               <div class="section-title text-center sep-bottom-lg">
                 <br /><br /><br />
-                <h3 class="upper">OUR COMMUNITY IN COLOMBIA</h3>
-                <p class="lead">Terranga is a platform for travelers and locals alike. 
-                A <span style="font-weight:600">global community of culturally curious people, sharing what they love to do in their cities, 
-                and supporting one another&#39s dreams. Welcome to our Colombia pilot!</span></p>
+                <h3 class="upper">We're launching in COLOMBIA!</h3>
+                <p class="lead" style="width:90%;margin-left:auto;margin-right:auto;text-align:center">
+                	 Terranga is growing a network of superstar local leaders eager to meet up with independent-minded travelers. 
+                	 Help us get started in our pilot country of Colombia.
+                </p>
+                 <p class="lead">
+                 	 Who knows where we&#39;ll land next? India, Mongolia, Madagascar...
+                 </p>
               </div>
             </div>
           </div>
@@ -105,17 +109,12 @@
           
             <!-- FEATURED PROFILE -->
             <div ng-repeat="profile in featuredProfiles track by $index" class="col-md-3 sep-bottom-lg">
+            <a href="/site/profile/{{ profile.id }}">
               <div class="featuredProfile">
                 <img src="/site/images/{{ profile.image }}?crop=512" />
-                <h5 style="margin-bottom:0px;"><a style="color:#43AEC6" href="/site/profile/{{ profile.id }}">{{ capitalize(profile.firstName) }}, {{ profile.age }}</a></h5>                
-                <hr style="width:80%;margin-bottom:8px" />
-                <p>
-                  <i class="fa fa-comments-o fa-lg"></i><br />
-                  {{ truncatedText(profile.bio, 70) }}
-                </p>
-                <span><i class="fa fa-map-marker fa-md"></i> {{ capitalize(profile.city) }}, {{ profile.country.toUpperCase() }}</span><br /><br />
-                <a href="/site/profile/{{ profile.id }}" class="btn btn-primary btn-md">Meet {{ capitalize(profile.firstName) }}</a><br /><br />
+                <h5 style="margin-bottom:0px;color:#43AEC6">{{ capitalize(profile.firstName) }}, {{ profile.age }}</h5>                
               </div>
+             </a>
             </div>
             <!-- END FEATURED PROFILE -->
             
@@ -132,9 +131,9 @@
               <div data-wow-delay=".3s" class="icon-box icon-horizontal icon-lg wow bounceInUp">              
                 <img height="140" width="140" style="border-radius:30px" src="/site/img/magnifier.png"/>
                 <div class="icon-box-content">
-                  <h5 class="upper">Search</h5>
+                  <h5 class="upper">Discover</h5>
                   <p class="lead" style="padding:0px 40px 0px 40px">
-                  	our community of locals offering to share what they love to do in their cities. 
+                  	A local superstar sharing their passions. 
                   </p>
                 </div>
               </div>
@@ -143,9 +142,9 @@
               <div data-wow-delay=".4s" class="icon-box icon-horizontal icon-lg wow bounceInUp">
                 <img height="140" width="140" style="border-radius:30px" src="/site/img/speech.png"/>
                 <div class="icon-box-content">
-                  <h5 class="upper">Chat</h5>
+                  <h5 style="color:#1abc9c" class="upper">Connect</h5>
                   <p class="lead" style="padding:0px 40px 0px 40px">
-                  	and coordinate a time and location to meet.
+                  	Figure out when &amp; where. Meet up for a unique adventure.
                   </p>
                 </div>
               </div>
@@ -154,9 +153,9 @@
               <div data-wow-delay=".5s" class="icon-box icon-horizontal icon-lg wow bounceInUp">
                 <img height="140" width="140" style="border-radius:30px" src="/site/img/credit.png"/>
                 <div class="icon-box-content">
-                  <h5 class="upper">Contribute</h5>
+                  <h5 style="color:#1abc9c" class="upper">Support Dreams</h5>
                   <p class="lead" style="padding:0px 40px 0px 40px">
-                  	to locals&#39 dreams in gratitude for their time.
+                  	Contribute to that superstar&#39;s dream (a trip, an education, a chef&#39;s knife).
                   </p>
                 </div>
               </div>
@@ -172,27 +171,31 @@
             <div class="col-md-6 col-md-push-6">
               <div data-wow-delay=".5s" class="wow bounceInRight">
               	<br/>
-              	<img src="site/img/slides/slide9.jpg" class="img-responsive">
+              	<img src="site/img/monk.png" class="img-responsive">
               </div>
             </div>
             <div class="col-md-6 col-md-pull-6">
               <div data-wow-delay=".5s" class="wow bounceInLeft">
                 <h3 class="upper">WE ARE TERRANGA</h3>
                 <p class="lead">
-                  We know that as travelers it&#39s tough to get off the beaten path; you desire to see more than the typical tour, 
-                  you want to feel the uniqueness of the city, and meet people that inspire you. As locals, you have so much to 
-                  offer. You want to share your passions, stories, and love for your city with travelers. And maybe practice a 
-                  new language!
+                  The basic idea is simple (connect two people from different countries). But our goals are huge.
                 </p>
                 <p class="lead">
-                  Terranga helps travelers and locals safely find each other. But we&#39re not about hiring a local guide 
-                  or taking tours with locals. It&#39s about connecting through mutual passions and experiencing what 
-                  others love to do in their city. With Terranga, there is no need to book. Find out what people love 
-                  to do in their cities, establish a rapport through messaging and meet to share the experiences with them.
+                  Terranga helps create a shared experience between two or more people who want to discover something new, 
+                  open their eyes wider, and fill their hearts with gratitude.
                 </p>
                 <p class="lead">
-                  Terranga is unique because we give locals the opportunity to express a dream and travelers the 
-                  opportunity to say thank you by contributing to their dreams.
+                  We have a name for that: Terranga. The word comes from Senegal, where it is commonly said by strangers 
+                  passing on the street. It is best translated as camaraderie, acceptance, and greater understanding.
+                </p>
+                <p class="lead">
+                	Have you ever met someone whose hospitality overwhelmed you (in a good way)? Or who showed you a 
+                	perspective you could have never seen on your own? And then you didn’t know how you could possibly thank them.
+                </p>
+                <p class="lead">
+                	Terranga creates a much-needed way to say THANK YOU. After your adventure, you’ll be given the option 
+                	to contribute to your local partner&#39;s dream &#45; which is sometimes an opportunity to travel for the very 
+                	first time, finish her education, or plant seeds at a community garden.
                 </p>
                 <a href="/site/profiles" class="btn btn-primary btn-lg">Meet Our Locals</a>
               </div>

@@ -29,7 +29,7 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
 	}
 	
 	function fetchPageVersion(){
-		var url = 'http://practice-jake.appspot.com/api/profilePage';
+		var url = '/api/profilePage';
 		$http.get(url).success(function(data, status, headers, config) {
             var confirmation = data['confirmation'];
             console.log('CONFIRMATION: '+JSON.stringify(data));
@@ -62,7 +62,7 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
 			return;
 		}
 		var json = JSON.stringify($scope.newMessage);
-		var url = 'http://practice-jake.appspot.com/api/messages';
+		var url = '/api/messages';
         $http.post(url, json).success(function(data, status, headers, config) {
             var confirmation = data['confirmation'];
             console.log('CONFIRMATION: '+JSON.stringify(data));
@@ -82,7 +82,7 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
 	function fetchMessages(){
 		if ($scope.currentUser.loggedIn=='no')
 			return;
-		var url = 'http://practice-jake.appspot.com/api/messages?senderID='+$scope.currentUser.id+'&recipientID='+$scope.profile.id;
+		var url = '/api/messages?senderID='+$scope.currentUser.id+'&recipientID='+$scope.profile.id;
         $http.get(url).success(function(data, status, headers, config) {
             var confirmation = data['confirmation'];
             console.log('CONFIRMATION: '+JSON.stringify(data));
@@ -103,7 +103,7 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
 	
 	function fetchReviewers(){
 		for (var i=0; i<$scope.profile.reviews.length; i++){
-			var url = 'http://practice-jake.appspot.com/api/profiles/'+$scope.profile.reviews[i].reviewedBy;
+			var url = '/api/profiles/'+$scope.profile.reviews[i].reviewedBy;
 			$http.get(url).success(function(data, status, headers, config) {
 	            var confirmation = data['confirmation'];
 
@@ -122,7 +122,7 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
 	
 	function fetchProfile(profileId){
 		console.log('FETCH PROFILE: '+profileId);
-		var url = 'http://practice-jake.appspot.com/api/profiles/'+profileId;
+		var url = '/api/profiles/'+profileId;
 		$http.get(url).success(function(data, status, headers, config) {
             var confirmation = data['confirmation'];
             console.log('CONFIRMATION : '+ JSON.stringify(data));
@@ -141,7 +141,7 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
     		fetchReviewers();
     		$scope.languages = getLanguages();
     		if ($scope.profile.endorsements[0]!=null){
-    			var url2 = 'http://practice-jake.appspot.com/api/profiles/'+$scope.profile.endorsements[0].endorsedBy;
+    			var url2 = '/api/profiles/'+$scope.profile.endorsements[0].endorsedBy;
     			$http.get(url2).success(function(data, status, headers, config) {
     	            var confirmation = data['confirmation'];
     	            console.log('CONFIRMATION : '+ JSON.stringify(data));
