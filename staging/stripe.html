@@ -1,9 +1,9 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-
+<!-- TEST COMMIT COMMENT -->
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>New Dream</title>
+    <title>Terranga</title>
     
     <link rel="stylesheet" href="/staging/styles/style.css">
     <script src="https://malsup.github.com/jquery.form.js"></script>
@@ -25,29 +25,51 @@
     <script src='/staging/app/register.js'></script>
     <script src='/staging/app/stripe.js'></script>
     
+  <script src="https://checkout.stripe.com/checkout.js"></script>
+    
     
   </head>
 
-  <body ng-app="Terranga" ng-controller="NewDreamController" style="padding:20px" ng-init="init()">
-    <h2>Create New Dream: </h2> 
-    
+  <body ng-app="Terranga" ng-controller="StripeController" style="padding:20px" ng-init="init()">
+    <h2>Terranga: Stripe</h2>
 
     <div class="section">
-    	<input ng-model="dream.profileID" type="text" placeholder="COMPOSED BY: (profileID)"><br /><br />
-    	<input ng-model="dream.title" type="text" placeholder="TITLE: "><br /><br />
-      	<textarea ng-model="dream.description"  placeholder="DESCRIPTION:" rows="20" style="width:100%; padding-left:16px; padding-top:8px"></textarea>
-     	<br /><br /><br />
-        <button ng-click="sendDream()">New Dream</button>     	
-
+      <h2 style="margin-top:0px">Menu</h2>
+      
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><a href="/staging/about">About</a></li>
+        <li><a href="/staging/profiles">Featured Profiles</a></li>
+        <li><a href="/staging/register">Join Us</a></li>
+      </ol>
+      
     </div>
     
     <br /><br />
+    
+    
+    <div class="section" ng-show="currentUser.loggedIn == 'no'">
+      <h2 style="margin-top:0px">Log In</h2>
+      <input ng-model="currentUser.email" type="text" placeholder="Email"><br /><br />
+      <input ng-model="currentUser.password" type="password" placeholder="Password"><br /><br />
+      <button ng-click="login()">Log In</button>
+    </div>
+    
+    <br /><br />
+
+    <div class="section" ng-show="currentUser.loggedIn == 'yes'">
+      <h2 style="margin-top:0px">Profile</h2>
+	  <div>
+	    You Don't Have a Card Yet.<br /><br />
+	    <button style="width:160px" class="btn-green" id="stripeButton">+ Add Card</button>
+	    <br /><br />
+	  </div>
+    </div>
+    
     <br /><br />
     
-  
+	<script src="/site/js/stripeHandler.js"></script>
   </body>
-  
-  
   
   
   
