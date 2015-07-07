@@ -5,8 +5,48 @@
   
   <body ng-app="Terranga" ng-controller="AccountController" ng-init="init()">
   <div class="loading-overlay" ng-show="loading">
-      <div spinner spin="loading"></div>
+  	<div spinner spin="loading"></div>
+  </div>
+  
+  <!-- Insight Modal -->
+<div class="modal fade" id="insightsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div style="width:60%" class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="border:none">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <div class="social" style="text-align:center">
+            <img style="width:160px" src="/site/img/logo-dark.png" alt=""><br /><br />            
+            <hr /><br />
+			<div>
+		      <table class="table table-striped" style="width:80%;margin-left:auto;margin-right:auto">
+		        <thead>
+		          <tr>
+		            <td><strong>Category</strong></td>
+		            <td><strong>Title</strong></td>
+		            <td><strong>Description</strong></td>
+		          </tr>
+		        </thead>
+		        <tbody>
+		          <tr ng-repeat="insight in currentUser.insights track by $index">
+		            <td>{{ insight.categoryTag }}</td>
+		            <td>{{ insight.description }}</td>
+		            <td>{{ insight.longDescription }}</td>
+		          </tr>
+		        </tbody>
+		      </table>
+            </div>
+            <br/>
+          </div>
+      	</div>
+        <div style="width:100%;text-align:center;padding:40px;border-bottom-left-radius:6px;border-bottom-right-radius:6px;background:#ddd">
+          <input ng-model="newInsight.category" type="text" style="width:60%;margin-left:auto;margin-right:auto" class="form-control" placeholder="Category" /><br />
+          <textarea ng-model="newInsight.description" class="form-control" style="height:96px;width:60%;margin-left:auto;margin-right:auto" placeholder="Title"></textarea><br />
+          <textarea ng-model="newInsight.longDescription" class="form-control" style="height:96px;width:60%;margin-left:auto;margin-right:auto" placeholder="Description"></textarea><br /><br />
+          <button  ng-click="addInsight()" type="button" class="btn btn-info btn-bordered">Add Insight</button>
+        </div>
     </div>
+  </div>
+</div>			
     
     <div id="load"></div><!--[if lt IE 9]>
     <p class="browsehappy">You are using an strong outdated browser. <br>Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -94,7 +134,9 @@
 	                  
                   <br/><br/>
                   <div style="margin-left:auto;margin-right:auto;text-align:center;height:60px;width:60%;border:1px solid #ddd;background:url('/site/img/insights/tiles/culture.jpg')">
-                  	<h5 style="color:white;margin-top:20px">Build your Insights</h5>
+                  	<a data-toggle="modal" data-target="#insightsModal" href="">
+                  		<h5 style="color:white;margin-top:20px">Build your Insights</h5>
+                  	</a>
                   </div>
                   <br/>
                   <div style="margin-left:auto;margin-right:auto;text-align:center;height:60px;width:60%;border:1px solid #ddd;background:url('/site/img/insights/tiles/outdoors.jpg')">
