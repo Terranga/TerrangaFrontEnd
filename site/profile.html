@@ -269,12 +269,12 @@
 	              </div>
 	              <div class="row">
 	              	<div class="col-md-6"style="height:180px;width:100%;background:rgba(0,0,0,.8);margin-top:20px;margin-left:auto;margin-right:auto;">
+	              		<p ng-if="endorser!=null" style="margin-top:5px;font-weight:300;font-size:1.4em">Endorsed by {{ capitalize(endorser.firstName) }}</p>
 	              		<div ng-if="endorser!=null" class="col-md-4">
-		              		<p style="margin-top:5px;font-weight:300;font-size:1.4em">Endorsed by {{ capitalize(endorser.firstName) }}</p>
 		              		<a href="/site/profile/{{ endorser.id }}"><img style="height:110px;width:110px;border:1px solid #ddd;border-radius:55px"src="/site/images/{{ endorser.image }}?crop=256"/></a>
 	              		</div>
 	              		<div ng-if="endorser!=null" class="col-md-6">
-	              			<p style="margin-top:40px;font-weight:300;font-size:1.2em">
+	              			<p style="font-weight:300;font-size:1.2em">
 	              				{{ profile.endorsements[0].description }}
 	              			</p>
 	              		</div>

@@ -333,7 +333,7 @@
         <tbody>
           <tr ng-repeat="profile in featuredProfiles track by $index">
             <td><a ng-click="viewProfile($index)" data-toggle="modal" data-target="#profileModal" href="">{{ profile.firstName }} {{ profile.lastName }}</a></td>
-            <td>{{ profile.email }}</td>
+            <td><a target="_blank" href="/site/profile/{{ profile.id }}">{{ profile.email }}</a></td>
             <td>{{ profile.isFeatured }}</td>
             <td>{{ profile.city }}</td>
             <td>{{ profile.country }}</td>
