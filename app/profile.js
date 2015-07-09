@@ -28,6 +28,14 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
 		
 	}
 	
+	$scope.checkLogin = function(){
+		if ($scope.currentUser.loggedIn=="no"){
+			console.log("NOT LOGGED IN")
+			alert("Create a profile to send a message");
+			return;
+		}
+	}
+	
 	function fetchPageVersion(){
 		var url = '/api/profilePage';
 		$http.get(url).success(function(data, status, headers, config) {

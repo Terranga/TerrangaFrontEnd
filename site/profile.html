@@ -5,14 +5,14 @@
   
   <body ng-app="Terranga" ng-controller="ProfileController" ng-init="init()">
 <!-- Message Modal -->
-<div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div ng-if="currentUser.loggedIn!='no'" class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div style="width:60%" class="modal-dialog">
     <div class="modal-content">
       <button type="button" class="close" data-dismiss="modal"><span style="margin-right:5px;" aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 		<div style="background:rgba(249, 249, 249, 0.96);border:1px solid #ddd;padding:0px;min-height:500px;">
           <div style="text-align:center;">
             <br/>
-            	<h4 style="margin-top:0px">Say hello!</h4>
+            	<h4 style="margin-top:0px">Don&#39;t be shy, say hi!</h4>
           </div>
           <br/>
 		<div style="height:400px;width:90%;background:rgba(0,179,255,0.2);margin-left:auto;margin-right:auto;">
@@ -162,11 +162,11 @@
               <h2 class="light small-space" style="font-weight:600">{{ capitalize(profile.firstName) }},&nbsp;{{ profile.age }}</h2>
               <img style="width:240px;height:240px;border:2px solid #ddd;border-radius:120px" src="/site/images/{{ profile.image }}?crop=256"/><br /><br />
               <div ng-if="profile.type=='traveler'">
-              	<img style="height:60px;float:right" src="/site/img/local-icon-dark.png"/>
+              	<img style="height:60px;float:right" src="/site/img/local-icon-new-dark.png"/>
               	<img style="height:60px;float:right" src="/site/img/traveler-icon.png"/>
               </div>
               <div ng-if="profile.type=='local'">
-              	<img style="height:60px;float:right" src="/site/img/local-icon.png"/>
+              	<img style="height:60px;float:right" src="/site/img/local-icon-new.png"/>
               	<img style="height:60px;float:right" src="/site/img/traveler-icon-dark.png"/>
               </div>
               <p style="text-transform:none;color:white;margin-left:10%;font-weight:300;font-size:1.2em">
@@ -227,7 +227,7 @@
 	          </div>
 	          
 	          <div class="col-md-2" style="margin-top:1%;">
-	          	<a href="#" style="color:#1abc9c" data-toggle="modal" data-target="#messageModal"><i class="fa fa-comments fa-3x"></i></a>
+	          	<a ng-click="checkLogin()" href="#" style="color:#1abc9c" data-toggle="modal" data-target="#messageModal"><i class="fa fa-comments fa-3x"></i></a>
 	          </div>
 	            
 	            
@@ -269,11 +269,11 @@
 	              </div>
 	              <div class="row">
 	              	<div class="col-md-6"style="height:180px;width:100%;background:rgba(0,0,0,.8);margin-top:20px;margin-left:auto;margin-right:auto;">
-	              		<div class="col-md-4">
+	              		<div ng-if="endorser!=null" class="col-md-4">
 		              		<p style="margin-top:5px;font-weight:300;font-size:1.4em">Endorsed by {{ capitalize(endorser.firstName) }}</p>
 		              		<a href="/site/profile/{{ endorser.id }}"><img style="height:110px;width:110px;border:1px solid #ddd;border-radius:55px"src="/site/images/{{ endorser.image }}?crop=256"/></a>
 	              		</div>
-	              		<div class="col-md-6">
+	              		<div ng-if="endorser!=null" class="col-md-6">
 	              			<p style="margin-top:40px;font-weight:300;font-size:1.2em">
 	              				{{ profile.endorsements[0].description }}
 	              			</p>
