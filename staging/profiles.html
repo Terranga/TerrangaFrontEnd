@@ -113,6 +113,7 @@
             <td><strong>Category</strong></td>
             <td><strong>Description</strong></td>
             <td><strong>Long Description</strong></td>
+            <td></td>
           </tr>
         </thead>
         <tbody>
@@ -120,6 +121,7 @@
             <td>{{ insight.categoryTag }}</td>
             <td>{{ insight.description }}</td>
             <td>{{ insight.longDescription }}</td>
+            <td><button ng-click="deleteInsight($index)" type="button" class="btn btn-danger btn-xs btn-bordered">Delete</button></td>
           </tr>
         </tbody>
       </table>
@@ -130,7 +132,7 @@
       </div>
       
         <div style="width:100%;text-align:center;padding:40px;border-bottom-left-radius:6px;border-bottom-right-radius:6px;background:#ddd">
-          <input ng-model="insight.category" type="text" style="width:60%;margin-left:auto;margin-right:auto" class="form-control" placeholder="Category" /><br />
+          <select ng-model="insight.category" style="width:60%;margin-left:auto;margin-right:auto" class="form-control"><option ng-repeat="category in categories track by $index" value="{{ category }}">{{ capitalize(category) }}</option></select><br />
           <textarea ng-model="insight.description" class="form-control" style="height:96px;width:60%;margin-left:auto;margin-right:auto" placeholder="Description"></textarea><br />
           <textarea ng-model="insight.longDescription" class="form-control" style="height:96px;width:60%;margin-left:auto;margin-right:auto" placeholder="Long Description"></textarea><br /><br />
           <a ng-click="addInsight()" style="color:#000;background-color:red;padding:16px;border:1px solid #ddd;">Add Insight</a>
@@ -161,6 +163,7 @@
             <td><strong>Fundraising Goal</strong></td>
             <td><strong>Description</strong></td>
             <td><strong>Long Description</strong></td>
+            <td></td>
           </tr>
         
         </thead>
@@ -171,6 +174,7 @@
             <td>{{ dream.fundraisingGoal }}</td>
             <td>{{ dream.description }}</td>
             <td>{{ dream.longDescription }}</td>
+            <td><td><button ng-click="deleteDream($index)" type="button" class="btn btn-danger btn-xs btn-bordered">Delete</button></td></td>
           </tr>
 
         </tbody>
@@ -187,7 +191,7 @@
       </div>
       
         <div style="width:100%;text-align:center;padding:40px;border-bottom-left-radius:6px;border-bottom-right-radius:6px;background:#ddd">
-          <input ng-model="dream.title" type="text" style="width:60%;margin-left:auto;margin-right:auto" class="form-control" placeholder="Category" /><br />
+          <select ng-model="dream.title" style="width:60%;margin-left:auto;margin-right:auto" class="form-control"><option ng-repeat="category in categories track by $index" value="{{ category }}">{{ capitalize(category) }}</option></select><br />
           <input ng-model="dream.fundraisingGoal" type="text" style="width:60%;margin-left:auto;margin-right:auto" class="form-control" placeholder="Fundraising Goal" /><br />
           <textarea ng-model="dream.description" class="form-control" style="height:96px;width:60%;margin-left:auto;margin-right:auto" placeholder="Description"></textarea><br />
           <textarea ng-model="dream.longDescription" class="form-control" style="height:96px;width:60%;margin-left:auto;margin-right:auto" placeholder="Long Description"></textarea><br /><br />

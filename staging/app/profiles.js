@@ -5,6 +5,7 @@ app.controller('ProfilesController', ['$scope', '$http', function($scope, $http)
 	$scope.currentUser = {'loggedIn':'no'};
 	$scope.featuredProfiles = null;
 	$scope.selectedProfile = {'firstName':'', 'lastName':'', 'age':'', 'city':'', 'country':'', 'bio':[], 'homeCity':'', 'homeCountry':'', 'profession':'', 'languages':[], 'points':'', 'hashtags':[]}; // insert empty values so angular doesn't freak out
+	$scope.categories = ['art','culture','food','education','outdoors','sightseeing','sports'];
 	$scope.insight = {'description':'', 'longDescription':'' , 'category':''};
 	$scope.dream = {'title':'','fundraisingGoal':'', 'description':'', 'longDescription':''};
 	$scope.endorsement = {'endorsedBy':'', 'description':''};
@@ -139,8 +140,28 @@ app.controller('ProfilesController', ['$scope', '$http', function($scope, $http)
         }).error(function(data, status, headers, config) {
             console.log("error", data, status, headers, config);
         });
+	}
+	
+	$scope.deleteInsight = function(index){
 		
+		var insightId = $scope.selectedProfile.insights[index].id;
+		var url = '/api/insights/'+insightId;
+		console.log("DELETE INSIGHT: "+ insightId);
 		
+		$http.delete(url).success(function(data, status, headers, config) {
+            var confirmation = data['confirmation'];
+            console.log('CONFIRMATION: '+JSON.stringify(data));
+
+            if (confirmation != 'success'){
+                alert(data['message']);
+                return;
+            }
+            
+            $scope.selectedProfile.insights.splice(index, 1);
+            
+        }).error(function(data, status, headers, config) {
+            console.log("error", data, status, headers, config);
+        });
 	}
 	
 	
@@ -171,8 +192,28 @@ app.controller('ProfilesController', ['$scope', '$http', function($scope, $http)
         }).error(function(data, status, headers, config) {
             console.log("error", data, status, headers, config);
         });
+	}
+	
+	$scope.deleteDream = function(index){
 		
+		var dreamId = $scope.selectedProfile.dreams[index].id;
+		var url = '/api/dreams/'+dreamId;
+		console.log("DELETE DREAM: "+ dreamId);
 		
+		$http.delete(url).success(function(data, status, headers, config) {
+            var confirmation = data['confirmation'];
+            console.log('CONFIRMATION: '+JSON.stringify(data));
+
+            if (confirmation != 'success'){
+                alert(data['message']);
+                return;
+            }
+            
+            $scope.selectedProfile.dreams.splice(index, 1);
+            
+        }).error(function(data, status, headers, config) {
+            console.log("error", data, status, headers, config);
+        });
 	}
 	
 	
