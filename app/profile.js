@@ -31,7 +31,7 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
 	$scope.checkLogin = function(){
 		if ($scope.currentUser.loggedIn=="no"){
 			console.log("NOT LOGGED IN")
-			alert("Create a profile to send a message");
+			alert("Please log in or create a profile first.");
 			return;
 		}
 	}
