@@ -1,12 +1,98 @@
 <!DOCTYPE html>
 <html class="no-js">
-  {{ head }}
+<head>{{ head }}</head>
   
   
   <body ng-app="Terranga" ng-controller="AccountController" ng-init="init()">
   <div class="loading-overlay" ng-show="loading">
-      <div spinner spin="loading"></div>
+  	<div spinner spin="loading"></div>
+  </div>
+  
+  <!-- Insight Modal -->
+<div class="modal fade" id="insightsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div style="width:60%" class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="border:none">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <div class="social" style="text-align:center">
+            <img style="width:160px" src="/site/img/logo-dark.png" alt=""><br /><br />            
+            <hr /><br />
+			<div>
+		      <table class="table table-striped" style="width:80%;margin-left:auto;margin-right:auto">
+		        <thead>
+		          <tr>
+		            <td><strong>Category</strong></td>
+		            <td><strong>Title</strong></td>
+		            <td><strong>Description</strong></td>
+		            <td></td>
+		          </tr>
+		        </thead>
+		        <tbody>
+		          <tr ng-repeat="insight in currentUser.insights track by $index">
+		            <td>{{ insight.categoryTag }}</td>
+		            <td>{{ insight.description }}</td>
+		            <td>{{ insight.longDescription }}</td>
+		            <td><button ng-click="deleteInsight($index)" type="button" class="btn btn-danger btn-xs btn-bordered">Delete</button></td>
+		          </tr>
+		        </tbody>
+		      </table>
+            </div>
+            <br/>
+          </div>
+      	</div>
+        <div style="width:100%;text-align:center;padding:40px;border-bottom-left-radius:6px;border-bottom-right-radius:6px;background:#ddd">
+          <select ng-model="newInsight.category" style="width:60%;margin-left:auto;margin-right:auto" class="form-control"><option ng-repeat="category in categories track by $index" value="{{ category }}">{{ capitalize(category) }}</option></select><br />
+          <textarea ng-model="newInsight.description" class="form-control" style="height:40px;width:60%;margin-left:auto;margin-right:auto" placeholder="Title"></textarea><br />
+          <textarea ng-model="newInsight.longDescription" class="form-control" style="height:96px;width:60%;margin-left:auto;margin-right:auto" placeholder="Description"></textarea><br /><br />
+          <button  ng-click="addInsight()" type="button" class="btn btn-info btn-bordered">Add Insight</button>
+        </div>
     </div>
+  </div>
+</div>			
+
+ <!-- Dream Modal -->
+<div class="modal fade" id="dreamsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div style="width:60%" class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="border:none">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <div class="social" style="text-align:center">
+            <img style="width:160px" src="/site/img/logo-dark.png" alt=""><br /><br />            
+            <hr /><br />
+			<div>
+		      <table class="table table-striped" style="width:80%;margin-left:auto;margin-right:auto">
+		        <thead>
+		          <tr>
+		            <td><strong>Category</strong></td>
+		            <td><strong>Title</strong></td>
+		            <td><strong>Description</strong></td>
+		            <td><strong>Fundraising Goal</strong></td>
+		          </tr>
+		        </thead>
+		        <tbody>
+		          <tr ng-repeat="dream in currentUser.dreams track by $index">
+		            <td>{{ capitalize(dream.title) }}</td>
+		            <td>{{ dream.description }}</td>
+		            <td>{{ dream.longDescription }}</td>
+		            <td>${{ dream.fundraisingGoal }}</td>
+		            <td><button ng-click="deleteDream($index)" type="button" class="btn btn-danger btn-xs btn-bordered">Delete</button></td>
+		          </tr>
+		        </tbody>
+		      </table>
+            </div>
+            <br/>
+          </div>
+      	</div>
+        <div style="width:100%;text-align:center;padding:40px;border-bottom-left-radius:6px;border-bottom-right-radius:6px;background:#ddd">
+          <select ng-model="newDream.title" style="width:60%;margin-left:auto;margin-right:auto" class="form-control"><option ng-repeat="category in categories track by $index" value="{{ category }}">{{ capitalize(category) }}</option></select><br />
+          <input ng-model="newDream.fundraisingGoal" style="width:60%;margin-left:auto;margin-right:auto" type="text" placeholder="Fundraising Goal" class="form-control input-lg"><br/>
+          <textarea ng-model="newDream.description" class="form-control" style="height:40px;width:60%;margin-left:auto;margin-right:auto" placeholder="Title"></textarea><br />
+          <textarea ng-model="newDream.longDescription" class="form-control" style="height:96px;width:60%;margin-left:auto;margin-right:auto" placeholder="Description"></textarea><br /><br />
+          <button  ng-click="addDream()" type="button" class="btn btn-info btn-bordered">Add Dream</button>
+        </div>
+    </div>
+  </div>
+</div>			
     
     <div id="load"></div><!--[if lt IE 9]>
     <p class="browsehappy">You are using an strong outdated browser. <br>Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -29,8 +115,8 @@
       
       
       <!-- Start Contact section-->
-		<div class="container" style="padding-top:20px;background-image:url('/site/img/slides/slide3.jpg');width:100%;height:990px">
-          <div class="col-md-4" style="background:rgba(249, 249, 249, 0.96);border:1px solid #ddd;padding:0px;min-height:950px;">
+		<div class="container" style="padding-top:20px;background-image:url('/site/img/slides/slide3.jpg');width:100%;height:900px">
+          <div class="col-md-4" style="background:rgba(249, 249, 249, 0.96);border:1px solid #ddd;padding:0px;min-height:860px;">
             <div style="text-align:center;">
               <br/>
               <h4 style="margin-top:0px">Manage Profile</h4>
@@ -41,28 +127,30 @@
 
 					<p style="padding:20px">Drop image file here to update profile picture.</p>
                </div>                
-              <br/><hr/>
+              <hr/>
             </div>
-            <br/>
             <div style="padding-left:30px;padding-right:30px">
-	            <label class="upper">Name</label>
-	            <input ng-model="name" type="text" placeholder="First & Last Name" class="form-control input-lg">
+	          
                 <label class="upper" style="margin-top:10px">Age</label>
                 <select class="form-control input-lg" ng-model="currentUser.age" >
                 	<option ng-repeat="age in ages track by $index" value= "{{ age }}" >{{ age }}</option>
                 </select>
-                <label class="upper" style="margin-top:10px">City</label>
-                <input ng-model="currentUser.city" type="text" placeholder="City" class="form-control input-lg">
-                <label class="upper" style="margin-top:10px">Country</label>
+                <label class="upper" style="margin-top:10px">Current City</label>
+                <input ng-model="currentUser.city" type="text" placeholder="Current City" class="form-control input-lg">
+                <label class="upper" style="margin-top:10px">Current Country</label>
                 <select class="form-control input-lg" ng-model="currentUser.country" >
                 	<option ng-repeat="country in countries track by $index" value= "{{ country }}" >{{ capitalize(country) }}</option>
                 </select>
-                <label class="upper" style="margin-top:10px">Phone</label>
-                <input ng-model="currentUser.phone" type="text" placeholder="Phone" class="form-control input-lg">
-                <label class="upper" style="margin-top:10px">Email</label>
-                <input ng-model="currentUser.email" type="text" placeholder="Email" class="form-control input-lg">
-                <label class="upper" style="margin-top:10px">Password</label>
-                <input ng-model="currentUser.password" type="password" placeholder="Password" class="form-control input-lg">
+                <label class="upper" style="margin-top:10px">Home City</label>
+                <input ng-model="currentUser.homeCity" type="text" placeholder="Home City" class="form-control input-lg">
+                <label class="upper" style="margin-top:10px">Home Country</label>
+                <select class="form-control input-lg" ng-model="currentUser.homeCountry" >
+                	<option ng-repeat="country in countries track by $index" value= "{{ country }}" >{{ capitalize(country) }}</option>
+                </select>
+                <label class="upper" style="margin-top:10px">Languages</label>
+                <input ng-model="languages" type="text" placeholder="Langugages" class="form-control input-lg">
+                <label class="upper" style="margin-top:10px">Occupation</label>
+                <input ng-model="currentUser.profession" type="text" placeholder="Occupation" class="form-control input-lg">
             </div>
           </div>
             
@@ -72,28 +160,56 @@
               
                 <div style="width:90%;height:90%;background:rgba(255, 255, 255, 0.96);margin-left:auto;margin-right:auto;">
                   <div style="height:80px;background:#f1f1f1;text-align:center;padding-top:18px;border:1px solid #ddd">
-                    <h4 style="color:#444">Bio Details</h4>
+                    <h4 style="color:#444">Mad Lib Yourself</h4>
                   </div>
                   <br />
-                  <div>
-                  	<table style="margin-left:auto;margin-right:auto">
-                  		<tbody>
-                  			<tr>
-                  				<td style="padding-right:20px;width:300px">
-                  					<label class="upper">Bio</label>
-	                  				<textarea ng-model="currentUser.bio" placeholder="Bio" rows="20" class="form-control input-lg"></textarea>
-                  				</td>
-                  				<td style="padding-left:20px;width:300px">
-	                  				<label class="upper">Dream</label>
-		                  			<textarea ng-model="currentUser.dream" placeholder="Dream" rows="20" class="form-control input-lg"></textarea>
-	                  			</td>
-                  			</tr>
-                  		</tbody>
-                  	</table>
-					<div style="margin-left:auto;margin-right:auto;text-align:center;padding-top:40px">
-               			<button style="width:200px;height:60px"ng-click="updateCurrentUser()" class="btn btn-primary">UPDATE</button>
-               		</div>                  	
+                  <div class="row" style="width:95%;margin-left:auto;margin-right:auto">
+	                  <div class="col-md-3">
+	                	<input ng-model="currentUser.bio[0]" type="text" placeholder="My name" class="form-control input-lg">
+	                  </div>
+	                  <div class="col-md-3">
+	                	<input ng-model="currentUser.bio[1]" type="text" placeholder="My unique hobby" class="form-control input-lg">
+	                  </div>
+	                  <div class="col-md-3">
+	                	<input ng-model="currentUser.bio[2]" type="text" placeholder="I spend free time" class="form-control input-lg">
+	                  </div>
+	                  <div class="col-md-3">
+	                	<input ng-model="currentUser.bio[3]" type="text" placeholder="One random fact is" class="form-control input-lg">
+	                  </div>
                   </div>
+	                  
+                  <br/><br/>
+                  <div style="margin-left:auto;margin-right:auto;text-align:center;height:60px;width:60%;border:1px solid #ddd;background:url('/site/img/insights/tiles/culture.jpg')">
+                  	<a data-toggle="modal" data-target="#insightsModal" href="">
+                  		<h5 style="color:white;margin-top:20px">Build your Insights</h5>
+                  	</a>
+                  </div>
+                  <br/>
+                  <div style="margin-left:auto;margin-right:auto;text-align:center;height:60px;width:60%;border:1px solid #ddd;background:url('/site/img/insights/tiles/outdoors.jpg')">
+                  	<a data-toggle="modal" data-target="#dreamsModal" href="">
+                  		<h5 style="color:white;margin-top:20px">Build your Dreams</h5>
+                  	</a>
+                  </div>
+                  <br/><br/>
+                  
+                  
+                  
+                  <h4 style="text-align:center">Hash Tag Yourself</h4>
+                  <br/>
+                  <div style="margin-left:auto;margin-right:auto;background:white;border:1px solid #ddd;height:100px;width:70%">
+                  	<p style="text-align:center;margin-top:10px"><span ng-repeat="hashtag in currentUser.hashtags" style="color:#75ACFF">{{ hashtag }}&nbsp;</span></p>
+                  </div>
+                  <div style="text-align:center;margin-top:5px;width:15%;margin-left:auto;margin-right:auto">
+                	<input ng-model="newHashtag" type="text" placeholder="#HashTag" class="form-control input-lg">
+                	<button style="margin-top:5px" ng-click="addHashtag()" class="btn btn-primary btn-xs">Add</button>
+                  </div>
+                  
+                  
+                  
+                  
+				<div style="margin-left:auto;margin-right:auto;text-align:center;padding-top:40px">
+              		<button ng-click="updateCurrentUser()" class="btn btn-primary btn-lg">Update</button>
+              	</div>                  	
                   
                   <br /><br /><br />
 
