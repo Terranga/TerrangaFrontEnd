@@ -104,7 +104,9 @@
         <div class="section-shade sep-top-3x sep-bottom-2x">
           <div class="container">
             <div class="section-title upper text-center">
-              <h2 class="light small-space">Your&nbsp;<span class="text-primary">Profile</span></h2>
+              <a href="/site/profile/{{ currentUser.id }}">
+             	<h2 class="light small-space">Your&nbsp;<span class="text-primary">Profile</span></h2>
+              </a>
               <p class="lead light">Press update to save changes.</p>
               <img style="width:80px;height:80px;border-radius:40px;border:2px solid #ddd;" src='/site/images/{{ currentUser.image }}?crop=256'/>
             </div>
@@ -147,7 +149,7 @@
                 <select class="form-control input-lg" ng-model="currentUser.homeCountry" >
                 	<option ng-repeat="country in countries track by $index" value= "{{ country }}" >{{ capitalize(country) }}</option>
                 </select>
-                <label class="upper" style="margin-top:10px">Languages</label>
+                <label class="upper" style="margin-top:10px">Languages (Comma-Seperated)</label>
                 <input ng-model="languages" type="text" placeholder="Langugages" class="form-control input-lg">
                 <label class="upper" style="margin-top:10px">Occupation</label>
                 <input ng-model="currentUser.profession" type="text" placeholder="Occupation" class="form-control input-lg">
@@ -197,7 +199,12 @@
                   <h4 style="text-align:center">Hash Tag Yourself</h4>
                   <br/>
                   <div style="margin-left:auto;margin-right:auto;background:white;border:1px solid #ddd;height:100px;width:70%">
-                  	<p style="text-align:center;margin-top:10px"><span ng-repeat="hashtag in currentUser.hashtags" style="color:#75ACFF">{{ hashtag }}&nbsp;</span></p>
+                  	<p style="text-align:center;margin-top:10px">
+                  		<span ng-repeat="hashtag in currentUser.hashtags track by $index" style="color:#75ACFF">
+                  			{{ hashtag }}&nbsp;
+                  			<button ng-click="deleteHashtag($index)" type="button" class="btn btn-danger btn-xs btn-bordered">X</button>
+                  		</span>
+                  	</p>
                   </div>
                   <div style="text-align:center;margin-top:5px;width:15%;margin-left:auto;margin-right:auto">
                 	<input ng-model="newHashtag" type="text" placeholder="#HashTag" class="form-control input-lg">

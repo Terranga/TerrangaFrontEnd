@@ -43,6 +43,10 @@
             <img style="width:160px" src="/site/img/logo-dark.png" alt=""><br /><br />
             <img style="width:84px;border-radius:42px;border:1px solid #ddd" src="/site/images/{{ selectedProfile.image }}?crop=256" />
             <h4 style="font-size:18px">{{ capitalize(selectedProfile.firstName) }} {{ capitalize(selectedProfile.lastName) }}</h4>
+            <select ng-model="selectedProfile.type" style="width:40%;margin-left:auto;margin-right:auto" class="form-control">
+              <option value="traveler">Traveler</option>
+              <option value="local">Local</option>
+            </select><br />
             <input ng-model="selectedProfile.city" type="text" style="width:40%;margin-left:auto;margin-right:auto" class="form-control" placeholder="City" /><br />
             <input ng-model="selectedProfile.country" type="text" style="width:40%;margin-left:auto;margin-right:auto" class="form-control" placeholder="Country" /><br />
             <input ng-model="selectedProfile.homeCity" type="text" style="width:40%;margin-left:auto;margin-right:auto" class="form-control" placeholder="Home City" /><br />

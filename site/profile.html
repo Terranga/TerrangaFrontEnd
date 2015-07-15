@@ -183,13 +183,13 @@
       
       <!-- Start Contact section-->
 		<div class="container" style="padding-top:10px;background-image:url('/site/img/bogota.JPG');width:100%;min-height:1000px">
-		  <div class="col-md-12"style="height:180px;margin-left:auto;margin-right:auto;background:rgba(0,0,0,.8);padding-top:10px">
+		  <div class="col-md-12"style="min-height:180px;margin-left:auto;margin-right:auto;background:rgba(0,0,0,.8);padding-top:10px">
 		  	
 		  	<div class="col-md-3" style="margin-left:15%;">
            		<p style="font-weight:400;font-size:50px">{{ profile.points }}<span style="padding-left:3px;font-size:18px">points</span></p>
 	        </div>
 		  	
-		  	<div class="col-md-4" style="margin-top:1%;">
+		  	<div class="col-md-4" style="margin-top:1%;text-align:left">
 		  		<table>
 		  			<tbody>
 		  				<tr>
@@ -228,8 +228,14 @@
 		  		</table>
 	          </div>
 	          
-	          <div class="col-md-2" style="margin-top:1%;">
-	          	<a ng-click="checkLogin()" href="#" style="color:#1abc9c" data-toggle="modal" data-target="#messageModal"><i class="fa fa-comments fa-3x"></i></a>
+	          <div class="col-md-3" style="margin-top:1%;">
+	          	<a ng-click="checkLogin()" href="#" style="color:#1abc9c" data-toggle="modal" data-target="#messageModal">
+	          	<div style="padding:5px 20px 5px 20px;border:1px solid #ddd;width:80px;border-radius:5px">
+		          	<i class="fa fa-comments fa-3x"></i>
+		          	<h6 style="margin-left:2px;color:#75ACFF">Chat</h6>
+	          	</div>
+	          	</a>
+	          	<br/>
 	          </div>
 	            
 	            
