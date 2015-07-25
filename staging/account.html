@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- TEST COMMIT COMMENT -->
+<html>
+  <head>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Terranga</title>
+    <meta name="description" content="Home Page e-shop version">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="icon" type="image/png" href="http://www.terranga-org.appspot.com/favicon.png">
+    
+    <script src="../site/scripts/vendor/modernizr.js"></script>
+    <script src="../site/js/jquery.js"></script>
+	<script src="../site/js/knob.js"></script>
+	<script src="../site/js/spin.js"></script> 
+	<script src="../site/js/moment.js"></script>
+	<script src="../site/js/pi.init.tab.js"></script>
+    
+    
+    <!-- ANGULAR! -->
+    <script src="https://malsup.github.com/jquery.form.js"></script>
+    <script src="../site/js/fileupload/angular-file-upload-shim.js"></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js'></script>
+    <script src="https://code.angularjs.org/1.2.20/angular-sanitize.min.js"></script>
+    <script src="../site/js/fileupload/angular-file-upload.js"></script>
+    
+    
+    <script src='../app/app.js'></script>
+    <script src='../app/home.js'></script>
+    <script src='../app/profile.js'></script>
+    <script src='../app/profiles.js'></script>
+	<script src='../app/register.js'></script>
+	<script src='../app/account.js'></script>    
+
+  </head>
+
+  <body ng-app="Terranga" ng-controller="AccountController" style="padding:20px" ng-init="init()">
+    <h2>Welcome to Terranga</h2>
+    <button ng-click="fetchMessages()">CLICK</button>
+    
+    <p ng-repeat="message in messages track by $index">
+    	Timestamp: {{ message.timestamp }} Recipient: {{ message.recipientID }} Sender: {{ message.senderID }}
+    </p>
+
+  </body>
+  
+  
+  
+  
+  
+</html>
