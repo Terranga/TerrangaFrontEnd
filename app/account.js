@@ -9,14 +9,37 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
 	$scope.newInsight = {'category':'', 'description':'', 'longDescription':''};
 	$scope.newDream = {'title':'', 'description':'', 'longDescription':'', 'funcraisingGoal':''};
 	$scope.countries = ['united states','afghanistan', 'albania', 'algeria', 'american samoa', 'andorra', 'angola', 'anguilla', 'antigua and barbuda', 'argentina', 'armenia', 'aruba', 'australia', 'austria', 'azerbaijan', 'bangladesh', 'barbados', 'bahamas', 'bahrain', 'belarus', 'belgium', 'belize', 'benin', 'bermuda', 'bhutan', 'bolivia', 'bosnia and herzegovina', 'boswana', 'brazil', 'british indian ocean territory', 'british virgin islands', 'brunei darussalam', 'bulgaria', 'burkina faso', 'burma', 'burundi', 'cambodia', 'cameroon', 'canada', 'cape verde', 'cayman islands', 'central african republic', 'chad', 'chile', 'china', 'christmas island', 'cocos (keeling) islands', 'colombia', 'comoros', 'congo-brazzaville', 'congo-kinshasa', 'cook islands', 'costa rica', 'croatia', 'cyprus', 'czech republic', 'denmark', 'djibouti', 'dominica', 'dominican republic', 'east timor', 'ecuador', 'el salvador', 'egypt', 'equatorial guinea', 'eritrea', 'estonia', 'ethiopia', 'falkland islands', 'faroe islands', 'federated states of micronesia', 'fiji', 'finland', 'france', 'french guiana', 'french polynesia', 'french southern lands', 'gabon', 'gambia', 'georgia', 'germany', 'ghana', 'gibraltar', 'greece', 'greenland', 'grenada', 'guadeloupe', 'guam', 'guatemala', 'guernsey', 'guinea', 'guinea-bissau', 'guyana', 'haiti', 'heard and mcdonald islands', 'honduras', 'hong kong', 'hungary', 'iceland', 'india', 'indonesia', 'iraq', 'ireland', 'isle of man', 'israel', 'italy', 'jamaica', 'japan', 'jersey', 'jordan', 'kazakhstan', 'kenya', 'kiribati', 'kuwait', 'kyrgyzstan', 'laos', 'latvia', 'lebanon', 'lesotho', 'liberia', 'libya', 'liechtenstein', 'lithuania', 'luxembourg', 'macau', 'macedonia', 'madagascar', 'malawi', 'malaysia', 'maldives', 'mali', 'malta', 'marshall islands', 'martinique', 'mauritania', 'mauritius', 'mayotte', 'mexico', 'moldova', 'monaco', 'mongolia', 'montenegro', 'montserrat', 'morocco', 'mozambique', 'namibia', 'nauru', 'nepal', 'netherlands', 'new caledonia', 'new zealand', 'nicaragua', 'niger', 'nigeria', 'niue', 'norfolk island', 'northern mariana islands', 'norway', 'oman', 'pakistan', 'palau', 'panama', 'papua new guinea', 'paraguay', 'peru', 'philippines', 'pitcairn islands', 'poland', 'portugal', 'puerto rico', 'qatar', 'romania', 'russia', 'rwanda', 'saint helena', 'saint kitts and nevis', 'saint lucia', 'saint martin', 'saint pierre and miquelon', 'saint vincent', 'samoa', 'san marino', 'saudi arabia', 'senegal', 'serbia', 'seychelles', 'sierra leone', 'singapore', 'sint maarten', 'slovakia', 'slovenia', 'solomon islands', 'somalia', 'south africa', 'south georgia', 'south korea', 'spain', 'sri lanka', 'sudan', 'suriname', 'svalbard and jan mayen', 'sweden', 'swaziland', 'switzerland', 'syria', 'taiwan', 'tajikistan', 'tanzania', 'thailand', 'togo', 'tokelau', 'tonga', 'trinidad and tobago', 'tunisia', 'turkey', 'turkmenistan', 'turks and caicos islands', 'tuvalu', 'uganda', 'ukraine', 'united arab emirates', 'united kingdom', 'uruguay', 'uzbekistan', 'vanuatu', 'vatican city', 'vietnam', 'venezuela', 'wallis and futuna', 'western sahara', 'yemen', 'zambia', 'zimbabwe'];
-
+	$scope.messages = null;
+	
 	$scope.init = function(){
 		console.log('Account Controller: INIT ');
-		fetchCurrentUser();
-		for (var i=18;i<80;i++){
-			$scope.ages[i-18]=i;
-		}
+//		fetchCurrentUser();
+//		for (var i=18;i<80;i++){
+//			$scope.ages[i-18]=i;
+//		}
 	}
+	
+	
+	$scope.fetchMessages = function(){
+		console.log("FETCH MESSAGES");
+		var profileID = 24142237;
+		var url = 'http://beta.terranga.co/api/messages?senderID='+profileID;
+		$http.get(url).success(function(data, status, headers, config) {
+			
+            var confirmation = data['confirmation'];
+            
+            if (confirmation != 'success'){
+                alert(data['message']);
+                return;
+            }
+            
+            $scope.messages = data['messages'];
+
+        }).error(function(data, status, headers, config) {
+            console.log("error", data, status, headers, config);
+        });
+	}
+	
 	
 	$scope.addInsight = function(){
 		console.log("ADD INSIGHT");
@@ -134,6 +157,29 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
             $scope.newHashtag=null;
             alert('HASHTAG ADDED');
             
+        }).error(function(data, status, headers, config) {
+            console.log("error", data, status, headers, config);
+        });
+	}
+	
+	$scope.deleteHashtag = function(index){
+		
+		$scope.loading = true;
+		$scope.currentUser.hashtags.splice(index,1);
+		var url = '/api/profiles/'+ $scope.currentUser.id;
+		var json = JSON.stringify($scope.currentUser);
+		console.log(json);
+		
+		$http.put(url,json).success(function(data, status, headers, config) {
+            var confirmation = data['confirmation'];
+            console.log('CONFIRMATION: '+JSON.stringify(data));
+
+            if (confirmation != 'success'){
+                alert(data['message']);
+                return;
+            }
+            $scope.loading = false;
+                        
         }).error(function(data, status, headers, config) {
             console.log("error", data, status, headers, config);
         });
