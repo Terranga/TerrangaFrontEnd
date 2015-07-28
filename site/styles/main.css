@@ -2433,6 +2433,9 @@ label.error {
       z-index: 100000;
 }
 
+.darkBox {
+	padding-top:30px;padding-bottom:30px;margin-left:auto;margin-right:auto;background:rgba(0,0,0,.8);margin-top:10px;text-align:center;
+}
 
 
 

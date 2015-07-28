@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html class="no-js">
-	<head>
-		{{ head }}
-		<script src="https://checkout.stripe.com/checkout.js"></script>
-	</head>
+  <head>
+	{{ head }}
+	
+	<script src="https://checkout.stripe.com/checkout.js"></script>
+	
+  </head>
   
   
   <body ng-app="Terranga" ng-controller="ProfileController" ng-init="init()">
+  
 <!-- Message Modal -->
 <div ng-if="currentUser.loggedIn!='no'" class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div style="width:60%" class="modal-dialog">
@@ -52,14 +55,16 @@
           </div>
           <br/>
 		<div style="height:300px;width:90%;background:rgba(0,179,255,0.2);margin-left:auto;margin-right:auto;">
-			<button ng-click="viewInsight( ($index!=reviewers.length) ? ($index=$index+1) : ($index=0) )" class="close" style="float:right;margin-top:25%;margin-right:15px">></button>
-			<div style="text-align:center;overflow:auto;position:relative;top:5%;background:url(/site/img/insights/tiles/{{ selectedInsight.categoryTag }}.jpg);height:50px;width:85%;margin-left:auto;margin-right:1.8%;">
+			<a> 
+      <button ng-click="viewInsight( ($index!=reviewers.length) ? ($index=$index+1) : ($index=0) )" class="close" style="float:right;margin-top:25%;margin-right:15px">></button>
+			</a>
+      <div style="text-align:center;overflow:auto;position:relative;top:5%;background:url(/site/img/insights/tiles/{{ selectedInsight.categoryTag }}.jpg);height:50px;width:85%;margin-left:auto;margin-right:1.8%;">
 				<h5 style="margin-top:15px;font-family:Roboto;color:white">
 					{{ selectedInsight.description }}
 				</h5>
 			</div>
 			<div style="margin-top:15px;text-align:center;position:relative;top:5%;background:rgba(255,255,255,.8);height:160px;width:85%;margin-left:auto;margin-right:auto;">
-				<div style="padding-top:5%;width:65%;text-align:center;margin-left:auto;margin-right:auto;">
+				<div style="padding-top:5%;overflow:auto;height:95%;width:65%;text-align:center;margin-left:auto;margin-right:auto;">
 					<h6 style="font-family:Roboto">
 						{{ selectedInsight.longDescription }}
 					</h6>
@@ -83,7 +88,7 @@
 		<div style="background:rgba(249, 249, 249, 0.96);border:1px solid #ddd;padding:0px;min-height:500px;">
           <div style="text-align:center;">
             <br/>
-            	<h4 style="margin-top:0px">My Dream is to</h4>
+            	<h4 style="margin-top:0px">My Goal is to</h4>
           </div>
           <br/>
 		<div style="height:400px;width:90%;background:rgba(0,179,255,0.2);margin-left:auto;margin-right:auto;">
@@ -102,7 +107,7 @@
 			</div>
 			<div class="sep-top-xs" style="margin-top:25px;margin-left:auto;margin-right:auto;text-align:center;width:80%">
 				<div class="progress minimal" style="border: 2px solid #999;">
-	               <div role="progressbar" aria-valuenow="{{ selectedDream.fundraisingCurrent }}" aria-valuemin="0" aria-valuemax="{{ selectedDream.fundraisingGoal }}" style="width:70%;" class="progress-bar">${{ selectedDream.fundraisingCurrent }} closer to my dream</div>
+	               <div role="progressbar" aria-valuenow="{{ selectedDream.fundraisingCurrent }}" aria-valuemin="0" aria-valuemax="{{ selectedDream.fundraisingGoal }}" style="width:70%;" class="progress-bar">${{ selectedDream.fundraisingCurrent }} closer to my goal</div>
 	            </div>
 	        <span class="indicator-line"></span><span class="pull-left">$0</span><span style="position: absolute;left: 0;right: 0;text-align: center;">{{ selectedDream.numContributers }} people contributed</span><span class="pull-right">${{ selectedDream.fundraisingGoal }}</span>
 			<button type="button" id="stripeButton" class="btn btn-primary btn-bordered" data-dismiss="modal" style="margin-top:40px;margin-left:auto;margin-right:auto;height:40px;">Contribute</button>
@@ -121,13 +126,13 @@
 		<div style="background:rgba(249, 249, 249, 0.96);border:1px solid #ddd;padding:0px;min-height:500px;">
           <div style="text-align:center;">
             <br/>
-            	<h4 style="margin-top:0px;margin-bottom:15px">Gratitude Notes</h4>
+            <h4 style="margin-top:0px;margin-bottom:15px;">Gratitude Notes</h4>
           </div>
-		<div style="overflow:scroll;height:400px;width:90%;background:rgba(0,179,255,0.2);margin-left:auto;margin-right:auto;">
+		<div style="overflow:scroll;height:400px;width:90%;background:rgba(0, 179, 255, 0.2);margin-left:auto;margin-right:auto;">
 			<div ng-repeat="review in profile.reviews track by $index">
 				<div class="row" style="width:95%;padding-top:20px;padding-left:10px">
 	           		<div class="col-md-4" style="padding-right:0px">
-	            		<a href="/site/profile/{{ reviewers[$index].id }}"><img style="height:110px;width:110px;border:1px solid #ddd;border-radius:55px"src="/site/images/{{ reviewers[$index].image }}?crop=256"/></a>
+	            		<a href="profile/{{ reviewers[$index].id }}"><img style="height:110px;width:110px;border:1px solid #ddd;border-radius:55px"src="images/{{ reviewers[$index].image }}?crop=256"/></a>
 	            		<p style="margin-top:5px;margin-left:35px;font-weight:300;font-size:1.4em">{{ capitalize(reviewers[$index].firstName) }}</p>
 	           		</div>
 	           		<div class="col-md-8" style="padding-left:0px">
@@ -156,13 +161,22 @@
     
     <div class="page">
       {{ nav }}
+      
+
       <!-- Start header Section-->
-      <section style="background-image: url('/site/img/slides/slide2.jpg');" class="header-section fading-title parallax">
+      <section style="background-image: url('/site/img/slides/slide2.jpg');background-size: cover;" class="header-section">
         <div class="section-shade sep-top-2x" style="padding-bottom:1.5em">
           <div class="container">
             <div class="section-title upper text-center">
               <h2 class="light small-space" style="font-weight:600">{{ capitalize(profile.firstName) }},&nbsp;{{ profile.age }}</h2>
               <img style="width:240px;height:240px;border:2px solid #ddd;border-radius:120px" src="/site/images/{{ profile.image }}?crop=256"/><br /><br />
+              <p style="text-transform:none;color:#fff;font-weight:300;font-size:1.2em;margin-top:18px">
+            	<a style="color:#1abc9c" data-toggle="modal" data-target="#reviewModal" href="#">
+            	  <i class="fa fa-smile-o fa-lg"></i>&nbsp;&nbsp; 
+            	  Gratitude Notes
+            	</a>
+              </p>
+              
               <div ng-if="profile.type=='traveler'">
               	<img style="height:60px;float:right" src="/site/img/local-icon-new-dark.png"/>
               	<img style="height:60px;float:right" src="/site/img/traveler-icon.png"/>
@@ -171,9 +185,7 @@
               	<img style="height:60px;float:right" src="/site/img/local-icon-new.png"/>
               	<img style="height:60px;float:right" src="/site/img/traveler-icon-dark.png"/>
               </div>
-              <p style="text-transform:none;color:white;margin-left:10%;font-weight:300;font-size:1.2em">
-            	<a style="color:#1abc9c" data-toggle="modal" data-target="#reviewModal" href="#"><i class="fa fa-smile-o fa-lg"></i>&nbsp;&nbsp; Gratitude Notes</a>
-              </p>
+              
             </div>
           </div>
         </div>
@@ -182,7 +194,7 @@
       
       
       <!-- Start Contact section-->
-		<div class="container" style="padding-top:10px;background-image:url('/site/img/bogota.JPG');width:100%;min-height:1000px">
+		<div class="container" style="padding-bottom:10px;padding-top:10px;background-image:url('/site/img/bogota.JPG');width:100%;min-height:1000px">
 		  <div class="col-md-12"style="min-height:180px;margin-left:auto;margin-right:auto;background:rgba(0,0,0,.8);padding-top:10px">
 		  	
 		  	<div class="col-md-3" style="margin-left:15%;">
@@ -192,22 +204,25 @@
 		  	<div class="col-md-4" style="margin-top:1%;text-align:left">
 		  		<table>
 		  			<tbody>
-		  				<tr>
-		  					<td><i class="fa fa-home fa-lg"></i></td>
-		  					<td>
-		  						<p style="font-weight:300;font-size:1.2em">
-			            			&nbsp;{{ capitalize(profile.homeCity) }},&nbsp;{{ capitalize(profile.homeCountry) }}
-            					</p>
-            				</td>
-		  				</tr>
-		  				<tr>
-		  					<td style="padding-top:10px"><i style="margin-left:2px"class="fa fa-map-marker fa-lg"></i></td>
-		  					<td style="padding-top:10px">
-		  						<p style="font-weight:300;font-size:1.2em">
-            						&nbsp;{{ capitalize(profile.city) }},&nbsp;{{ capitalize(profile.country) }}
-            					</p>
-            				</td>
-		  				</tr>
+		  			
+              <tr>
+                <td><i class="fa fa-map-marker fa-lg"></i></td>
+                <td>
+                  <p style="font-weight:300;font-size:1.2em">
+                        &nbsp;{{ capitalize(profile.homeCity) }},&nbsp;{{ capitalize(profile.homeCountry) }}
+                  </p>
+                </td>
+              </tr>
+
+              <tr>
+                <td style="padding-top:10px"><i class="fa fa-building fa-lg"></i></td>
+                <td style="padding-top:10px">
+                  <p style="font-weight:300;font-size:1.2em">
+                        &nbsp;{{ profile.profession }}
+                      </p>
+                    </td>
+              </tr>
+
 		  				<tr>
 		  					<td style="padding-top:10px"><i class="fa fa-globe fa-lg"></i></td>
 		  					<td style="padding-top:10px">
@@ -216,14 +231,19 @@
             					</p>
             				</td>
 		  				</tr>
-		  				<tr>
-		  					<td style="padding-top:10px"><i class="fa fa-building fa-lg"></i></td>
-		  					<td style="padding-top:10px">
-		  						<p style="font-weight:300;font-size:1.2em">
-            						&nbsp;{{ profile.profession }}
-            					</p>
-            				</td>
-		  				</tr>
+
+              <tr>
+                <td style="padding-top:10px">
+                  <i class="fa fa-home fa-lg"></i>
+                </td>
+
+                <td style="padding-top:10px">
+                  <p style="font-weight:300;font-size:1.2em">
+                        &nbsp;{{ capitalize(profile.city) }},&nbsp;{{ capitalize(profile.country) }}
+                  </p>
+                </td>
+              </tr>
+
 		  			</tbody>
 		  		</table>
 	          </div>
@@ -236,16 +256,24 @@
 	          	</div>
 	          	</a>
 	          	<br/>
-	          </div>
-	            
-	            
+	          </div>  
 		  </div>
-		  <div class="col-md-12"style="min-height:70px;margin-left:auto;margin-right:auto;background:rgba(0,0,0,.8);margin-top:10px;text-align:center;">
-		  	<p style="width:50%;margin-left:auto;margin-right:auto;font-weight:300;font-size:1.2em;margin-top:10px;">
-           		My name is <span style="color:#75ACFF">{{ profile.bio[0] }}</span>. My most unique hobby is <span style="color:#75ACFF">{{ profile.bio[1] }}</span>.
-           		On my free days I <span style="color:#75ACFF">{{ profile.bio[2] }}</span>. 
-           		One thing you don't know about me is <span style="color:#75ACFF">{{ profile.bio[3] }}</span>.
-            </p>
+
+		  <div class="col-md-12 darkBox">
+            <p style="width:50%;margin-left:auto;margin-right:auto;font-weight:300;font-size:1.2em;">
+              <span ng-repeat="hashtag in profile.hashtags track by $index">{{ hashtag }}&nbsp;&nbsp;</span>
+              <span>#ILoveGoodMusic&AGoogWine&nbsp;&nbsp;</span>
+          	</p>
+      	  </div>
+
+		  <div class="col-md-12 darkBox">
+		  	<p style="width:50%;margin-left:auto;margin-right:auto;font-weight:300;font-size:1.2em;">
+           		People don't know I'm good at <span style="color:#75ACFF">{{ profile.bio[0] }}</span>.
+           		I could talk all day about <span style="color:#75ACFF">{{ profile.bio[1] }}</span>. 
+           		My favorite place is <span style="color:#75ACFF;">{{ profile.bio[2] }}</span>.
+                I want to learn to <span style="color:#75ACFF;">{{ profile.bio[3] }}</span>.
+                And <span style="color:#75ACFF">{{ profile.bio[4] }}</span>.
+        	</p>
 		  </div>
 		  
 		
@@ -254,14 +282,14 @@
              	  <div class="row">
 	                <div style="width:100%;height:90%;background:rgba(255, 255, 255, 0.93);margin-left:auto;margin-right:auto;">
 	                  <div style="height:50px;background:#f1f1f1;text-align:center;padding-top:4px;">
-	                    <h4 style="color:#222">Let's</h4>
+	                    <h4 style="color:#222">My Experiences</h4>
 	                  </div>
 	                  <br />
 	                  <div class="insightsBox" style="height:380px;overflow:auto">
 	                  	<a ng-repeat="insight in profile.insights track by $index" data-toggle="modal" data-target="#insightModal" href="#">
-	                  		<div ng-click="viewInsight($index)" style="margin-left:auto;margin-right:auto;width:80%;height:100px;background:url(/site/img/insights/tiles/{{ insight.categoryTag }}.jpg)">
+	                  		<div ng-click="viewInsight($index)" style="margin-left:auto;margin-right:auto;width:80%;height:100px;background:url(/site/img/insights/tiles/food.jpg)">
 	                  			<div style="background:rgba(0, 0, 0, .6);height:100px;text-align:left;">
-		                  			<img style="float:left;margin-right:15px;" src="/site/img/insights/{{ insight.categoryTag }}-icon.png"/>
+		                  			<img style="float:left;margin-right:15px;" src="/site/img/insights/food-icon.png"/>
 		                  			<br/>
 		                  			<p style="line-height:1.4em;padding-top:10px;margin-left:20px;font-weight:300;font-size:22px;color:white;font-family: 'Open Sans', sans-serif;">
 		                  				{{ insight.description }}
@@ -274,28 +302,14 @@
 	                
 	                  <br /><br /><br />
 	                </div>
-	              </div>
-	              <div class="row">
-	              	<div class="col-md-6"style="height:180px;width:100%;background:rgba(0,0,0,.8);margin-top:20px;margin-left:auto;margin-right:auto;">
-	              		<p ng-if="endorser!=null" style="margin-top:5px;font-weight:300;font-size:1.4em">Endorsed by {{ capitalize(endorser.firstName) }}</p>
-	              		<div ng-if="endorser!=null" class="col-md-4">
-		              		<a href="/site/profile/{{ endorser.id }}"><img style="height:110px;width:110px;border:1px solid #ddd;border-radius:55px"src="/site/images/{{ endorser.image }}?crop=256"/></a>
-	              		</div>
-	              		<div ng-if="endorser!=null" class="col-md-6">
-	              			<p style="font-weight:300;font-size:1.2em">
-	              				{{ profile.endorsements[0].description }}
-	              			</p>
-	              		</div>
-	              	</div>
-	              </div>
-            	</div>
+	               </div>
+              </div>
               
-              
-              	    <div class="col-md-6" style="padding-left:30px;background-size:cover;margin-top:20px">
+            <div class="col-md-6" style="padding-left:30px;background-size:cover;margin-top:20px">
               	    <div class="row">
 		                <div style="width:100%;height:90%;background:rgba(255, 255, 255, 0.93);margin-left:auto;margin-right:auto;">
 		                  <div style="height:50px;background:#f1f1f1;text-align:center;padding-top:4px;">
-		                    <h4 style="color:#222">My Dream is to</h4>
+		                    <h4 style="color:#222">My Dreams</h4>
 		                  </div>
 		                  <br />
 		                  <div class="insightsBox" style="height:380px;overflow:auto">
@@ -311,28 +325,37 @@
 		                  		</div>
 		                  		<br/>
 		                  	</a>
+		                  </div>
+		                    <br /><br /><br />
 		                </div>
-		                  <br /><br /><br />
 		                </div>
-		             </div>
-		             <div class="row">
-	              	<div class="col-md-12"style="height:180px;background:rgba(0,0,0,.8);margin-top:20px">
-	              		<p style="margin-top:30px;font-weight:300;font-size:1.2em;text-align:center">
-	              			<a ng-repeat="hashtag in profile.hashtags track by $index">{{ hashtag }}&nbsp;&nbsp;</a>
-	              		</p>
-	              	</div>
-	              </div>
-	            </div>
+	                 </div>
+
+		  <div class="col-md-12" style="padding-bottom:30px;min-height:180px;margin-left:auto;margin-right:auto;background:rgba(0,0,0,.8);margin-top:30px;margin-bottom:30px;">
+            <p ng-if="endorser!=null" style="margin-top:5px;font-weight:300;font-size:1.4em;">Endorsed by {{ capitalize(endorser.firstName) }}</p>
+            <div ng-if="endorser!=null" class="col-md-2" style="width:130px;">
+              <a href="profile/{{ endorser.id }}"><img style="height:110px;width:110px;border:1px solid #ddd;border-radius:55px"src="/site/images/{{ endorser.image }}?crop=256"/></a>
             </div>
+            <div ng-if="endorser!=null" class="col-md-6" style="width:85%;" >
+              <p style="font-weight:300;font-size:1.2em;">
+	             {{ profile.endorsements[0].description }}
+              </p>
+            </div>
+		  </div>
+
+
+      </div>
             
        
       <!-- End Contact section-->
-     
       {{ footer }}
-
-            </div>
+     
+    </div>
       
+    
     {{ scripts }}
     <script src="/site/js/stripeHandler.js"></script>
+    
+    
   </body>
 </html>
