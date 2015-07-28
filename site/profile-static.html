@@ -1,0 +1,523 @@
+
+
+<!DOCTYPE html>
+<html class="no-js">
+	<head>
+		
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Terranga</title>
+    <meta name="description" content="Home Page e-shop version">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="icon" type="image/png" href="http://www.terranga-org.appspot.com/favicon.png">
+    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Montserrat:400,700%7COpen+Sans:300italic,400italic,600italic,700italic,800italic,300,400,600,700">
+    <link rel="stylesheet" href="styles/font-awesome.css">
+    <link rel="stylesheet" href="styles/owl.carousel.css">
+    <link rel="stylesheet" href="styles/owl.theme.css">
+    <link rel="stylesheet" href="styles/slit-slider-style.css">
+    <link rel="stylesheet" href="styles/slit-slider-custom.css">
+    <link rel="stylesheet" href="styles/idangerous.swiper.css">
+    <link rel="stylesheet" href="styles/yamm.css">
+    <link rel="stylesheet" href="styles/animate.css">
+    <link rel="stylesheet" href="styles/prettyPhoto.css">
+    <link rel="stylesheet" href="styles/bootstrap-slider.css">
+    <link rel="stylesheet" href="styles/device-mockups2.css">
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/main-responsive.css">
+    <link id="primary_color_scheme" rel="stylesheet" href="styles/theme_meadow.css">
+    <script src="scripts/vendor/modernizr.js"></script>
+    <script src="js/jquery.js"></script>
+	<script src="js/knob.js"></script>
+	<script src="js/spin.js"></script> 
+	<script src="js/moment.js"></script>
+	<script src="js/pi.init.tab.js"></script>
+    
+    
+    <!-- ANGULAR! -->
+</head>
+  
+  
+  <body>
+<!-- Message Modal -->
+<div ng-if="currentUser.loggedIn!='no'" class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div style="width:60%" class="modal-dialog">
+    <div class="modal-content">
+      <button type="button" class="close" data-dismiss="modal"><span style="margin-right:5px;" aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		<div style="background:rgba(249, 249, 249, 0.96);border:1px solid #ddd;padding:0px;min-height:500px;">
+          <div style="text-align:center;">
+            <br/>
+            	<h4 style="margin-top:0px">Don&#39;t be shy, say hi!</h4>
+          </div>
+          <br/>
+		<div style="height:400px;width:90%;background:rgba(0,179,255,0.2);margin-left:auto;margin-right:auto;">
+	
+		<div id="messages" style="overflow:auto;position:relative;top:5%;background:rgba(255,255,255,.8);height:300px;width:95%;margin-left:auto;margin-right:auto;">
+			<p ng-repeat="message in messages track by $index" style="margin-left:1%">
+				<span ng-if="message.senderID==currentUser.id" style="color:#1abc9c;font-weight:100;font-size:12px">{{ capitalize(currentUser.firstName) }}</span>
+				<span ng-if="message.senderID==profile.id" style="color:#1abc9c;font-weight:100;font-size:12px">{{ capitalize(profile.firstName) }}</span>
+				<span style="color:#1abc9c;font-weight:100;font-size:12px"> | {{ formattedDate(message.timestamp) }}</span><br/>
+				{{ message.body }}
+			</p>
+		</div>
+	
+		<div style="position:relative;top:13%;height:40px;">
+			<input ng-model="newMessage.body" type="text" placeholder=" Type here" style="margin-left:1%;height:40px;width:82%"/>
+			<button ng-click="sendMessage()" style="margin-right:1%;width:15%;height:40px;float:right;">Send</button>
+		</div>
+	
+	</div>
+        </div>
+    </div>
+  </div>
+</div>			
+
+<!-- Insights Modal -->
+<div class="modal fade" id="insightModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div style="width:40%" class="modal-dialog">
+    <div class="modal-content">
+      <button type="button" class="close" data-dismiss="modal"><span style="margin-right:5px;" aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		<div style="background:rgba(249, 249, 249, 0.96);border:1px solid #ddd;padding:0px;min-height:400px;">
+          <div style="text-align:center;">
+            <br/>
+            	<h4 style="margin-top:0px">Let's</h4>
+          </div>
+          <br/>
+		<div style="height:300px;width:90%;background:rgba(0,179,255,0.2);margin-left:auto;margin-right:auto;">
+			<a> 
+      <button ng-click="viewInsight( ($index!=reviewers.length) ? ($index=$index+1) : ($index=0) )" class="close" style="float:right;margin-top:25%;margin-right:15px">></button>
+			</a>
+      <div style="text-align:center;overflow:auto;position:relative;top:5%;background:url(img/insights/tiles/{{ selectedInsight.categoryTag }}.jpg);height:50px;width:85%;margin-left:auto;margin-right:1.8%;">
+				<h5 style="margin-top:15px;font-family:Roboto;color:white">
+					{{ selectedInsight.description }}
+				</h5>
+			</div>
+			<div style="margin-top:15px;text-align:center;position:relative;top:5%;background:rgba(255,255,255,.8);height:160px;width:85%;margin-left:auto;margin-right:auto;">
+				<div style="padding-top:5%;overflow:auto;height:95%;width:65%;text-align:center;margin-left:auto;margin-right:auto;">
+					<h6 style="font-family:Roboto">
+						{{ Helllo my name is Bimba, I'm a little dog. I grew up in a pet store that stinked verrryyyyy badly. I am happy that I am now adopted by a family but they are a little funny. I like to sit on my Dad's belly. }}
+					</h6>
+				</div>
+			</div>
+			<div style="margin-top:25px;margin-left:auto;margin-right:auto;text-align:center">
+				<button type="button" class="btn btn-primary btn-bordered" data-dismiss="modal" data-toggle="modal" data-target="#messageModal" style="margin-left:auto;margin-right:auto;height:40px;">Chat</button>
+			</div>
+	</div>
+   </div>
+  </div>
+ </div>
+</div>			
+
+
+<!-- Dream Modal -->
+<div class="modal fade" id="dreamModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div style="width:40%" class="modal-dialog">
+    <div class="modal-content">
+      <button type="button" class="close" data-dismiss="modal"><span style="margin-right:5px;" aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		<div style="background:rgba(249, 249, 249, 0.96);border:1px solid #ddd;padding:0px;min-height:500px;">
+          <div style="text-align:center;">
+            <br/>
+            	<h4 style="margin-top:0px">My Goal is to</h4>
+          </div>
+          <br/>
+		<div style="height:400px;width:90%;background:rgba(0,179,255,0.2);margin-left:auto;margin-right:auto;">
+			<button class="close" style="float:right;margin-top:25%;margin-right:15px">></button>
+			<div style="text-align:center;overflow:auto;position:relative;top:6%;background:url(img/insights/tiles/{{ selectedDream.title }}.jpg);width:85%;margin-left:auto;margin-right:1.8%;">
+				<h5 style="font-family:Roboto;color:white;font-weight:500">
+					{{ selectedDream.description }}
+				</h5>
+			</div>
+			<div style="margin-top:15px;text-align:center;position:relative;top:5%;background:rgba(255,255,255,.8);height:160px;width:85%;margin-left:auto;margin-right:auto;">
+				<div style="padding-top:2%;width:65%;text-align:center;margin-left:auto;margin-right:auto;">
+					<h6 style="font-family:Roboto">
+						{{ selectedDream.longDescription }}
+					</h6>
+				</div>
+			</div>
+			<div class="sep-top-xs" style="margin-top:25px;margin-left:auto;margin-right:auto;text-align:center;width:80%">
+				<div class="progress minimal" style="border: 2px solid #999;">
+	               <div role="progressbar" aria-valuenow="{{ selectedDream.fundraisingCurrent }}" aria-valuemin="0" aria-valuemax="{{ selectedDream.fundraisingGoal }}" style="width:70%;" class="progress-bar">${{ selectedDream.fundraisingCurrent }} closer to my goal</div>
+	            </div>
+	        <span class="indicator-line"></span><span class="pull-left">$0</span><span style="position: absolute;left: 0;right: 0;text-align: center;">{{ selectedDream.numContributers }} people contributed</span><span class="pull-right">${{ selectedDream.fundraisingGoal }}</span>
+			<button type="button" id="stripeButton" class="btn btn-primary btn-bordered" data-dismiss="modal" style="margin-top:40px;margin-left:auto;margin-right:auto;height:40px;">Contribute</button>
+			</div>
+		</div>
+	   </div>
+	  </div>
+	 </div>
+	</div>		
+
+<!-- Review Modal -->
+<div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div style="width:60%" class="modal-dialog">
+    <div class="modal-content">
+      <button type="button" class="close" data-dismiss="modal"><span style="margin-right:5px;" aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		<div style="background:rgba(249, 249, 249, 0.96);border:1px solid #ddd;padding:0px;min-height:500px;">
+          <div style="text-align:center;">
+            <br/>
+            <h4 style="margin-top:0px;margin-bottom:15px;">Gratitude Notes</h4>
+          </div>
+		<div style="overflow:scroll;height:400px;width:90%;background:rgba(0, 179, 255, 0.2);margin-left:auto;margin-right:auto;">
+			<div ng-repeat="review in profile.reviews track by $index">
+				<div class="row" style="width:95%;padding-top:20px;padding-left:10px">
+	           		<div class="col-md-4" style="padding-right:0px">
+	            		<a href="profile/{{ reviewers[$index].id }}"><img style="height:110px;width:110px;border:1px solid #ddd;border-radius:55px"src="images/{{ reviewers[$index].image }}?crop=256"/></a>
+	            		<p style="margin-top:5px;margin-left:35px;font-weight:300;font-size:1.4em">{{ capitalize(reviewers[$index].firstName) }}</p>
+	           		</div>
+	           		<div class="col-md-8" style="padding-left:0px">
+	           			<p style="font-weight:300;font-size:1.2em">
+	           				"{{ review.description }}"
+	           			</p>
+	           			<p style="font-weight:300;font-size:1.2em">
+	           				From {{ capitalize(reviewers[$index].city) }} - {{ formattedReviewData(review.timestamp) }}
+	           			</p>
+	           		</div>	
+		       </div>
+		       <hr/>
+	       </div>
+
+		</div>
+   </div>
+  </div>
+ </div>
+</div>			
+
+
+    
+    <div id="load"></div><!--[if lt IE 9]>
+    <p class="browsehappy">You are using an strong outdated browser. <br>Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    
+    <div class="page">
+      
+      <nav id="main-navigation" role="navigation" class="navbar navbar-fixed-top navbar-standard">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle"><i class="fa fa-align-justify fa-lg"></i></button>
+            <a href="/" class="navbar-brand" style="padding-top:5px">
+              <img src="img/logo_diamond.png" style="float:left;max-height:62px;min-height:50px"/>
+            </a>
+          </div>
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right service-nav">
+              <li class="dropdown">
+                <a href="/" id="menu_item_Home" class="dropdown-toggle">Home</a>
+              </li>
+              <li class="dropdown">
+                <a href="profiles" id="menu_item_Portfolio" class="dropdown-toggle">Community</a>
+              </li>
+              
+              <li ng-show="currentUser.loggedIn == 'no'">
+              <a id="dropdownMenuLogin" href="#" data-toggle="dropdown" class="upper dropdown-toggle">Login</a>
+                <div aria-labelledby="dropdownMenuLogin" class="dropdown-menu widget-box">
+                  <form>
+                    <div class="form-group">
+                      <label class="sr-only">Email</label>
+                      <input ng-model="currentUser.email" type="text" value="" placeholder="Email" name="" class="form-control input-lg">
+                    </div>
+                    <div class="form-group">
+                      <label class="sr-only">Password</label>
+                      <input ng-model="currentUser.password" type="password" value="" placeholder="Password" name="" class="form-control input-lg">
+                    </div>
+                    
+                    <div class="form-inline form-group">
+                      <button ng-click="login()" type="button" class="btn btn-primary btn-xs">Login</button>
+                    </div>
+                    
+                  </form>
+                </div>
+              </li>
+            </ul>
+            <button type="button" class="navbar-toggle"><i class="fa fa-close fa-lg"></i></button>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Start header Section-->
+      <section style="background-image: url('img/slides/slide2.jpg');background-size: cover;" class="header-section">
+        <div class="section-shade sep-top-2x" style="padding-bottom:1.5em">
+          <div class="container">
+            <div class="section-title upper text-center">
+              <h2 class="light small-space" style="font-weight:600">JUAN,&nbsp;32</h2>
+              <img style="width:240px;height:240px;border:2px solid #ddd;border-radius:120px" src="http://beta.terranga.co/site/images/rq_-J_-c?crop=256"/><br /><br />
+              <p style="text-transform:none;color:#fff;font-weight:300;font-size:1.2em;margin-top:18px">
+            	<a style="color:#1abc9c" data-toggle="modal" data-target="#reviewModal" href="#">
+            	  <i class="fa fa-smile-o fa-lg"></i>&nbsp;&nbsp; 
+            	  Gratitude Notes
+            	</a>
+              </p>
+              
+              <div ng-if="profile.type=='traveler'">
+              	<img style="height:60px;float:right" src="img/local-icon-new-dark.png"/>
+              	<img style="height:60px;float:right" src="img/traveler-icon.png"/>
+              </div>
+              <div ng-if="profile.type=='local'">
+              	<img style="height:60px;float:right" src="img/local-icon-new.png"/>
+              	<img style="height:60px;float:right" src="img/traveler-icon-dark.png"/>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End header Section-->
+      
+      
+      <!-- Start Contact section-->
+		<div class="container" style="padding-top:10px;background-image:url('img/bogota.JPG');width:100%;min-height:1000px">
+		  <div class="col-md-12"style="min-height:180px;margin-left:auto;margin-right:auto;background:rgba(0,0,0,.8);padding-top:10px">
+		  	
+		  	<div class="col-md-3" style="margin-left:15%;">
+           		<p style="font-weight:400;font-size:50px">15<span style="padding-left:3px;font-size:18px">points</span></p>
+	        </div>
+		  	
+		  	<div class="col-md-4" style="margin-top:1%;text-align:left">
+		  		<table>
+		  			<tbody>
+		  			
+              <tr>
+                <td>
+                  <i class="fa fa-map-marker fa-lg"></i>
+                </td>
+                <td>
+                  <p style="font-weight:300;font-size:1.2em">
+                        &nbsp;Medellin,&nbsp;Colombia
+                  </p>
+                </td>
+              </tr>
+
+              <tr>
+                <td style="padding-top:10px">
+                  <i class="fa fa-building fa-lg"></i>
+                </td>
+                <td style="padding-top:10px">
+                  <p style="font-weight:300;font-size:1.2em">
+                        &nbsp;Coffee Hunter
+                      </p>
+                    </td>
+              </tr>
+
+		  				<tr>
+		  					<td style="padding-top:10px"><i class="fa fa-globe fa-lg"></i></td>
+		  					<td style="padding-top:10px">
+		  						<p style="font-weight:300;font-size:1.2em">
+            						&nbsp;Spanish, English, French, German
+            					</p>
+            				</td>
+		  				</tr>
+
+              <tr>
+                <td style="padding-top:10px">
+                  <i class="fa fa-home fa-lg"></i>
+                </td>
+
+                <td style="padding-top:10px">
+                  <p style="font-weight:300;font-size:1.2em">
+                        &nbsp;Fredonia, Antioquia,&nbsp;Colombia
+                  </p>
+                </td>
+              </tr>
+
+		  			</tbody>
+		  		</table>
+	          </div>
+	          
+	          <div class="col-md-3" style="margin-top:1%;">
+	          	<a ng-click="checkLogin()" href="#" style="color:#1abc9c" data-toggle="modal" data-target="#messageModal">
+	          	<div style="padding:5px 20px 5px 20px;border:1px solid #ddd;width:80px;border-radius:5px">
+		          	<i class="fa fa-comments fa-3x"></i>
+		          	<h6 style="margin-left:2px;color:#75ACFF">Chat</h6>
+	          	</div>
+	          	</a>
+	          	<br/>
+	          </div>  
+		  </div>
+
+      	  <div class="col-md-12" style="min-height:70px;margin-left:auto;margin-right:auto;background:rgba(0,0,0,.8);margin-top:10px;text-align:center;">
+            <p style="width:50%;margin-left:auto;margin-right:auto;font-weight:300;font-size:1.2em;margin-top:10px;"
+              >#HistoryBuff&nbsp;&nbsp;
+              #Wino&nbsp;&nbsp;
+              #MovieBuff&nbsp;&nbsp;
+          	</p>
+      	  </div>
+
+		  <div class="col-md-12"style="min-height:70px;margin-left:auto;margin-right:auto;background:rgba(0,0,0,.8);margin-top:10px;text-align:center;">
+		  	<p style="width:50%;margin-left:auto;margin-right:auto;font-weight:300;font-size:1.2em;margin-top:10px;">
+           		People don't know I'm good at <span style="color:#75ACFF"></span>.
+           		I could talk all day about <span style="color:#75ACFF"></span>. 
+           		My favorite place is <span style="color:#75ACFF"></span>.
+              I want to learn to <span style="color:#75ACFF"></span>.
+              And <span style="color:#75ACFF"></span>.
+        	</p>
+		  </div>
+		  
+		
+		  
+             	<div class="col-md-6" style="padding-right:30px;background-size:cover;margin-top:20px">
+             	  <div class="row">
+	                <div style="width:100%;height:90%;background:rgba(255, 255, 255, 0.93);margin-left:auto;margin-right:auto;">
+	                  <div style="height:50px;background:#f1f1f1;text-align:center;padding-top:4px;">
+	                    <h4 style="color:#222">My Experiences</h4>
+	                  </div>
+	                  <br />
+	                  <div class="insightsBox" style="height:380px;overflow:auto">
+	                  	<a ng-repeat="insight in profile.insights track by $index" data-toggle="modal" data-target="#insightModal" href="#">
+	                  		<div ng-click="viewInsight($index)" style="margin-left:auto;margin-right:auto;width:80%;height:100px;background:url(img/insights/tiles/food.jpg)">
+	                  			<div style="background:rgba(0, 0, 0, .6);height:100px;text-align:left;">
+		                  			<img style="float:left;margin-right:15px;" src="img/insights/food-icon.png"/>
+		                  			<br/>
+		                  			<p style="line-height:1.4em;padding-top:10px;margin-left:20px;font-weight:300;font-size:22px;color:white;font-family: 'Open Sans', sans-serif;">
+		                  				Go drink Lulada!
+		                  			</p>
+	                  			</div>
+	                  		</div>
+	                  		<br/>
+	                  	</a>
+	                </div>
+	                
+	                  <br /><br /><br />
+	                </div>
+	               </div>
+              </div>
+              
+            <div class="col-md-6" style="padding-left:30px;background-size:cover;margin-top:20px">
+              	    <div class="row">
+		                <div style="width:100%;height:90%;background:rgba(255, 255, 255, 0.93);margin-left:auto;margin-right:auto;">
+		                  <div style="height:50px;background:#f1f1f1;text-align:center;padding-top:4px;">
+		                    <h4 style="color:#222">My Dreams</h4>
+		                  </div>
+		                  <br />
+		                  <div class="insightsBox" style="height:380px;overflow:auto">
+		                  	<a ng-repeat="dream in profile.dreams track by $index" data-toggle="modal" data-target="#dreamModal" href="#">
+		                  		<div ng-click="viewDream($index)" style="margin-left:auto;margin-right:auto;width:80%;height:100px;background:url(img/insights/tiles/culture.jpg)">
+		                  			<div ng-click="viewDream($index)" style="background:rgba(0, 0, 0, .6);height:100px;text-align:left;">
+			                  			<img style="float:left;margin-right:15px;" src="img/insights/culture-icon.png"/>
+			                  			<br/>
+			                  			<p style="line-height:1.4em;padding-top:10px;margin-left:20px;font-weight:300;font-size:22px;color:white;font-family: 'Open Sans', sans-serif;">
+			                  				Travel the world.
+			                  			</p>
+		                  			</div>
+		                  		</div>
+		                  		<br/>
+		                  	</a>
+		                  </div>
+		                    <br /><br /><br />
+		                </div>
+		                </div>
+	                 </div>
+
+		  <div class="col-md-12" style="padding-bottom:30px;min-height:180px;margin-left:auto;margin-right:auto;background:rgba(0,0,0,.8);margin-top:30px;margin-bottom:30px;">
+            <p ng-if="endorser!=null" style="margin-top:5px;font-weight:300;font-size:1.4em;">Endorsed by Tammy</p>
+            <div ng-if="endorser!=null" class="col-md-2" style="width:130px;">
+              <a href="profile/{{ endorser.id }}"><img style="height:110px;width:110px;border:1px solid #ddd;border-radius:55px"src="http://beta.terranga.co/site/images/QCPZb23A?crop=256"/></a>
+            </div>
+            <div ng-if="endorser!=null" class="col-md-6" style="width:85%;" >
+              <p style="font-weight:300;font-size:1.2em;">
+                "Diana and I met in Bogota at her University when I was visiting. We are both a part of the same global Master's Program! Diana is one of the most interesting, compassionate, and motivated Colombian women I know. She's involved in some amazing development projects in Colombia as well as tourism projects. She has a wealth of knowledge of Colombia and deep understanding of the complex issues in the country. She is incredible to speak with.
+                Diana and I met in Bogota at her University when I was visiting. We are both a part of the same global Master's Program! Diana is one of the most interesting, compassionate, and motivated Colombian women I know. She's involved in some amazing development projects in Colombia as well as tourism projects. She has a wealth of knowledge of Colombia and deep understanding of the complex issues in the country. She is incredible to speak with. "
+              </p>
+            </div>
+		  </div>
+
+
+      </div>
+            
+       
+      <!-- End Contact section-->
+     
+      <footer id="footer" >
+        <div class="inner sep-bottom-xs" >
+          <div class="container">
+            <div class="row">
+              <div class="col-md-4 col-sm-6">
+                <div class="widget sep-top-md">
+                	<img src="img/logo_diamond.png" style="height:100px;float:left;">
+                	 <small style="margin-left:110px;margin-top:32px" class="sep-bottom-md">
+	                  	Get off-the-beaten path, make real connections &amp; support local goals.
+				  	       </small>
+                </div>
+              </div>
+
+              <div class="col-md-3 col-sm-6">
+                <div class="widget sep-top-md">
+	              <h6 class="upper widget-title">Connect With Us</h6>
+	                 <ul style="padding-left:10%;" class="social-icon sep-top-xs">
+	                    <li><a href="https://instagram.com/terranga_app/" class="fa fa-instagram fa-lg"></a></li>
+	                    <li><a href="https://twitter.com/terrangaapp" class="fa fa-twitter fa-lg"></a></li>
+	                    <li><a href="https://facebook.com/TerrangaApp" class="fa fa-facebook fa-lg"></a></li>
+	                  </ul>
+	             </div>
+	           </div>
+              <div class="col-md-2 col-sm-6">
+                <div class="widget sep-top-md">
+                  <h6 class="upper widget-title">Blog</h6>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6">
+                <div class="widget sep-top-md">
+                  <h6 class="upper widget-title">Contact Us</h6>
+                  <ul class="social-icon sep-top-xs">
+                    <li><a href="mailto:info@terranga.org"><i class="fa fa-envelope-o fa-lg"></i><small style="display:inherit">&nbsp;&nbsp;info@terranga.org</small></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="copyright sep-top-xs sep-bottom-xs">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-4" style="text-align:center">
+              	<small>Copyright 2015 &copy; Terranga International LLC</small>
+              </div>
+              <div class="col-md-4" style="text-align:center">
+              	<small>Terms</small>
+              </div>
+              <div class="col-md-4"style="text-align:center">
+              	<small>FAQ</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+
+            </div>
+      
+    
+    <script src="scripts/vendor/queryloader2.min.js"></script>
+    <script src="scripts/vendor/owl.carousel.js"></script>
+    <script src="scripts/vendor/jquery.ba-cond.min.js"></script>
+    <script src="scripts/vendor/jquery.slitslider.js"></script>
+    <script src="scripts/vendor/idangerous.swiper.js"></script>
+    <script src="scripts/vendor/jquery.fitvids.js"></script>
+    <script src="scripts/vendor/jquery.countTo.js"></script>
+    <script src="scripts/vendor/TweenMax.min.js"></script>
+    <script src="scripts/vendor/ScrollToPlugin.min.js"></script>
+    <script src="scripts/vendor/jquery.scrollmagic.min.js"></script>
+    <script src="scripts/vendor/jquery.easypiechart.js"></script>
+    <script src="scripts/vendor/jquery.validate.js"></script>
+    <script src="scripts/vendor/wow.min.js"></script>
+    <script src="scripts/vendor/jquery.placeholder.js"></script>
+    <script src="scripts/vendor/jquery.easing.1.3.min.js"></script>
+    <script src="scripts/vendor/jquery.waitforimages.min.js"></script>
+    <script src="scripts/vendor/jquery.prettyPhoto.js"></script>
+    <script src="scripts/vendor/imagesloaded.pkgd.min.js"></script>
+    <script src="scripts/vendor/isotope.pkgd.min.js"></script>
+    <script src="scripts/vendor/jquery.fillparent.min.js"></script>
+    <script src="scripts/vendor/raphael-min.js"></script>
+    <script src="scripts/vendor/bootstrap.js"></script>
+    <script src="scripts/vendor/jquery.bootstrap-touchspin.min.js"></script>
+    <script src="scripts/vendor/bootstrap-slider.js"></script>
+    <script src="scripts/vendor/bootstrap-rating-input.js"></script>
+    <script src="scripts/vendor/bootstrap-hover-dropdown.min.js"></script>
+    <script src="scripts/jquery.gmap.min.js"></script>
+    <script src="scripts/circle_diagram.js"></script>
+    <script src="scripts/main.js"></script>
+
+    <script src="js/stripeHandler.js"></script>
+  </body>
+</html>
