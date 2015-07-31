@@ -282,7 +282,7 @@
              	  <div class="row">
 	                <div style="width:100%;height:90%;background:rgba(255, 255, 255, 0.93);margin-left:auto;margin-right:auto;">
 	                  <div style="height:50px;background:#f1f1f1;text-align:center;padding-top:4px;">
-	                    <h4 style="color:#222">My Experiences</h4>
+	                    <h4 style="color:#222">{{ (profile.type == "local") ? "My Experiences" : "Ask Me About..." }}</h4>
 	                  </div>
 	                  <br />
 	                  <div class="insightsBox" style="height:380px;overflow:auto">
