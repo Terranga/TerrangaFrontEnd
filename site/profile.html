@@ -107,7 +107,7 @@
 			</div>
 			<div class="sep-top-xs" style="margin-top:25px;margin-left:auto;margin-right:auto;text-align:center;width:80%">
 				<div class="progress minimal" style="border: 2px solid #999;">
-	               <div role="progressbar" aria-valuenow="{{ selectedDream.fundraisingCurrent }}" aria-valuemin="0" aria-valuemax="{{ selectedDream.fundraisingGoal }}" style="width:{{ ((selectedDream.fundraisingCurrent / selectedDream.fundraisingGoal) * 100) }}%;" class="progress-bar">${{ selectedDream.fundraisingCurrent }} closer to my goal</div>
+	               <div role="progressbar" aria-valuenow="{{ selectedDream.fundraisingCurrent }}" aria-valuemin="0" aria-valuemax="{{ selectedDream.fundraisingGoal }}" style="width:{{ ((selectedDream.fundraisingCurrent / selectedDream.fundraisingGoal) * 100) }}%;padding:0px;" class="progress-bar">${{ selectedDream.fundraisingCurrent }} closer to my goal</div>
 	            </div>
 	        <span class="indicator-line"></span><span class="pull-left">$0</span><span style="position: absolute;left: 0;right: 0;text-align: center;">{{ selectedDream.numContributers }} people contributed</span><span class="pull-right">${{ selectedDream.fundraisingGoal }}</span>
 			<button type="button" id="stripeButton" class="btn btn-primary btn-bordered" data-dismiss="modal" style="margin-top:40px;margin-left:auto;margin-right:auto;height:40px;">Contribute</button>
