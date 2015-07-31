@@ -73,10 +73,25 @@
 		        </thead>
 		        <tbody>
 		          <tr ng-repeat="insight in currentUser.insights track by $index">
-		            <td>{{ insight.categoryTag }}</td>
-		            <td>{{ insight.description }}</td>
-		            <td>{{ insight.longDescription }}</td>
-		            <td><button ng-click="deleteInsight($index)" type="button" class="btn btn-danger btn-xs btn-bordered">Delete</button></td>
+		            <td ng-click="editCategory = !editCategory">
+                  <select ng-show="editCategory">
+                    <option>culture</option>
+                    <option>food</option>
+                    <option>outdoors</option>
+                  </select>
+                  <span ng-hide="editCategory">{{ insight.categoryTag }}</span>
+                </td>
+		            <td ng-click="editDescription = !editDescription">
+                  <input type="text" placeholder="{{ insight.description }}" ng-show="editDescription">
+                  <span ng-hide="editDescription">{{ insight.description }}</span>
+                </td>
+		            <td ng-click="editLongDescription = !editLongDescription">
+                  <input type="text" placeholder="{{ insight.longDescription }}" ng-show="editLongDescription">
+                  <span ng-hide="editLongDescription">{{ insight.longDescription }}</span>
+                </td>
+		            <td>
+                  <button ng-click="deleteInsight($index)" type="button" class="btn btn-danger btn-xs btn-bordered">Delete</button>
+                </td>
 		          </tr>
 		        </tbody>
 		      </table>
