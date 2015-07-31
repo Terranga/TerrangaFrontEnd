@@ -25,15 +25,15 @@
 	
 		<div id="messages" style="overflow:auto;position:relative;top:5%;background:rgba(255,255,255,.8);height:300px;width:95%;margin-left:auto;margin-right:auto;">
 			<p ng-repeat="message in messages track by $index" style="margin-left:1%">
-				<span ng-if="message.senderID==currentUser.id" style="color:#1abc9c;font-weight:100;font-size:12px">{{ capitalize(currentUser.firstName) }}</span>
-				<span ng-if="message.senderID==profile.id" style="color:#1abc9c;font-weight:100;font-size:12px">{{ capitalize(profile.firstName) }}</span>
+				<span ng-if="message.profile == currentUser.id" style="color:#1abc9c;font-weight:100;font-size:12px">{{ capitalize(currentUser.firstName) }}</span>
+				<span ng-if="message.profile == profile.id" style="color:#1abc9c;font-weight:100;font-size:12px">{{ capitalize(profile.firstName) }}</span>
 				<span style="color:#1abc9c;font-weight:100;font-size:12px"> | {{ formattedDate(message.timestamp) }}</span><br/>
-				{{ message.body }}
+				{{ message.content }}
 			</p>
 		</div>
 	
 		<div style="position:relative;top:13%;height:40px;">
-			<input ng-model="newMessage.body" type="text" placeholder=" Type here" style="margin-left:1%;height:40px;width:82%"/>
+			<input ng-model="newMessage.content" type="text" placeholder=" Type here" style="margin-left:1%;height:40px;width:82%"/>
 			<button ng-click="sendMessage()" style="margin-right:1%;width:15%;height:40px;float:right;">Send</button>
 		</div>
 	

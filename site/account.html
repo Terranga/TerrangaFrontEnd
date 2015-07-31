@@ -1,29 +1,73 @@
+
 <!DOCTYPE html>
 <html class="no-js">
-<head>{{ head }}</head>
-  
+<head>
+  {{ head }}
+    
+</head>
   
   <body ng-app="Terranga" ng-controller="AccountController" ng-init="init()">
-  <div class="loading-overlay" ng-show="loading">
-  	<div spinner spin="loading"></div>
+  
+  <!-- Messages Modal -->
+<div class="modal fade" id="messagesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div style="width:60%" class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="border:none;">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <div class="social" style="text-align:center;">
+            <img style="width:160px" src="/site/img/logo-dark.png" alt=""><br /><br /><hr /><br />
+            
+			<div>
+			
+		      <table class="table table-striped" style="width:80%;margin-left:auto;margin-right:auto;">
+		        <thead>
+		          <tr>
+		            <td></td>
+		            <td><strong>From</strong></td>
+		            <td><strong>Message</strong></td>
+		            <td><strong>Date</strong></td>
+		            <td></td>
+		          </tr>
+		        </thead>
+		        <tbody>
+		          <tr ng-repeat="message in messages track by $index">
+		            <td><img style="width:60px;border-radius:30px;border:solid 1px #ddd" src="/site/images/{{ message.profile.image }}?crop=120" /></td>
+		            <td><a href="/site/profile/{{ message.profile.id }}">{{ message.profile.firstName }} {{ message.profile.lastName }}</a></td>
+		            <td><a href="/site/profile/{{ message.profile.id }}">{{ truncatedText(message.content, 60) }}</a></td>
+		            <td>{{ formattedDate(message.timestamp) }}</td>
+		          </tr>
+		        </tbody>
+		      </table>
+			
+			
+            </div>
+            
+            <br/>
+          </div>
+      	</div>
+
+      </div>
+    </div>
   </div>
+  
+  
   
   <!-- Insight Modal -->
 <div class="modal fade" id="insightsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div style="width:60%" class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header" style="border:none">
+      <div class="modal-header" style="border:none;">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-          <div class="social" style="text-align:center">
+          <div class="social" style="text-align:center;">
             <img style="width:160px" src="/site/img/logo-dark.png" alt=""><br /><br />            
             <hr /><br />
 			<div>
-		      <table class="table table-striped" style="width:80%;margin-left:auto;margin-right:auto">
+		      <table class="table table-striped" style="width:80%;margin-left:auto;margin-right:auto;">
 		        <thead>
 		          <tr>
 		            <td><strong>Category</strong></td>
-		            <td><strong>Title</strong></td>
-		            <td><strong>Description</strong></td>
+		            <td><strong>Let's ...</strong></td>
+		            <td><strong>Describe what you do and why you want to share it....</strong></td>
 		            <td></td>
 		          </tr>
 		        </thead>
@@ -40,15 +84,27 @@
             <br/>
           </div>
       	</div>
-        <div style="width:100%;text-align:center;padding:40px;border-bottom-left-radius:6px;border-bottom-right-radius:6px;background:#ddd">
-          <select ng-model="newInsight.category" style="width:60%;margin-left:auto;margin-right:auto" class="form-control"><option ng-repeat="category in categories track by $index" value="{{ category }}">{{ capitalize(category) }}</option></select><br />
-          <textarea ng-model="newInsight.description" class="form-control" style="height:40px;width:60%;margin-left:auto;margin-right:auto" placeholder="Title"></textarea><br />
-          <textarea ng-model="newInsight.longDescription" class="form-control" style="height:96px;width:60%;margin-left:auto;margin-right:auto" placeholder="Description"></textarea><br /><br />
+
+        <div style="width:100%;text-align:center;padding-top:2px;border-bottom-left-radius:6px;border-bottom-right-radius:6px;">
+          <div style="height:300px; margin-top:2px;padding:20px;">
+            <img src="/site/img/InsightEx1.png" style="float:left; height:100%; width:50%; border:6px solid #ddd;"/>
+            <img src="/site/img/InsightEx2.png" style="float:left; height:100%; width:50%; border:6px solid #ddd;"/>
+          </div>        
+          <br/>
+          <textarea ng-model="newInsight.description" class="form-control" style="height:40px;width:60%;margin-left:auto;margin-right:auto" placeholder="What activity would you share with others?"></textarea><br/>
+
+          <textarea ng-model="newInsight.longDescription" class="form-control" style="height:96px;width:60%;margin-left:auto;margin-right:auto" placeholder="What does this involve? Why do you like it? Why do you want to share it with others?"></textarea>
+          <br>
+
+           <select ng-model="newInsight.category" style="width:60%;margin-left:auto;margin-right:auto" class="form-control" placeholder="What type of insight is this">
+             <option ng-repeat="category in categories track by $index" value="{{ category }}">{{ capitalize(category) }}</option>
+          </select>
+          <br>
           <button  ng-click="addInsight()" type="button" class="btn btn-info btn-bordered">Add Insight</button>
+         </div> 
         </div>
     </div>
   </div>
-</div>			
 
  <!-- Dream Modal -->
 <div class="modal fade" id="dreamsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -66,7 +122,7 @@
 		            <td><strong>Category</strong></td>
 		            <td><strong>Title</strong></td>
 		            <td><strong>Description</strong></td>
-		            <td><strong>Fundraising Goal</strong></td>
+		            <td><strong>Goal Amount</strong></td>
 		          </tr>
 		        </thead>
 		        <tbody>
@@ -83,12 +139,45 @@
             <br/>
           </div>
       	</div>
-        <div style="width:100%;text-align:center;padding:40px;border-bottom-left-radius:6px;border-bottom-right-radius:6px;background:#ddd">
-          <select ng-model="newDream.title" style="width:60%;margin-left:auto;margin-right:auto" class="form-control"><option ng-repeat="category in categories track by $index" value="{{ category }}">{{ capitalize(category) }}</option></select><br />
-          <input ng-model="newDream.fundraisingGoal" style="width:60%;margin-left:auto;margin-right:auto" type="text" placeholder="Fundraising Goal" class="form-control input-lg"><br/>
-          <textarea ng-model="newDream.description" class="form-control" style="height:40px;width:60%;margin-left:auto;margin-right:auto" placeholder="Title"></textarea><br />
-          <textarea ng-model="newDream.longDescription" class="form-control" style="height:96px;width:60%;margin-left:auto;margin-right:auto" placeholder="Description"></textarea><br /><br />
-          <button  ng-click="addDream()" type="button" class="btn btn-info btn-bordered">Add Dream</button>
+        <div style="width:100%;text-align:center;padding:20px;border-bottom-left-radius:2px;border-bottom-right-radius:2px;background:#ddd">
+          <div style=" height:200px; margin-top:2px;padding:10px;">
+            <h4> Examples:</h4>
+            <img src="/site/img/dream1.png" style="float:right; height:100%; width:50%; border:6px solid #ddd;"/>
+            <img src="/site/img/dream2.png" style="height:100%; width:50%; border:6px solid #ddd;"/>
+          </div> 
+          <br> 
+          <br>
+          <div>      
+            <h5 style="text-align:center"> I am aspiring to: </h5>
+            <input ng-model="newDream.type" type="radio" name="type" value="others" /><span style="margin-left:6px">Help Others</span>
+            <input ng-model="newDream.type" style="margin-left:12px" type="radio" name="type" value="myself" /><span style="margin-left:6px">Help Myself</span>
+            <br /><br />
+            <textarea ng-model="newDream.description" class="form-control" style="height:40px;width:60%;margin-left:auto;margin-right:auto" placeholder="What's your dream or goal?"></textarea>
+            <br/>
+            <textarea ng-model="newDream.longDescription" class="form-control" style="height:96px;width:60%;margin-left:auto;margin-right:auto" placeholder="Tell us more about this dream or goal? What is the inspiration? Why is it important to you? How will this help you grow/change? What will you accomplish?"></textarea>
+            <br/>
+            <a target="_blank" href="https://www.google.com/finance?q=USDCOP" >COL to USD Converter</a>
+            <input ng-model="newDream.fundraisingGoal" style="width:60%;margin-left:auto;margin-right:auto;margin-top:6px" type="text" placeholder="Amount in $USD" class="form-control input-lg">
+            <br/>
+          </div>
+
+          <select ng-model="newDream.title" style="width:60%;margin-left:auto;margin-right:auto" class="form-control" placeholder="What type of dream is this">
+            <option ng-show="newDream.type == 'myself'" value="project">Project</option>
+            <option ng-show="newDream.type == 'myself'" value="study">Study</option>
+            <option ng-show="newDream.type == 'myself'" value="business">Business</option>
+            <option ng-show="newDream.type == 'myself'" value="travel">Travel</option>
+            <option ng-show="newDream.type == 'myself'" value="income">Income</option>
+            <option ng-show="newDream.type == 'others'" value="environmental">Environmental</option>
+            <option ng-show="newDream.type == 'others'" value="educationl">Education</option>
+            <option ng-show="newDream.type == 'others'" value="youth">Youth</option>
+            <option ng-show="newDream.type == 'others'" value="rights">Human Rights</option>
+            <option ng-show="newDream.type == 'others'" value="peacel">Peace &amp; Conflict</option>
+            <option ng-show="newDream.type == 'others'" value="women">Women</option>
+            <option ng-show="newDream.type == 'others'" value="humanitarian">Humanitarian</option>
+
+          </select>
+          <br />
+          <button  ng-click="addDream()" type="button" class="btn btn-info btn-bordered">Add</button>
         </div>
     </div>
   </div>
@@ -98,17 +187,25 @@
     <p class="browsehappy">You are using an strong outdated browser. <br>Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
     <div class="page">
+      
       {{ nav }}
+
       <!-- Start header Section-->
-      <section style="background-image: url('img/slides/slide6.jpg');" class="header-section fading-title parallax">
+      <section style="background-image: url('/site/img/slides/slide6.jpg');" class="header-section fading-title parallax">
         <div class="section-shade sep-top-3x sep-bottom-2x">
           <div class="container">
             <div class="section-title upper text-center">
-              <a href="/site/profile/{{ currentUser.id }}">
+              <a href="profile/{{ currentUser.id }}">
              	<h2 class="light small-space">Your&nbsp;<span class="text-primary">Profile</span></h2>
               </a>
               <p class="lead light">Press update to save changes.</p>
-              <img style="width:80px;height:80px;border-radius:40px;border:2px solid #ddd;" src='/site/images/{{ currentUser.image }}?crop=256'/>
+              <img style="width:96px;height:96px;border-radius:48px;border:2px solid #ddd;" src='/site/images/{{ currentUser.image }}?crop=256'/>
+              <br />
+              <br />
+              <a data-toggle="modal" data-target="#messagesModal" ng-click="showMessages()" href="#">
+                <img style="width:48px" src="/site/img/envelope.png" />
+              </a>
+              
             </div>
           </div>
         </div>
@@ -117,7 +214,7 @@
       
       
       <!-- Start Contact section-->
-		<div class="container" style="padding-top:20px;background-image:url('/site/img/slides/slide3.jpg');width:100%;height:900px">
+		<div class="container" style="padding-top:20px;background-image:url('/site/img/slides/slide3.jpg');width:100%;min-height:900px;padding-bottom:60px;background-size:cover;">
           <div class="col-md-4" style="background:rgba(249, 249, 249, 0.96);border:1px solid #ddd;padding:0px;min-height:860px;">
             <div style="text-align:center;">
               <br/>
@@ -131,77 +228,101 @@
                </div>                
               <hr/>
             </div>
-            <div style="padding-left:30px;padding-right:30px">
+            <div style="padding:30px;">
 	          
                 <label class="upper" style="margin-top:10px">Age</label>
                 <select class="form-control input-lg" ng-model="currentUser.age" >
                 	<option ng-repeat="age in ages track by $index" value= "{{ age }}" >{{ age }}</option>
                 </select>
-                <label class="upper" style="margin-top:10px">Current City</label>
+                <label class="upper" style="margin-top:10px">Where do you live now?</label>
                 <input ng-model="currentUser.city" type="text" placeholder="Current City" class="form-control input-lg">
                 <label class="upper" style="margin-top:10px">Current Country</label>
-                <select class="form-control input-lg" ng-model="currentUser.country" >
+                <select class="form-control input-lg" ng-model="currentUser.country">
                 	<option ng-repeat="country in countries track by $index" value= "{{ country }}" >{{ capitalize(country) }}</option>
                 </select>
-                <label class="upper" style="margin-top:10px">Home City</label>
+                <label class="upper" style="margin-top:10px">Where were you born?</label>
                 <input ng-model="currentUser.homeCity" type="text" placeholder="Home City" class="form-control input-lg">
                 <label class="upper" style="margin-top:10px">Home Country</label>
                 <select class="form-control input-lg" ng-model="currentUser.homeCountry" >
                 	<option ng-repeat="country in countries track by $index" value= "{{ country }}" >{{ capitalize(country) }}</option>
                 </select>
-                <label class="upper" style="margin-top:10px">Languages (Comma-Seperated)</label>
-                <input ng-model="languages" type="text" placeholder="Langugages" class="form-control input-lg">
+                <label class="upper" style="margin-top:10px">Languages (Comma-Separated)</label>
+                <input ng-model="languages" type="text" placeholder="Languages" class="form-control input-lg">
                 <label class="upper" style="margin-top:10px">Occupation</label>
                 <input ng-model="currentUser.profession" type="text" placeholder="Occupation" class="form-control input-lg">
+                <label class="upper" style="margin-top:10px">Phone</label>
+                <input ng-model="currentUser.phone" type="text" placeholder="Phone" class="form-control input-lg">
             </div>
           </div>
             
             
-            
             <div class="col-md-8" style="background-size:cover;padding-left:0px">
               
-                <div style="width:90%;height:90%;background:rgba(255, 255, 255, 0.96);margin-left:auto;margin-right:auto;">
-                  <div style="height:80px;background:#f1f1f1;text-align:center;padding-top:18px;border:1px solid #ddd">
-                    <h4 style="color:#444">Mad Lib Yourself</h4>
+                <div style="min-width:300px;width:90%;height:90%;background:rgba(255, 255, 255, 0.96);margin-left:auto;margin-right:auto;">
+                  <div style="height:90px;background:#f1f1f1;text-align:center;padding-top:18px;border:1px solid #ddd;">
+                    <h4 style="color:#444">Tell Us About Yourself</h4>
                   </div>
                   <br />
-                  <div class="row" style="width:95%;margin-left:auto;margin-right:auto">
-	                  <div class="col-md-3">
-	                	<input ng-model="currentUser.bio[0]" type="text" placeholder="My name" class="form-control input-lg">
-	                  </div>
-	                  <div class="col-md-3">
-	                	<input ng-model="currentUser.bio[1]" type="text" placeholder="My unique hobby" class="form-control input-lg">
-	                  </div>
-	                  <div class="col-md-3">
-	                	<input ng-model="currentUser.bio[2]" type="text" placeholder="I spend free time" class="form-control input-lg">
-	                  </div>
-	                  <div class="col-md-3">
-	                	<input ng-model="currentUser.bio[3]" type="text" placeholder="One random fact is" class="form-control input-lg">
-	                  </div>
+                  <div class="row" style="width:95%;margin-left:auto;margin-right:auto; padding:20ps">
+                    <span style="color:#909090">For example:</span>
+                    <p></p>
+                    <span style="color:#000;"> "People don't know I'm good at</span>
+                    <span style="color:#75ACFF;">playing bongos.</span>
+                    <span style="color:#000">I could talk all day about</span>
+                    <span style="color:#75ACFF;">triathalons, spirituality, and coffee.</span>
+                    <span style="color:#000">My favorite place is</span>
+                    <span style="color:#75ACFF;">central park and the bench where I go for inspiration.</span>
+                    <span style="color:#000">I want to learn to</span>
+                    <span style="color:#75ACFF;">play the guitar/kiteboard.</span>
+                    <span style="color:#000">And</span>
+                    <span style="color:#75ACFF;">I love dogs. I always say hi to dogs on the street!</span>
+                    <p></p>
+                    <p></p>
+
+                  <div style="min-height:152px;background:#f1f1f1;padding:18px;border:1px solid #ddd; margin-left:auto;margin-right:auto;" align="center">
+	                	  <input style="min-width:240px;width:44%;display:inline-block;margin-top:12px" ng-model="currentUser.bio[0]" type="text" placeholder="People don't know I'm good at" class="form-control input-lg">
+	                	  <input style="min-width:240px;width:44%;display:inline-block;margin-top:12px" ng-model="currentUser.bio[1]" type="text" placeholder="I could talk all day about" class="form-control input-lg">
+	                	  <input style="min-width:240px;width:44%;display:inline-block;margin-top:12px" ng-model="currentUser.bio[2]" type="text" placeholder="My favorite place is" class="form-control input-lg">
+	                	  <input style="min-width:240px;width:44%;display:inline-block;margin-top:12px" ng-model="currentUser.bio[3]" type="text" placeholder="I want to learn to" class="form-control input-lg">
+                     	  <input style="min-width:240px;width:44%;display:inline-block;margin-top:12px" ng-model="currentUser.bio[4]" type="text" placeholder="And (tell us something else!)" class="form-control input-lg">
                   </div>
 	                  
                   <br/><br/>
-                  <div style="margin-left:auto;margin-right:auto;text-align:center;height:60px;width:60%;border:1px solid #ddd;background:url('/site/img/insights/tiles/culture.jpg')">
+                  
+                <div>
+                    <h4 style="text-align:center"> Create your Experiences and Dreams/Goals</h4>
+                    <br/>
+                    <span style="color:#909090"></span>
+
+                  <div style="margin-left:auto;margin-right:auto;text-align:center;height:60px;width:60%;border:1px solid #ddd;background:url('/site/img/insights/tiles/culture32.jpg')">
                   	<a data-toggle="modal" data-target="#insightsModal" href="">
-                  		<h5 style="color:white;margin-top:20px">Build your Insights</h5>
+                  		<h5 style="color:white;margin-top:20px">Click to create Experiences</h5>
                   	</a>
                   </div>
                   <br/>
                   <div style="margin-left:auto;margin-right:auto;text-align:center;height:60px;width:60%;border:1px solid #ddd;background:url('/site/img/insights/tiles/outdoors.jpg')">
                   	<a data-toggle="modal" data-target="#dreamsModal" href="">
-                  		<h5 style="color:white;margin-top:20px">Build your Dreams</h5>
+                  		<h5 style="color:white;margin-top:20px">Click to create Dreams/Goals</h5>
                   	</a>
                   </div>
                   <br/><br/>
-                  
-                  
-                  
-                  <h4 style="text-align:center">Hash Tag Yourself</h4>
-                  <br/>
+                </div>
+
+                  <h4 style="text-align:center">Create #HashTags About Yourself</h4>
+                  <h6 style="text-align:center">Be specific, get creative, have fun!</h6>
+                  <p style="text-align:center;color:#909090"> For example: #AnimalLover #Foodie #Skiier</p> 
                   <div style="margin-left:auto;margin-right:auto;background:white;border:1px solid #ddd;height:100px;width:70%">
                   	<p style="text-align:center;margin-top:10px">
-                  		<span ng-repeat="hashtag in currentUser.hashtags track by $index" style="color:#75ACFF">
-                  			{{ hashtag }}&nbsp;
+                  		<span style="color:#75ACFF">
+                  			baseball&nbsp;
+                  			<button ng-click="deleteHashtag($index)" type="button" class="btn btn-danger btn-xs btn-bordered">X</button>
+                  		</span>
+                  		<span style="color:#75ACFF">
+                  			food&nbsp;
+                  			<button ng-click="deleteHashtag($index)" type="button" class="btn btn-danger btn-xs btn-bordered">X</button>
+                  		</span>
+                  		<span style="color:#75ACFF">
+                  			sports&nbsp;
                   			<button ng-click="deleteHashtag($index)" type="button" class="btn btn-danger btn-xs btn-bordered">X</button>
                   		</span>
                   	</p>
@@ -211,25 +332,24 @@
                 	<button style="margin-top:5px" ng-click="addHashtag()" class="btn btn-primary btn-xs">Add</button>
                   </div>
                   
-                  
-                  
-                  
 				<div style="margin-left:auto;margin-right:auto;text-align:center;padding-top:40px">
               		<button ng-click="updateCurrentUser()" class="btn btn-primary btn-lg">Update</button>
               	</div>                  	
                   
-                  <br /><br /><br />
-
+                <br /><br /><br />
                 
                 </div>
+              </div>
             </div>
-            </div>
-            
+          </div>
        
       <!-- End Contact section-->
+     {{ footer }}
      
-      {{ footer }}
+     </div>
+
       
     {{ scripts }}
+
   </body>
 </html>

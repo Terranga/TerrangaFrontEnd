@@ -2,7 +2,7 @@ var app = angular.module('ProfileModule', []);
 app.controller('ProfileController', ['$scope', '$http', '$upload', function($scope, $http, $upload){
 	$scope.currentUser = {'loggedIn':'no'};
 	$scope.profile = {'firstName':'', 'lastName':'', 'age':'', 'city':'', 'country':'', 'bio':'', 'homeCity':'', 'image':'', 'homeCountry':'', 'profession':'', 'languages':[], 'points':''}; // insert empty values so angular doesn't freak out
-	$scope.newMessage = {'recipientID':'', 'senderID':'', 'subject':'', 'threadID':'', 'body':''};
+	$scope.newMessage = {'recipient':'', 'profile':'', 'subject':'', 'content':'', 'read':[]};
 	$scope.messages = null;
 	$scope.pageVersion = null;
 	$scope.languages = null;
@@ -11,6 +11,7 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
 	$scope.selectedInsight = null;
 	$scope.selectedDream = null;
 	$scope.reviewers = new Array();
+
 
 	$scope.init = function(){
 		console.log('Profile (app) Controller: INIT ');
@@ -25,7 +26,6 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
     	
 		fetchProfile(requestInfo.identifier);
 		fetchPageVersion();
-		
 	}
 	
 	$scope.checkLogin = function(){
@@ -63,12 +63,16 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
 	}
 	
 	$scope.sendMessage = function(){
-		$scope.newMessage.recipientID = $scope.profile.id;
-		$scope.newMessage.senderID = $scope.currentUser.id;
-		if ($scope.newMessage.senderID==null){
+		if ($scope.currentUser.loggedIn == 'no'){
 			alert("Please log in to message " + $scope.profile.firstName);
 			return;
 		}
+
+		$scope.newMessage['recipient'] = $scope.profile.id;
+		$scope.newMessage['profile'] = $scope.currentUser.id;
+		$scope.newMessage['read'] = [$scope.currentUser.id];
+		
+		
 		var json = JSON.stringify($scope.newMessage);
 		var url = '/api/messages';
         $http.post(url, json).success(function(data, status, headers, config) {
@@ -79,18 +83,22 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
                 alert(data['message']);
                 return;
             }
+            
             $scope.messages.push(data['message']);
-            $scope.newMessage = {'recipientID':'', 'senderID':'', 'subject':'', 'threadID':'', 'body':''};
+        	$scope.newMessage = {'recipient':'', 'profile':'', 'subject':'', 'content':'', 'read':[]};
+        	
             
         }).error(function(data, status, headers, config) {
             console.log("error", data, status, headers, config);
         });
 	}
 	
+	
 	function fetchMessages(){
 		if ($scope.currentUser.loggedIn=='no')
 			return;
-		var url = '/api/messages?senderID='+$scope.currentUser.id+'&recipientID='+$scope.profile.id;
+		
+		var url = '/api/messages?conversation='+$scope.currentUser.id+','+$scope.profile.id;
         $http.get(url).success(function(data, status, headers, config) {
             var confirmation = data['confirmation'];
             console.log('CONFIRMATION: '+JSON.stringify(data));
@@ -99,10 +107,14 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
                 alert(data['message']);
                 return;
             }
-           $scope.messages = data['messages'];
-           
-           var objDiv = document.getElementById("messages");
-           objDiv.scrollTop = objDiv.scrollHeight;
+            
+            $scope.messages = new Array();
+            var list = data['messages'];
+            for (var i=0; i<list.length; i++)
+            	$scope.messages.unshift(list[i]);
+            
+            var objDiv = document.getElementById("messages");
+            objDiv.scrollTop = objDiv.scrollHeight;
            
         }).error(function(data, status, headers, config) {
             console.log("error", data, status, headers, config);
@@ -112,6 +124,7 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
 	function fetchReviewers(){
 		for (var i=0; i<$scope.profile.reviews.length; i++){
 			var url = '/api/profiles/'+$scope.profile.reviews[i].reviewedBy;
+			
 			$http.get(url).success(function(data, status, headers, config) {
 	            var confirmation = data['confirmation'];
 
@@ -119,6 +132,7 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
 	                alert(data['message']);
 	                return;
 	            }
+	            
 	            $scope.reviewers.push(data['profile']);
 	    		console.log('Reviewers: '+ JSON.stringify($scope.reviewers));
 
@@ -148,7 +162,7 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
     		fetchMessages();
     		fetchReviewers();
     		$scope.languages = getLanguages();
-    		if ($scope.profile.endorsements[0]!=null){
+    		if ($scope.profile.endorsements[0] != null){
     			var url2 = '/api/profiles/'+$scope.profile.endorsements[0].endorsedBy;
     			$http.get(url2).success(function(data, status, headers, config) {
     	            var confirmation = data['confirmation'];

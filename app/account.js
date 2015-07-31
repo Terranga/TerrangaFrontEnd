@@ -3,7 +3,7 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
 	$scope.currentUser = {'loggedIn':'no'};
 	$scope.ages = [];
 	$scope.languages = null;
-	$scope.loading=false;
+	$scope.loading = false;
 	$scope.newHashtag = null;
 	$scope.categories = ['art','culture','food','education','outdoors','sightseeing','sports'];
 	$scope.newInsight = {'category':'', 'description':'', 'longDescription':''};
@@ -22,10 +22,10 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
 	
 	$scope.fetchMessages = function(){
 		console.log("FETCH MESSAGES");
-		var profileID = 24142237;
-		var url = 'http://beta.terranga.co/api/messages?senderID='+profileID;
+		
+		var url = '/api/messages?recipient='+$scope.currentUser.id+'&mostrecent=yes';
 		$http.get(url).success(function(data, status, headers, config) {
-			
+			console.log(JSON.stringify(data));
             var confirmation = data['confirmation'];
             
             if (confirmation != 'success'){
@@ -214,6 +214,7 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
             
             $scope.currentUser = c;
             $scope.languages = getLanguages();
+            $scope.fetchMessages();
             
         }).error(function(data, status, headers, config) {
             console.log("error", data, status, headers, config);
@@ -503,5 +504,18 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
 		return capitalizedString;
     }
 	
+	$scope.formattedDate = function(dateStr){
+		return moment(new Date(dateStr)).format('MMM D h:mm a');
+	}
+	
+	$scope.truncatedText = function(str, limit){
+		console.log('TRUNCATED TEXT');
+		if (str.length < limit)
+			return str;
+		
+		return str.substring(0, limit)+'...';
+	}
+	
+
 	
 }]);
