@@ -66,7 +66,7 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
 
 	$scope.updateInsight = function(index){
 		var insightId = $scope.currentUser.insights[index].id;
-		var url = '/api/insights'+insightId;
+		var url = '/api/insights/'+insightId;
 		console.log("UPDATE INSIGHT: "+ insightId);
 		
 		var json = JSON.stringify($scope.currentUser.insights[index].id);
@@ -78,8 +78,6 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
                 alert(data['message']);
                 return;
             }
-
-            $scope.currentUser.insights.unshift(data['insight']);
         }).error(function(data, status, headers, config) {
             console.log("error", data, status, headers, config);
         });
