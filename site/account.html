@@ -73,23 +73,25 @@
 		        </thead>
 		        <tbody>
 		          <tr ng-repeat="insight in currentUser.insights track by $index">
-		            <td ng-click="editCategory = !editCategory">
-                  <select ng-show="editCategory">
+		            <td>
+                  <select ng-show="editInsight" ng-model="insight.description">
                     <option>culture</option>
                     <option>food</option>
                     <option>outdoors</option>
                   </select>
-                  <span ng-hide="editCategory">{{ insight.categoryTag }}</span>
-                </td>
-		            <td ng-click="editDescription = !editDescription">
-                  <input type="text" placeholder="{{ insight.description }}" ng-show="editDescription">
-                  <span ng-hide="editDescription">{{ insight.description }}</span>
-                </td>
-		            <td ng-click="editLongDescription = !editLongDescription">
-                  <input type="text" placeholder="{{ insight.longDescription }}" ng-show="editLongDescription">
-                  <span ng-hide="editLongDescription">{{ insight.longDescription }}</span>
+                  <span ng-hide="editInsight">{{ insight.categoryTag }}</span>
                 </td>
 		            <td>
+                  <input type="text" placeholder="{{ insight.description }}" ng-show="editInsight" ng-model="insight.description">
+                  <span ng-hide="editInsight">{{ insight.description }}</span>
+                </td>
+		            <td>
+                  <input type="text" placeholder="{{ insight.longDescription }}" ng-show="editInsight" ng-model="insight.longDescription">
+                  <span ng-hide="editInsight">{{ insight.longDescription }}</span>
+                </td>
+		            <td>
+                  <button ng-click="editInsight = !editInsight" type="button" class="btn btn-primary btn-xs btn-bordered" ng-show="editInsight">Edit</button>
+                  <button ng-click="updateInsight($index)" type="button" class="btn btn-primary btn-xs btn-bordered" ng-hide="editInsight">Save</button>
                   <button ng-click="deleteInsight($index)" type="button" class="btn btn-danger btn-xs btn-bordered">Delete</button>
                 </td>
 		          </tr>
