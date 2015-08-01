@@ -65,11 +65,12 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
 	}
 
 	$scope.updateInsight = function(index){
-		var insightId = $scope.currentUser.insights[index].id;
-		var url = '/api/insights/'+insightId;
-		console.log("UPDATE INSIGHT: "+ insightId);
+		var insight = $scope.currentUser.insights[index];
+		var url = '/api/insights/'+insight.id;
 		
-		var json = JSON.stringify($scope.currentUser.insights[index].id);
+		var json = JSON.stringify(insight);
+		console.log("UPDATE INSIGHT: "+ json);
+		
 		$http.put(url, json).success(function(data, status, headers, config) {
             var confirmation = data['confirmation'];
             console.log('CONFIRMATION: '+JSON.stringify(data));
