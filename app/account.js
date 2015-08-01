@@ -132,7 +132,27 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
         });
 		
 	}
-	
+
+	$scope.updateDream = function(index){
+		var dream = $scope.currentUser.dreams[index];
+		var url = '/api/dreams/'+dream.id;
+		
+		var json = JSON.stringify(dream);
+		console.log("UPDATE INSIGHT: "+ json);
+		
+		$http.put(url, json).success(function(data, status, headers, config) {
+            var confirmation = data['confirmation'];
+            console.log('CONFIRMATION: '+JSON.stringify(data));
+
+            if (confirmation != 'success'){
+                alert(data['message']);
+                return;
+            }
+        }).error(function(data, status, headers, config) {
+            console.log("error", data, status, headers, config);
+        });
+	}
+
 	$scope.deleteDream = function(index){
 		
 		var dreamId = $scope.currentUser.dreams[index].id;

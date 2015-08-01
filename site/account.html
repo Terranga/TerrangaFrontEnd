@@ -146,11 +146,32 @@
 		        </thead>
 		        <tbody>
 		          <tr ng-repeat="dream in currentUser.dreams track by $index">
-		            <td>{{ capitalize(dream.title) }}</td>
-		            <td>{{ dream.description }}</td>
-		            <td>{{ dream.longDescription }}</td>
-		            <td>${{ dream.fundraisingGoal }}</td>
-		            <td><button ng-click="deleteDream($index)" type="button" class="btn btn-danger btn-xs btn-bordered">Delete</button></td>
+		            <td>
+                  <select ng-show="editDream" ng-model="dream.title">
+                    <option>Food</option>
+                    <option>Art</option>
+                  </select>
+                  <span ng-hide="editDream">{{ capitalize(dream.title) }}</span>
+                </td>
+		            <td>
+                  <input type="text" placeholder="{{ dream.description }}" ng-show="editDream" ng-model="dream.description">
+                  <span ng-hide="editDream">{{ dream.description }}</span>
+                </td>
+		            <td>
+                  <input type="text" placeholder="{{ dream.longDescription }}" ng-show="editDream" ng-model="dream.longDescription">
+                  <span ng-hide="editDream">{{ dream.longDescription }}</span>
+                </td>
+		            <td>
+                  <input type="text" placeholder="{{ dream.fundraisingGoal }}" ng-show="editDream" ng-model="dream.fundraisingGoal">
+                  <span ng-hide="editDream">${{ dream.fundraisingGoal }}</span>
+                </td>
+		            <td style="min-width: 175px">
+                  <button ng-click="editDream = !editDream" type="button" class="btn btn-primary btn-xs btn-bordered" ng-hide="editDream" style="display:inline">Edit</button>
+
+                  <button ng-click="updateDream($index); editDream = !editDream" type="button" class="btn btn-primary btn-xs btn-bordered" ng-show="editDream" style="display:inline">Save</button>
+
+                  <button ng-click="deleteDream($index)" type="button" class="btn btn-danger btn-xs btn-bordered" style="display:inline">Delete</button>
+                </td>
 		          </tr>
 		        </tbody>
 		      </table>
