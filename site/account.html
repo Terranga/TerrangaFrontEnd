@@ -89,9 +89,11 @@
                   <input type="text" placeholder="{{ insight.longDescription }}" ng-show="editInsight" ng-model="insight.longDescription">
                   <span ng-hide="editInsight">{{ insight.longDescription }}</span>
                 </td>
-		            <td style="min-width: 171px">
+		            <td style="min-width: 175px">
                   <button ng-click="editInsight = !editInsight" type="button" class="btn btn-primary btn-xs btn-bordered" ng-hide="editInsight" style="display:inline">Edit</button>
-                  <button ng-click="updateInsight($index)" type="button" class="btn btn-primary btn-xs btn-bordered" ng-show="editInsight" style="display:inline">Save</button>
+
+                  <button ng-click="updateInsight($index); editInsight = !editInsight" type="button" class="btn btn-primary btn-xs btn-bordered" ng-show="editInsight" style="display:inline">Save</button>
+
                   <button ng-click="deleteInsight($index)" type="button" class="btn btn-danger btn-xs btn-bordered" style="display:inline">Delete</button>
                 </td>
 		          </tr>
