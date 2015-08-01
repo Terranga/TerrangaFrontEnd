@@ -79,6 +79,8 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
                 alert(data['message']);
                 return;
             }
+
+            $scope.editInsight = !$scope.editInsight;
         }).error(function(data, status, headers, config) {
             console.log("error", data, status, headers, config);
         });
