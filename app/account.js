@@ -24,14 +24,14 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
 		console.log("FETCH MESSAGES");
 		
 		var url = '/api/messages?recipient='+$scope.currentUser.id+'&mostrecent=yes';
+		console.log($scope.currentUser.id);
 		$http.get(url).success(function(data, status, headers, config) {
 			console.log(JSON.stringify(data));
             var confirmation = data['confirmation'];
-            
+
+            // alerting undefined
             if (confirmation != 'success'){
-            	console.log('testing');
-                alert(data['message']);
-                console.log('testing');
+                alert(data['message']); // the prop is "messages" but should be "message"
                 return;
             }
             
