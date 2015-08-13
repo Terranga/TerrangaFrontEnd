@@ -243,7 +243,8 @@
               <br />
               <br />
               <a data-toggle="modal" data-target="#messagesModal" ng-click="showMessages()" href="#">
-                <i class="icon-mail" style="font-size: 48px"></i>
+                <i class="icon-mail" style="font-size: 48px;" ng-hide="messages"></i>
+                <i class="icon-mail" style="font-size: 48px;color: red" ng-show="messages"></i>
               </a>
               
             </div>

@@ -239,7 +239,7 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
             console.log('CONFIRMATION : '+ JSON.stringify(data));
             
             if (confirmation != 'success'){
-                alert(data['message']);
+                console.log(data['message']);
                 return;
             }
             
