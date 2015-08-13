@@ -29,7 +29,9 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
             var confirmation = data['confirmation'];
             
             if (confirmation != 'success'){
+            	console.log('testing');
                 alert(data['message']);
+                console.log('testing');
                 return;
             }
             
@@ -239,7 +241,7 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
             console.log('CONFIRMATION : '+ JSON.stringify(data));
             
             if (confirmation != 'success'){
-                console.log(data['message']);
+                alert(data['message']);
                 return;
             }
             
