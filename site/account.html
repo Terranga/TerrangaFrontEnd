@@ -32,8 +32,8 @@
 		        <tbody>
 		          <tr ng-repeat="message in messages track by $index">
 		            <td><img style="width:60px;border-radius:30px;border:solid 1px #ddd" src="/site/images/{{ message.profile.image }}?crop=120" /></td>
-		            <td><a href="/site/profile/{{ message.profile.id }}">{{ message.profile.firstName }} {{ message.profile.lastName }}</a></td>
-		            <td><a href="/site/profile/{{ message.profile.id }}">{{ truncatedText(message.content, 60) }}</a></td>
+		            <td><a href="/site/profile/{{ message.profile.id }}?showmessage=yes">{{ message.profile.firstName }} {{ message.profile.lastName }}</a></td>
+		            <td><a href="/site/profile/{{ message.profile.id }}?showmessage=yes">{{ truncatedText(message.content, 60) }}</a></td>
 		            <td>{{ formattedDate(message.timestamp) }}</td>
 		          </tr>
 		        </tbody>
