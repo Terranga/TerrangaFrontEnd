@@ -19,7 +19,7 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
     	var requestInfo = parseLocation('site');
     	console.log(JSON.stringify(requestInfo));
     	
-    	if (requestInfo.identifier==null){
+    	if (requestInfo.identifier == null){
         	console.log('ProfileController: MISSING PROFILE ID');
         	return;
     	}
@@ -43,7 +43,7 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
             console.log('CONFIRMATION: '+JSON.stringify(data));
             
             if (confirmation != 'success'){
-                alert(data['message']);
+                alert('Line 46: '+data['message']);
                 return;
             }
           
@@ -153,7 +153,7 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
             	$scope.currentUser = data['currentUser'];
 
             if (confirmation != 'success'){
-                alert(data['message']);
+                alert('Line 156: '+data['message']);
                 return;
             }
             
@@ -169,7 +169,7 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
     	            console.log('CONFIRMATION : '+ JSON.stringify(data));
     	            
     	            if (confirmation != 'success'){
-    	                alert(data['message']);
+    	                alert('Line 172: '+data['message']);
     	                return;
     	            }
     	            $scope.endorser = data['profile'];
@@ -196,7 +196,7 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
             console.log('CONFIRMATION: '+ JSON.stringify(data));
             
             if (confirmation != 'success'){
-                alert(data['message']);
+                alert('Line 199: '+data['message']);
                 return;
             }
             

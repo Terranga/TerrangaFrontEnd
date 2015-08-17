@@ -25,8 +25,8 @@
 	
 		<div id="messages" style="overflow:auto;position:relative;top:5%;background:rgba(255,255,255,.8);height:300px;width:95%;margin-left:auto;margin-right:auto;">
 			<p ng-repeat="message in messages track by $index" style="margin-left:1%">
-				<span ng-if="message.profile == currentUser.id" style="color:#1abc9c;font-weight:100;font-size:12px">{{ capitalize(currentUser.firstName) }}</span>
-				<span ng-if="message.profile == profile.id" style="color:#1abc9c;font-weight:100;font-size:12px">{{ capitalize(profile.firstName) }}</span>
+				<span ng-if="message.profile.id == currentUser.id" style="color:#1abc9c;font-weight:100;font-size:12px">You</span>
+				<span ng-if="message.profile.id == profile.id" style="color:#1abc9c;font-weight:100;font-size:12px">{{ capitalize(profile.firstName) }}</span>
 				<span style="color:#1abc9c;font-weight:100;font-size:12px"> | {{ formattedDate(message.timestamp) }}</span><br/>
 				{{ message.content }}
 			</p>
