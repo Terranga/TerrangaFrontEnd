@@ -24,7 +24,7 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
 		console.log("FETCH MESSAGES");
 		
 		var url = '/api/messages?recipient='+$scope.currentUser.id+'&mostrecent=yes';
-		console.log($scope.currentUser.id);
+		console.log('Current User: '+$scope.currentUser.id);
 		$http.get(url).success(function(data, status, headers, config) {
 			console.log(JSON.stringify(data));
             var confirmation = data['confirmation'];
