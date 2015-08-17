@@ -34,6 +34,7 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
 			alert("Please log in or create a profile first.");
 			return;
 		}
+		
 	}
 	
 	function fetchPageVersion(){
@@ -86,7 +87,6 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
             
             $scope.messages.push(data['message']);
         	$scope.newMessage = {'recipient':'', 'profile':'', 'subject':'', 'content':'', 'read':[]};
-        	
             
         }).error(function(data, status, headers, config) {
             console.log("error", data, status, headers, config);
@@ -149,8 +149,13 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
             var confirmation = data['confirmation'];
             console.log('CONFIRMATION : '+ JSON.stringify(data));
 
-            if (data['currentUser'] != null)
+            if (data['currentUser'] != null){
             	$scope.currentUser = data['currentUser'];
+            	
+            	var requestInfo = parseLocation('site');
+            	if (requestInfo.params.showmessage != null)
+            		$("#chatButton")[0].click();
+            }
 
             if (confirmation != 'success'){
                 alert('Line 156: '+data['message']);
@@ -177,7 +182,6 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
     			}).error(function(data, status, headers, config) {
     	            console.log("error", data, status, headers, config);
     	        });
-    			
     		}
 
             
