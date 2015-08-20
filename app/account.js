@@ -30,7 +30,15 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
             }
             
             $scope.currentUser = data['currentUser'];
-            $scope.languages = getLanguages();
+        	
+        	var langString = "";
+        	for (var i = 0; i<$scope.currentUser.languages.length; i++){
+        		langString += $scope.currentUser.languages[i];
+        		if (i != $scope.currentUser.languages.length-1)
+        			langString += ', ';
+        	}
+        	
+        	$scope.languages = langString;
             $scope.fetchMessages();
             
         }).error(function(data, status, headers, config) {
@@ -294,18 +302,6 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
         });
 	}
 	
-	
-	function getLanguages(){
-    	var languages = $scope.currentUser.languages;
-    	var langString = "";
-    	for (var i = 0; i<languages.length; i++){
-    		if (i!=0)
-    			langString = langString.concat(","+languages[i]);
-    		else
-    			langString = languages[0];
-    	}
-    	return langString;
-    }
 	
 	$scope.logout = function(){
 		console.log('LOG OUT: ');
