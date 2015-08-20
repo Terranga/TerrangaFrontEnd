@@ -16,8 +16,28 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
 		fetchCurrentUser();
 		for (var i=18;i<80;i++)
 			$scope.ages[i-18]=i;
-		
 	}
+	
+	function fetchCurrentUser(){
+		var url = '/api/currentuser';
+		$http.get(url).success(function(data, status, headers, config) {
+            var confirmation = data['confirmation'];
+            console.log('CONFIRMATION : '+ JSON.stringify(data));
+            
+            if (confirmation != 'success'){
+                alert(data['message']);
+                return;
+            }
+            
+            $scope.currentUser = data['currentUser'];
+            $scope.languages = getLanguages();
+            $scope.fetchMessages();
+            
+        }).error(function(data, status, headers, config) {
+            console.log("error", data, status, headers, config);
+        });
+	}
+	
 	
 	
 	$scope.fetchMessages = function(){
@@ -87,7 +107,6 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
 	}
 	
 	$scope.deleteInsight = function(index){
-		
 		var insightId = $scope.currentUser.insights[index].id;
 		var url = '/api/insights/'+insightId;
 		console.log("DELETE INSIGHT: "+ insightId);
@@ -109,7 +128,6 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
 	}
 	
 	$scope.addDream = function(){
-		
 		$scope.newDream['profileID'] = $scope.currentUser.id;
 		$scope.newDream['fundraisingGoal'] = $scope.newDream.fundraisingGoal.replace('$', '');
 		console.log("ADD Dream: "+JSON.stringify($scope.newDream));
@@ -132,7 +150,6 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
         }).error(function(data, status, headers, config) {
             console.log("error", data, status, headers, config);
         });
-		
 	}
 
 	$scope.updateDream = function(index){
@@ -156,7 +173,6 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
 	}
 
 	$scope.deleteDream = function(index){
-		
 		var dreamId = $scope.currentUser.dreams[index].id;
 		var url = '/api/dreams/'+dreamId;
 		console.log("DELETE DREAM: "+ dreamId);
@@ -209,7 +225,6 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
 	}
 	
 	$scope.deleteHashtag = function(index){
-		
 		$scope.loading = true;
 		$scope.currentUser.hashtags.splice(index,1);
 		var url = '/api/profiles/'+ $scope.currentUser.id;
@@ -232,45 +247,13 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
 	}
 	
 	
-	function fetchCurrentUser(){
-		console.log('FETCH CURRENT USER: ');
-		var url = '/api/currentuser';
-		$http.get(url).success(function(data, status, headers, config) {
-			
-            var confirmation = data['confirmation'];
-            console.log('CONFIRMATION : '+ JSON.stringify(data));
-            
-            if (confirmation != 'success'){
-                alert(data['message']);
-                return;
-            }
-            
-            var c = data['currentUser'];
-            
-            var keys = ['age', 'city','country','homeCity', 'homeCountry', 'languages', 'profession'];
-            for(var i=0;i<keys.length;i++){
-            	var key = keys[i];
-            	if(c[key]=='none')
-            		c[key]='';
-            }
-            
-            $scope.currentUser = c;
-            $scope.languages = getLanguages();
-            $scope.fetchMessages();
-            
-        }).error(function(data, status, headers, config) {
-            console.log("error", data, status, headers, config);
-        });
-	}
-	
-	
 	$scope.updateCurrentUser = function(){
-		if ($scope.currentUser==null){
-			alert('Log in first, dummy');
+		if ($scope.currentUser == null){
+			alert('Please Log In.');
 			return;
 		}
 		
-		if ($scope.languages!=null){
+		if ($scope.languages != null){
 			var langs = $scope.languages.split(",");
 			$scope.currentUser.languages = langs;
 		}
@@ -285,6 +268,7 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
         		break;
         	}
         }
+        
         if (validUpdate==false){
         	alert('Please complete all fields.');
         	return;
@@ -308,8 +292,6 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
         }).error(function(data, status, headers, config) {
             console.log("error", data, status, headers, config);
         });
-		
-		
 	}
 	
 	
@@ -376,10 +358,6 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
             }
             
             alert('LOGGED IN SUCCESSFULLY!');
-//            
-//            var p = data['profile'];
-//            $scope.featuredProfiles.push(p);
-//            
             
         }).error(function(data, status, headers, config) {
             console.log("error", data, status, headers, config);
@@ -389,12 +367,7 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
 	}
 	
 	
-	
-//	$scope.signup = function(){
-//		console.log('Sign Up'+JSON.stringify($scope.profile));
-//	}
 	$scope.register = function(){
-		
 		if ($scope.profile.firstName.length==0){
 			alert('Please enter your first name.');
 			return;
@@ -557,7 +530,5 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
 		
 		return str.substring(0, limit)+'...';
 	}
-	
-
 	
 }]);
