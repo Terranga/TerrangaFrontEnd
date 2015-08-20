@@ -49,16 +49,11 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
 	
 	
 	$scope.fetchMessages = function(){
-		console.log("FETCH MESSAGES");
-		
 		var url = '/api/messages?recipient='+$scope.currentUser.id+'&mostrecent=yes';
 		console.log('Current User: '+$scope.currentUser.id);
 		$http.get(url).success(function(data, status, headers, config) {
 			console.log(JSON.stringify(data));
-            var confirmation = data['confirmation'];
-
-            // alerting undefined
-            if (confirmation != 'success'){
+            if (data['confirmation']!= 'success'){
                 alert(data['message']); // the prop is "messages" but should be "message"
                 return;
             }
@@ -72,7 +67,6 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
 	
 	
 	$scope.addInsight = function(){
-		console.log("ADD INSIGHT");
 		$scope.newInsight['profile'] = $scope.currentUser.id;
 		var url = '/api/insights';
 		var json = JSON.stringify($scope.newInsight)
@@ -91,7 +85,6 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
         }).error(function(data, status, headers, config) {
             console.log("error", data, status, headers, config);
         });
-		
 	}
 
 	$scope.updateInsight = function(index){
@@ -99,8 +92,6 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
 		var url = '/api/insights/'+insight.id;
 		
 		var json = JSON.stringify(insight);
-		console.log("UPDATE INSIGHT: "+ json);
-		
 		$http.put(url, json).success(function(data, status, headers, config) {
             var confirmation = data['confirmation'];
             console.log('CONFIRMATION: '+JSON.stringify(data));
@@ -117,13 +108,9 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
 	$scope.deleteInsight = function(index){
 		var insightId = $scope.currentUser.insights[index].id;
 		var url = '/api/insights/'+insightId;
-		console.log("DELETE INSIGHT: "+ insightId);
 		
 		$http.delete(url).success(function(data, status, headers, config) {
-            var confirmation = data['confirmation'];
-            console.log('CONFIRMATION: '+JSON.stringify(data));
-
-            if (confirmation != 'success'){
+            if (data['confirmation']!= 'success'){
                 alert(data['message']);
                 return;
             }
@@ -138,16 +125,13 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
 	$scope.addDream = function(){
 		$scope.newDream['profileID'] = $scope.currentUser.id;
 		$scope.newDream['fundraisingGoal'] = $scope.newDream.fundraisingGoal.replace('$', '');
-		console.log("ADD Dream: "+JSON.stringify($scope.newDream));
 		
 		
 		var url = '/api/dreams';
 		var json = JSON.stringify($scope.newDream)
 		$http.post(url, json).success(function(data, status, headers, config) {
-            var confirmation = data['confirmation'];
             console.log('CONFIRMATION: '+JSON.stringify(data));
-
-            if (confirmation != 'success'){
+            if (data['confirmation'] != 'success'){
                 alert(data['message']);
                 return;
             }
@@ -165,13 +149,9 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
 		var url = '/api/dreams/'+dream.id;
 		
 		var json = JSON.stringify(dream);
-		console.log("UPDATE INSIGHT: "+ json);
-		
 		$http.put(url, json).success(function(data, status, headers, config) {
-            var confirmation = data['confirmation'];
             console.log('CONFIRMATION: '+JSON.stringify(data));
-
-            if (confirmation != 'success'){
+            if (data['confirmation']!= 'success'){
                 alert(data['message']);
                 return;
             }
@@ -183,13 +163,9 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
 	$scope.deleteDream = function(index){
 		var dreamId = $scope.currentUser.dreams[index].id;
 		var url = '/api/dreams/'+dreamId;
-		console.log("DELETE DREAM: "+ dreamId);
 		
 		$http.delete(url).success(function(data, status, headers, config) {
-            var confirmation = data['confirmation'];
-            console.log('CONFIRMATION: '+JSON.stringify(data));
-
-            if (confirmation != 'success'){
+            if (data['confirmation'] != 'success'){
                 alert(data['message']);
                 return;
             }
@@ -203,7 +179,6 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
 	
 	
 	$scope.addHashtag = function(){
-		console.log("ADD HASHTAG");
 		if ($scope.newHashtag==null){
 			alert("Please enter a hashtag");
 			return;
@@ -211,21 +186,18 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
 		
 		$scope.currentUser.hashtags.push($scope.newHashtag);
 		
-		$scope.loading=true;
+		$scope.loading = true;
 		var json = JSON.stringify($scope.currentUser);		
     	var url = '/api/profiles/'+ $scope.currentUser.id;
     	
         $http.put(url, json).success(function(data, status, headers, config) {
-            var confirmation = data['confirmation'];
-            console.log('CONFIRMATION: '+ JSON.stringify(data));
-            
-            if (confirmation != 'success'){
+            $scope.loading = false;
+            if (data['confirmation'] != 'success'){
                 alert(data['message']);
                 return;
             }
-            $scope.loading=false;
-            $scope.newHashtag=null;
-            alert('HASHTAG ADDED');
+            
+            $scope.newHashtag = null;
             
         }).error(function(data, status, headers, config) {
             console.log("error", data, status, headers, config);
@@ -240,14 +212,12 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
 		console.log(json);
 		
 		$http.put(url,json).success(function(data, status, headers, config) {
-            var confirmation = data['confirmation'];
+            $scope.loading = false;
             console.log('CONFIRMATION: '+JSON.stringify(data));
-
-            if (confirmation != 'success'){
+            if (data['confirmation']!= 'success'){
                 alert(data['message']);
                 return;
             }
-            $scope.loading = false;
                         
         }).error(function(data, status, headers, config) {
             console.log("error", data, status, headers, config);
@@ -307,10 +277,7 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
 		console.log('LOG OUT: ');
 		var url = '/api/logout';
         $http.post(url).success(function(data, status, headers, config) {
-            var confirmation = data['confirmation'];
-            console.log('CONFIRMATION: '+ JSON.stringify(data));
-            
-            if (confirmation != 'success'){
+            if (data['confirmation'] != 'success'){
                 alert(data['message']);
                 return;
             }
@@ -321,8 +288,6 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
             console.log("error", data, status, headers, config);
         });
 	}
-	
-	
 	
 	
 	$scope.login = function(){
@@ -343,23 +308,17 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
 		
 		var json = JSON.stringify($scope.currentUser);
     	var url = '/api/login';
-    	
         $http.post(url, json).success(function(data, status, headers, config) {
-            var confirmation = data['confirmation'];
             console.log('CONFIRMATION: '+ JSON.stringify(data));
-            
-            if (confirmation != 'success'){
+            if (data['confirmation'] != 'success'){
                 alert(data['message']);
                 return;
             }
             
             alert('LOGGED IN SUCCESSFULLY!');
-            
         }).error(function(data, status, headers, config) {
             console.log("error", data, status, headers, config);
         });
-        
-        
 	}
 	
 	
@@ -390,20 +349,14 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
 
     	var url = '/api/profiles';
         $http.post(url, json).success(function(data, status, headers, config) {
-            var confirmation = data['confirmation'];
             console.log('CONFIRMATION: '+confirmation);
-            
-            if (confirmation != 'success'){
+            if (data['confirmation'] != 'success'){
                 alert(data['message']);
                 return;
             }
             
-            alert('PROFILE CREATED!');
-            
             var p = data['profile'];
             $scope.featuredProfiles.push(p);
-            
-            
         }).error(function(data, status, headers, config) {
             console.log("error", data, status, headers, config);
         });
