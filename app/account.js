@@ -12,9 +12,8 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
 	$scope.messages = null;
 	
 	$scope.init = function(){
-		console.log('Account Controller: INIT '+JSON.stringify($scope.newDream));
 		fetchCurrentUser();
-		for (var i=18;i<80;i++)
+		for (var i=18; i<80; i++)
 			$scope.ages[i-18]=i;
 	}
 	
