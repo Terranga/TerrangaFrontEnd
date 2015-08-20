@@ -435,7 +435,7 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
         }
         
 		var url = '/api/upload?media=images';
-		$scope.loading=true;
+		$scope.loading = true;
 		$http.get(url).success(function(data, status, headers, config) {
 			if (data['confirmation'] != 'success'){
                 alert(data['message']);
@@ -483,17 +483,22 @@ app.controller('AccountController', ['$scope', '$http', '$upload', function($sco
             	return;
             }
             
+        	var image = data['image'];
+
+        	if (property=='images'){
+            	if (entity == 'currentUser'){
+                	$scope.currentUser.images.push(image['id']);
+                	$scope.updateCurrentUser();
+            	}
+        	}
+        	
         	if (property=='image'){
-            	var image = data['image'];
-            	if (entity=='currentUser'){
+            	if (entity == 'currentUser'){
                 	$scope.currentUser['image'] = image['id'];
                 	$scope.updateCurrentUser();
             	}
-//            	else if (entity=='image'){
-//                	$scope.project['image'] = image['id'];
-//                	updateProject();
-//            	}
         	}
+        	
         	
           });
         }
