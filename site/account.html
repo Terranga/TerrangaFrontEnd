@@ -7,6 +7,10 @@
 </head>
   
   <body ng-app="Terranga" ng-controller="AccountController" ng-init="init()">
+    <div class="loading-overlay" ng-show="loading">
+      <div spinner spin="loading"></div>
+    </div>
+
   
   <!-- Messages Modal -->
 <div class="modal fade" id="messagesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -18,7 +22,6 @@
             <img style="width:160px" src="/site/img/logo-dark.png" alt=""><br /><br /><hr /><br />
             
 			<div>
-			
 		      <table class="table table-striped" style="width:80%;margin-left:auto;margin-right:auto;">
 		        <thead>
 		          <tr>
@@ -38,8 +41,6 @@
 		          </tr>
 		        </tbody>
 		      </table>
-			
-			
             </div>
             
             <br/>
@@ -185,8 +186,7 @@
             <img src="/site/img/dream1.png" style="float:right; height:100%; width:50%; border:6px solid #ddd;"/>
             <img src="/site/img/dream2.png" style="height:100%; width:50%; border:6px solid #ddd;"/>
           </div> 
-          <br> 
-          <br>
+          <br /><br />
           <div>      
             <h5 style="text-align:center"> I am aspiring to: </h5>
             <input ng-model="newDream.type" type="radio" name="type" value="others" /><span style="margin-left:6px">Help Others</span>
@@ -269,7 +269,7 @@
                
                <div style="text-align:left;width:90%;margin-left:auto;margin-right:auto;margin-top:12px">
                  <div ng-repeat="image in currentUser.images track by $index" style="height:64px;width:64px;margin-left:6px;display:inline-block">
-                   <img style="width:64px;border:2px solid #fff;" src="/site/images/{{ image }}?crop=256" />
+                   <a class="thumb" href="#"><img style="width:64px;border:2px solid #fff;" src="/site/images/{{ image }}?crop=256" /></a>
                  </div>
                  
                  <div ng-file-drop="onFileSelect($files, 'images', 'currentUser')" style="height:64px;width:64px;margin-left:6px;display:inline-block">
