@@ -2443,9 +2443,28 @@ label.error {
 	text-align:center;
 }
 
+#account-messages {
+  width: 75px;
+  height: 75px;
+  background-color: white;
+  display: block;
+  margin: 0 auto;
+  line-height: 90px;
+  border-radius: 50%;
+  position: relative;
+}
 
+#account-messages .alert-bubble {
+  width: 30px;
+  height: 30px;
+  background-color: red;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 50%;
+  color: white;
+}
 
-
-
-
-
+#account-messages .alert-bubble p {
+  line-height: 30px;
+}
