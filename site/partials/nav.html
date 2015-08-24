@@ -8,6 +8,14 @@
           </div>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right service-nav">
+              <li>
+                <a data-toggle="modal" data-target="#messagesModal" ng-click="showMessages()" href="#" id="account-messages">
+                  <div class="alert-bubble" ng-show="messages">
+                    <p>{{ messages.length }}</p>
+                  </div>
+                  <i class="icon-mail" style="font-size: 24px;"></i>
+                </a>
+              </li>
               <li class="dropdown">
                 <a href="/" id="menu_item_Home" class="dropdown-toggle">Home</a>
               </li>

@@ -2468,3 +2468,20 @@ label.error {
 #account-messages .alert-bubble p {
   line-height: 30px;
 }
+
+.navbar-nav li #account-messages {
+  height: 57px;
+  background:none;
+  width: auto;
+  display: block;
+  line-height: 54px;
+  border-radius: 0;
+  position: relative;
+}
+.navbar-nav li #account-messages .alert-bubble {
+  height: 20px;
+  width: 20px;
+  top: 12px;
+  right: -2px;
+}
+.navbar-nav li #account-messages .alert-bubble p { text-align: center; }
