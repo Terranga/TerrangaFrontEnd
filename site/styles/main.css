@@ -2484,4 +2484,7 @@ label.error {
   top: 12px;
   right: -2px;
 }
-.navbar-nav li #account-messages .alert-bubble p { text-align: center; }
+.navbar-nav li #account-messages .alert-bubble p {
+  line-height: 21px;
+  text-align: center;
+}

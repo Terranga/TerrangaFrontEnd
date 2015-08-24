@@ -11,6 +11,7 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
 	$scope.selectedInsight = null;
 	$scope.selectedDream = null;
 	$scope.reviewers = new Array();
+    $scope.messages = [];
 
 
 	$scope.init = function(){
@@ -108,7 +109,7 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
                 return;
             }
             
-            $scope.messages = new Array();
+            $scope.messages = [];
             var list = data['messages'];
             for (var i=0; i<list.length; i++)
             	$scope.messages.unshift(list[i]);
