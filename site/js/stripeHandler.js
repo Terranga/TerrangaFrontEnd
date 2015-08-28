@@ -1,5 +1,5 @@
   var handler = StripeCheckout.configure({
-    key: 'pk_live_8ftaqUCg4JwMMzw0NK6xl3H2',
+    key: 'pk_live_UAQI2jMbJzpnpztUK6owA6tB',
     image: '/site/img/logo_diamond.png',
     token: function(token) {
       // Use the token to create the charge with a server-side script. You can access the token ID with `token.id`
