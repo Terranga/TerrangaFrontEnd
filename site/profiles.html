@@ -29,7 +29,8 @@
                   <div class="profileBox" ng-repeat="profile in featuredProfiles track by $index">
                     <a href="/site/profile/{{ profile.id }}">
                       <img src="/site/images/{{ profile.image }}?crop=256" />
-                      {{ capitalize(profile.firstName) }}, {{ profile.age }}
+                      {{ capitalize(profile.firstName) }}, {{ profile.age }}<br />
+                      {{ capitalize(profile.city) }}
 					</a>
                   </div>                  
                   <br /><br /><br />
