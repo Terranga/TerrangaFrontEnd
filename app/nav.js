@@ -7,16 +7,11 @@ app.controller('NavController', ['$scope', '$http', function($scope, $http){
         console.warn("FETCH USER ------ ")
         var url = '/api/currentuser';
         $http.get(url).success(function(data, status, headers, config) {
-            var confirmation = data['confirmation'];
             console.log('CONFIRMATION : '+ JSON.stringify(data));
-            
-            if (confirmation != 'success'){
-                alert(data['message']);
+            if (data['confirmation'] != 'success')
                 return;
-            }
             
             $scope.nav_currentUser = data['currentUser'];
-            
             var langString = "";
             for (var i = 0; i<$scope.nav_currentUser.languages.length; i++){
                 langString += $scope.nav_currentUser.languages[i];
@@ -33,8 +28,10 @@ app.controller('NavController', ['$scope', '$http', function($scope, $http){
     }
 
     $scope.fetchMessages = function(){
+    	if ($scope.nav_currentUser.loggedIn == 'no')
+    		return;
+    	
         var url = '/api/messages?recipient='+$scope.nav_currentUser.id+'&mostrecent=yes';
-        // console.log('Current User: '+$scope.currentUser.id);
         $http.get(url).success(function(data, status, headers, config) {
             console.log(JSON.stringify(data));
             if (data['confirmation']!= 'success'){
