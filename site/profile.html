@@ -130,15 +130,15 @@
 			<div ng-repeat="review in profile.reviews track by $index">
 				<div class="row" style="width:95%;padding-top:20px;padding-left:10px">
 	           		<div class="col-md-4" style="padding-right:0px">
-	            		<a href="profile/{{ reviewers[$index].id }}"><img style="height:110px;width:110px;border:1px solid #ddd;border-radius:55px"src="images/{{ reviewers[$index].image }}?crop=256"/></a>
-	            		<p style="margin-top:5px;margin-left:35px;font-weight:300;font-size:1.4em">{{ capitalize(reviewers[$index].firstName) }}</p>
+	            		<a href="profile/{{ reviewers[$index].id }}"><img style="height:110px;width:110px;border:1px solid #ddd;border-radius:55px"src="/site/images/{{ reviewers[$index].image }}?crop=256"/></a>
+	            		<p style="margin-top:5px;margin-left:35px;font-weight:300;font-size:1.4em;text-align:left">{{ capitalize(reviewers[$index].firstName) }}</p>
 	           		</div>
 	           		<div class="col-md-8" style="padding-left:0px">
 	           			<p style="font-weight:300;font-size:1.2em">
 	           				"{{ review.description }}"
 	           			</p>
 	           			<p style="font-weight:300;font-size:1.2em">
-	           				From {{ capitalize(reviewers[$index].city) }} - {{ formattedReviewData(review.timestamp) }}
+	           				{{ formattedReviewData(review.timestamp) }}
 	           			</p>
 	           		</div>	
 		       </div>
