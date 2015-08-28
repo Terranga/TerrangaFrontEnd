@@ -12,14 +12,13 @@ app.controller('NavController', ['$scope', '$http', function($scope, $http){
                 return;
             
             $scope.nav_currentUser = data['currentUser'];
-            var langString = "";
-            for (var i = 0; i<$scope.nav_currentUser.languages.length; i++){
-                langString += $scope.nav_currentUser.languages[i];
+            $scope.languages = "";
+            for (var i=0; i<$scope.nav_currentUser.languages.length; i++){
+            	$scope.languages += $scope.nav_currentUser.languages[i];
                 if (i != $scope.nav_currentUser.languages.length-1)
-                    langString += ', ';
+                	$scope.languages += ', ';
             }
             
-            $scope.languages = langString;
             $scope.fetchMessages();
             
         }).error(function(data, status, headers, config) {
