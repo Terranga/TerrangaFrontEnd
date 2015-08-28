@@ -7,23 +7,17 @@ app.controller('HomeController', ['$scope', '$http', function($scope, $http){
 	$scope.currentUser = {'loggedIn':'no'};
 	
 	$scope.init = function(){
-		console.log('Home Controller: INIT - '+JSON.stringify($scope.featuredProfiles));
 		fetchFeaturedProfiles();
 	}
 	
 	function fetchFeaturedProfiles(){
-		console.log('FETCH FEATURED PROFILES: ');
-		
     	var url = '/api/profiles?featured=yes&limit=4';
         $http.get(url).success(function(data, status, headers, config) {
-            var confirmation = data['confirmation'];
-            console.log('CONFIRMATION: '+JSON.stringify(data));
             
             if (data['currentUser'] != null)
             	$scope.currentUser = data['currentUser'];
-            	
             
-            if (confirmation != 'success'){
+            if (data['confirmation'] != 'success'){
                 alert(data['message']);
                 return;
             }
