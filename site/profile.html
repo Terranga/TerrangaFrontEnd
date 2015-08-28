@@ -2,7 +2,6 @@
 <html class="no-js">
   <head>
 	{{ head }}
-	
 	<script src="https://checkout.stripe.com/checkout.js"></script>
 	
   </head>
@@ -54,9 +53,9 @@
           </div>
           <br/>
 		<div style="height:300px;width:90%;background:rgba(0,179,255,0.2);margin-left:auto;margin-right:auto;">
-			<a> 
-      <button ng-click="viewInsight( ($index!=reviewers.length) ? ($index=$index+1) : ($index=0) )" class="close" style="float:right;margin-top:25%;margin-right:15px">></button>
-			</a>
+		  <a>
+      		<button ng-click="viewInsight( ($index!=reviewers.length) ? ($index=$index+1) : ($index=0) )" class="close" style="float:right;margin-top:25%;margin-right:15px">></button>
+		  </a>
       <div style="text-align:center;overflow:auto;position:relative;top:5%;background:url(/site/img/insights/tiles/{{ selectedInsight.categoryTag }}.jpg);height:50px;width:85%;margin-left:auto;margin-right:1.8%;">
 				<h5 style="margin-top:15px;font-family:Roboto;color:white">
 					{{ selectedInsight.description }}
