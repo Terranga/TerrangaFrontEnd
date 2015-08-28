@@ -321,12 +321,13 @@
     <h2>PROFILE</h2>
     
     
-    <div class="section" style="background:#f1f9f5;width:80%">
+    <div class="section" style="background:#f1f9f5;">
       
       <table class="table table-striped">
         <thead>
           <tr>
             <td><strong>Name</strong></td>
+            <td><strong>ID</strong></td>
             <td><strong>Email</strong></td>
             <td><strong>Featured</strong></td>
             <td><strong>City</strong></td>
@@ -341,6 +342,7 @@
         <tbody>
           <tr ng-repeat="profile in featuredProfiles track by $index">
             <td><a ng-click="viewProfile($index)" data-toggle="modal" data-target="#profileModal" href="">{{ profile.firstName }} {{ profile.lastName }}</a></td>
+            <td>{{ profile.id }}</td>
             <td><a target="_blank" href="/site/profile/{{ profile.id }}">{{ profile.email }}</a></td>
             <td>{{ profile.isFeatured }}</td>
             <td>{{ profile.city }}</td>
@@ -357,10 +359,6 @@
       
       
       </table>
-      
-      
-      
-      
       
     </div>
     
