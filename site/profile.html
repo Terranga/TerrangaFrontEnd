@@ -156,9 +156,12 @@
     <button type="button" class="close" data-dismiss="modal">
       <span style="margin-right:5px;" aria-hidden="true">&times;</span><span class="sr-only">Close</span>
     </button>
-    <img src="/site/images/{{ selectedImage }}?crop=512" />
+    <img src="/site/images/{{ selectedImage }}?crop=512" /><br /><br />
+    <button ng-click="nextImage()" class="btn btn-success">Next</button>
  </div>
 </div>
+
+
     
     <div id="load"></div><!--[if lt IE 9]>
     <p class="browsehappy">You are using an strong outdated browser. <br>Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>

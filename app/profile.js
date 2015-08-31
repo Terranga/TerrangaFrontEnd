@@ -342,6 +342,15 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
 		
 		$scope.selectedImage = $scope.profile.images[index];
 	}
+	
+	$scope.nextImage = function(){
+		if ($scope.profile.images.length == 0)
+			return;
+		
+		var index = $scope.profile.images.indexOf($scope.selectedImage)+1;
+		index = index % $scope.profile.images.length;
+		$scope.selectedImage = $scope.profile.images[index];
+	}
     
     $scope.getWidth = function(){
     	var percent = $scope.selectedDream.fundraisingCurrent / $scope.selectedDream.fundraisingGoal * 100;
