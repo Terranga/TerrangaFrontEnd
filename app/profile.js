@@ -10,13 +10,12 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
 	$scope.endorser = null;
 	$scope.selectedInsight = null;
 	$scope.selectedDream = null;
+	$scope.selectedImage = null;
 	$scope.reviewers = new Array();
     $scope.messages = [];
 
 
 	$scope.init = function(){
-		console.log('Profile (app) Controller: INIT ');
-		
     	var requestInfo = parseLocation('site');
     	console.log(JSON.stringify(requestInfo));
     	
@@ -335,6 +334,13 @@ app.controller('ProfileController', ['$scope', '$http', '$upload', function($sco
     $scope.viewDream = function(index){
 		$scope.selectedDream = $scope.profile.dreams[index];
 		console.log(JSON.stringify($scope.selectedDream));
+	}
+    
+	$scope.selectThumb = function(index){
+		if ($scope.profile.images.length == 0)
+			return;
+		
+		$scope.selectedImage = $scope.profile.images[index];
 	}
     
     $scope.getWidth = function(){
