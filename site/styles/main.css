@@ -2488,3 +2488,26 @@ label.error {
   line-height: 21px;
   text-align: center;
 }
+
+.thumb {
+	width:48px;
+	margin-left:6px;
+}
+
+.modalBox {
+	padding:16px;
+	min-height:500px;
+	min-width:360px;
+	width:60%;
+	background:rgba(249, 249, 249, 0.96);
+	border:1px solid #ddd;
+	text-align:center;
+}
+
+.modalBox img{
+	margin-top: 64px;
+	border: 3px solid #ddd;
+	width: 50%;
+	min-width: 280px;
+}
+
