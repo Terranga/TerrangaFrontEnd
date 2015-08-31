@@ -6,7 +6,6 @@
 	
   </head>
   
-  
   <body ng-app="Terranga" ng-controller="ProfileController" ng-init="init()">
   
 <!-- Message Modal -->
@@ -151,7 +150,15 @@
  </div>
 </div>			
 
-
+<!-- Image Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modalBox">
+    <button type="button" class="close" data-dismiss="modal">
+      <span style="margin-right:5px;" aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+    </button>
+    <img src="/site/images/{{ selectedImage }}?crop=512" />
+ </div>
+</div>
     
     <div id="load"></div><!--[if lt IE 9]>
     <p class="browsehappy">You are using an strong outdated browser. <br>Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -168,6 +175,8 @@
             <div class="section-title upper text-center">
               <h2 class="light small-space" style="font-weight:600">{{ capitalize(profile.firstName) }},&nbsp;{{ profile.age }}</h2>
               <img style="width:240px;height:240px;border:2px solid #ddd;border-radius:120px" src="/site/images/{{ profile.image }}?crop=256"/><br /><br />
+              
+              <a ng-repeat="image in profile.images track by $index" ng-click="selectThumb($index)" data-toggle="modal" data-target="#imageModal" href=""><img class="thumb" src="/site/images/{{ image }}?crop=256"/></a>
               <p style="text-transform:none;color:#fff;font-weight:300;font-size:1.2em;margin-top:18px">
             	<a style="color:#1abc9c" data-toggle="modal" data-target="#reviewModal" href="#">
             	  <i class="fa fa-smile-o fa-lg"></i>&nbsp;&nbsp; 
